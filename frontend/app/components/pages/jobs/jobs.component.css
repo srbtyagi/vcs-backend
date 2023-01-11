@@ -1,0 +1,22 @@
+.p-a0 {
+    padding: 0 !important;
+  }
+.buttonApply{
+  position: relative;
+    z-index: 1;
+    overflow: hidden;
+    vertical-align: middle;
+   font-family: "roboto",sans-serif;
+    font-size: 12px;
+    height: 30px;
+    padding: 10px;
+    padding-top: 7px;
+}
+
+.dez-bnr-inr .breadcrumb-row ul li:after, .dez-bnr-inr .breadcrumb-row ul li:last-child {
+  color: #000;
+}
+
+a:hover{
+  text-decoration: underline !important;
+}

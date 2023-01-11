@@ -1,0 +1,504 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">APPLICANT</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)"
+                                                    class="oldclass" id="clsActive{{a.submodule_id}}"
+                                                    style="text-decoration: none;">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>{{a.submodule_name_lower}}</span></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Skill set</h5>
+                                        <div class="float-right" style="display: flex;">
+                                            <div class="form-group" style="margin-right: 10px;">
+                                                <input type="text" class="form-control2" [(ngModel)]="searchData"
+                                                    placeholder="Name">
+                                            </div>
+                                            <a type="button" class="site-button m-b30"
+                                                href="https://vishusa.com/vcsapi/api/generate/excel/candidate/{{user_id}}/{{excelfileName}}"
+                                                target="_blank" rel="noopener noreferrer" download>Report</a>
+                                        </div>
+                                    </div>
+
+                                    <span style="float: right;
+                                    margin-top: -18px;
+                                    margin-bottom: 10px;
+                                " *ngIf="user_type==='admin'">
+                                        <a type="button" class="site-button m-b30" style="color: white;
+                                        background: red;
+                                        margin-bottom: 0px;" data-toggle="modal" data-target="#deleteSkillsets">Delete
+                                            Skillsets</a>
+                                    </span>
+
+                                    <table class="table-job-bx cv-manager company-manage-job">
+                                        <thead>
+                                            <tr>
+                                                <th class="feature">
+
+                                                </th>
+                                                <th>Name</th>
+                                                <th>Regn. Status</th>
+                                                <th>Email</th>
+                                                <th>Skill Area</th>
+                                                <th style="text-align: center;">Skill Set</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr
+                                                *ngFor="let a of candiSkillSetList | paginate: { itemsPerPage: count, currentPage: page }">
+                                                <td class="feature">
+
+                                                </td>
+
+                                                <td class="application text-primary">
+                                                    {{a.candidate_name}}</td>
+                                                <td class="expired success" *ngIf="a.user_id!==0">
+                                                    Registered</td>
+                                                <td class="expired pending" *ngIf="a.user_id===0">
+                                                    Unregistered</td>
+                                                <td class="application text-primary" style="text-transform: none;">
+                                                    {{a.candidate_email}}</td>
+                                                <td class="application text-primary" style="text-transform: none;">
+                                                    {{a.skill_area_name}}</td>
+                                                <td class="application text-light" style="display: flex;
+                                                justify-content: center;">
+                                                    <a class="site-button" data-toggle="modal"
+                                                        data-target="#viewSkillsetModal"
+                                                        (click)="viewSkillModal(a)">View
+                                                    </a>
+                                                </td>
+
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination">
+                                        <pagination-controls *ngIf="candiSkillSetList.length" class="product-pagination"
+                                            autoHide="false" maxSize="8" (pageChange)="onPageChanged($event)">
+                                        </pagination-controls>
+                                    </div>
+
+                                    <!--View Skillset Modal -->
+                                    <div class="modal fade modal-bx-info" id="viewSkillsetModal" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 70% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <h5 class="modal-title" *ngIf="details">Skill Set</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <div class="candidate-info company-info">
+                                                        <div class="row">
+                                                            <table *ngIf="details">
+                                                                <col span="1" style="width: 12%;">
+                                                                <col span="1" style="width: 88%;">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td><strong>Name :</strong></td>
+                                                                        <td>{{details.candidate_name}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><strong>Email :</strong></td>
+                                                                        <td style="text-transform: none;">
+                                                                            {{details.candidate_email}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><strong>Date :</strong></td>
+                                                                        <td style="text-transform: none;">
+                                                                            {{details.edit_date}}</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td style="padding-top: 3%;" colspan=2>
+                                                                            <h5>Skill Set For {{category_name}} >
+                                                                                {{area_name}}</h5>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+
+
+                                                        </div>
+                                                        <hr />
+                                                        <div class="row">
+                                                            <div class="col-lg-12 col-md-12">
+                                                                <table class="requiredField">
+                                                                    <col span="1" style="width: 13%;">
+                                                                    <col span="1" style="width: 87%;">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td><strong>Instructions :</strong></td>
+                                                                            <td>This checklist is meant to serve as
+                                                                                a general guideline
+                                                                                for our client facilities as to the
+                                                                                level of your skills
+                                                                                within your nursing specialty.
+                                                                                Please use the scale
+                                                                                below to describe your
+                                                                                experience/expertise in each area
+                                                                                listed below.</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td><strong>Scale :</strong></td>
+                                                                            <td>
+                                                                                <ul style="list-style: none;">
+                                                                                    <li>1 = No Experience</li>
+                                                                                    <li>2 = Need Training</li>
+                                                                                    <li>3 = Able to perform with
+                                                                                        supervision</li>
+                                                                                    <li>4 = Able to perform
+                                                                                        independently
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </td>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="row" *ngIf="jobDomain">
+                                                            <div class="col-lg-12 m-b30"
+                                                                *ngFor="let a of jobDomain;let k=index">
+                                                                <div class="job-bx bg-white">
+                                                                    <div class="job-bx-title clearfix">
+                                                                        <h6 class="text-uppercase">
+                                                                            {{a.skill_domain_name}}
+                                                                            <!-- <div class="float-right font-14 text-primary"
+                                                                                style="margin-right: 1%;">Date Of
+                                                                                Completion</div> -->
+                                                                            <div class="float-right font-14 text-primary"
+                                                                                style="margin-right: 16%;">Rating</div>
+                                                                        </h6>
+                                                                    </div>
+                                                                    <div class="row" *ngIf="a.set">
+                                                                        <table>
+                                                                            <colgroup>
+                                                                                <col span="1" style="width: 60%;">
+                                                                                <col span="1" style="width: 20%;">
+                                                                                <!-- <col span="1" style="width: 20%;"> -->
+                                                                            </colgroup>
+                                                                            <tbody>
+                                                                                <tr *ngFor="let b of a.set;let i=index">
+                                                                                    <td>{{b.skillset_name}}</td>
+                                                                                    <td>
+                                                                                        <ngb-rating
+                                                                                            [(rate)]="b.skillset_rate"
+                                                                                            [max]="4" [readonly]="true">
+                                                                                            <ng-template let-fill="fill"
+                                                                                                let-index="index">
+                                                                                                <span class="star"
+                                                                                                    [class.filled]="fill === 100"
+                                                                                                    [class.bad]="index < 1">&#9733;</span>
+                                                                                            </ng-template>
+                                                                                        </ngb-rating>
+
+                                                                                        <b
+                                                                                            style="margin-left: 10%;">{{b.skillset_rate}}</b>
+                                                                                    </td>
+                                                                                    <!-- <td style="text-align: center;"
+                                                                                        *ngIf="b.date_of_completion && b.date_flag===1">
+                                                                                        <span>{{b.date_of_completion}}</span>
+                                                                                    </td>
+                                                                                    <td style="text-align: center;"
+                                                                                        *ngIf="!b.date_of_completion || b.date_flag===0">
+                                                                                        <span>-</span>
+                                                                                    </td> -->
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        (click)="downloadPDF()">Download</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--delete Skillset Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="deleteSkillsets" tabindex="-1"
+                                        role="dialog" aria-labelledby="EmploymentModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EmploymentModalLongTitle">Delete
+                                                        Skillsets
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #closeDeleteModal aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" style="height: 400px;">
+                                                    <form>
+                                                        <div class="row">
+
+                                                            <div class="col-lg-12 col-md-12">
+                                                                <div class="form-group">
+
+                                                                    <div class="row" style="margin-top: 15px;">
+                                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-6">
+                                                                            <div class="custom-control custom-radio"
+                                                                                style="pointer-events: none;">
+
+                                                                                <label class="custom-control-label"
+                                                                                    for="delete_by_date">Delete
+                                                                                    Skillsets
+                                                                                    before</label>
+                                                                            </div>
+                                                                            <div style="margin-top: 15px;
+                                                                            margin-left: 30px;">
+                                                                                <dp-date-picker dir="ltr"
+                                                                                    theme="dp-material"
+                                                                                    placeholder="MM/DD/YYYY"
+                                                                                    required="true"
+                                                                                    [(ngModel)]="delete_date"
+                                                                                    [ngModelOptions]="{standalone: true}"
+                                                                                    [config]="datePickerConfig">
+                                                                                </dp-date-picker>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button" (click)="deleteSkillset()"
+                                                        data-dismiss="modal">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+
+                                    <!-- Div PDF  -->
+
+                                    <div class="modal-content canvas_div_pdf" *ngIf="showDivPdf && details" id="add">
+                                        <div class="modal-header"
+                                            style="background-color: transparent;display: flex;width: 100%; margin-top: 30px;margin-left: 30px;margin-bottom: 0px;">
+
+                                            <div style="width: 25%;margin-top: 0px;">
+                                                <img style="height: 80px;width: 200px;" src="../assets/images/logo.png">
+                                            </div>
+                                            <div style="width: 75%;text-align: left;color: black;">
+                                                <h3>Vish Consulting Services Inc.</h3>
+                                                <p style="font-size: 18px;line-height: 8px; margin-top: 12px;">9655
+                                                    Granite Ridge Dr, STE
+                                                    200, San Diego,
+                                                    CA 92123</p>
+                                                <p style="font-size: 18px;line-height: 8px;">E: info@vishusa.com P:
+                                                    +1
+                                                    (916) 800-3762</p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body" id="exportthis" style="margin-bottom: 20px;">
+
+                                            <div class="candidate-info company-info">
+                                                <div class="row">
+                                                    <table *ngIf="details">
+                                                        <col span="1" style="width: 12%;">
+                                                        <col span="1" style="width: 88%;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td><strong>Name :</strong></td>
+                                                                <td>{{details.candidate_name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Email :</strong></td>
+                                                                <td style="text-transform: none;">
+                                                                    {{details.candidate_email}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><strong>Date :</strong></td>
+                                                                <td style="text-transform: none;">
+                                                                    {{details.edit_date}}</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td style="padding-top: 3%;" colspan=2>
+                                                                    <h5>Skill Set For {{category_name}} >
+                                                                        {{area_name}}</h5>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+                                                </div>
+                                                <hr />
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12">
+                                                        <table class="requiredField">
+                                                            <col span="1" style="width: 13%;">
+                                                            <col span="1" style="width: 87%;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td><strong>Instructions :</strong></td>
+                                                                    <td>This checklist is meant to serve as
+                                                                        a general guideline
+                                                                        for our client facilities as to the
+                                                                        level of your skills
+                                                                        within your nursing specialty.
+                                                                        Please use the scale
+                                                                        below to describe your
+                                                                        experience/expertise in each area
+                                                                        listed below.</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><strong>Scale :</strong></td>
+                                                                    <td>
+                                                                        <ul style="list-style: none;">
+                                                                            <li>1 = No Experience</li>
+                                                                            <li>2 = Need Training</li>
+                                                                            <li>3 = Able to perform with
+                                                                                supervision</li>
+                                                                            <li>4 = Able to perform
+                                                                                independently
+                                                                            </li>
+                                                                        </ul>
+                                                                    </td>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="row" *ngIf="jobDomain">
+                                                    <div class="col-lg-12 m-b30"
+                                                        *ngFor="let a of jobDomain;let k=index">
+                                                        <div class="job-bx bg-white">
+                                                            <div class="job-bx-title clearfix">
+                                                                <h6 class="text-uppercase">
+                                                                    {{a.skill_domain_name}}
+                                                                    <!-- <div class="float-right font-14 text-primary"
+                                                                        style="margin-right: 1%;">Date Of
+                                                                        Completion</div> -->
+                                                                    <div class="float-right font-14 text-primary"
+                                                                        style="margin-right: 16%;">Rating</div>
+                                                                </h6>
+                                                            </div>
+                                                            <div class="row" *ngIf="a.set">
+                                                                <table>
+                                                                    <colgroup>
+                                                                        <col span="1" style="width: 60%;">
+                                                                        <col span="1" style="width: 20%;">
+                                                                        <!-- <col span="1" style="width: 20%;"> -->
+                                                                    </colgroup>
+                                                                    <tbody>
+                                                                        <tr *ngFor="let b of a.set;let i=index">
+                                                                            <td>{{b.skillset_name}}</td>
+                                                                            <td>
+                                                                                <ngb-rating [(rate)]="b.skillset_rate"
+                                                                                    [max]="4" [readonly]="true">
+                                                                                    <ng-template let-fill="fill"
+                                                                                        let-index="index">
+                                                                                        <span class="star"
+                                                                                            [class.filled]="fill === 100"
+                                                                                            [class.bad]="index < 1">&#9733;</span>
+                                                                                    </ng-template>
+                                                                                </ngb-rating>
+
+                                                                                <b
+                                                                                    style="margin-left: 10%;">{{b.skillset_rate}}</b>
+                                                                            </td>
+                                                                            <!-- <td style="text-align: center;"
+                                                                                *ngIf="b.date_of_completion && b.date_flag===1">
+                                                                                <span>{{b.date_of_completion}}</span>
+                                                                            </td>
+                                                                            <td style="text-align: center;"
+                                                                                *ngIf="!b.date_of_completion || b.date_flag===0">
+                                                                                <span>-</span>
+                                                                            </td> -->
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>

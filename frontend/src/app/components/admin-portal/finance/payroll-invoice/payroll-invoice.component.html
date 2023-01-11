@@ -1,0 +1,816 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);"
+                                                        style="font-size: 1.2rem;">FINANCE</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)"
+                                                    class="oldclass" id="clsActive{{a.submodule_id}}">
+                                                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                                    <span>{{a.submodule_name_lower}}</span></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Payroll & Invoice</h5>
+                                        <div class="float-right" style="display: flex;">
+                                            <button type="button" class="site-button m-b30" data-toggle="modal"
+                                                data-target="#recruiteePayroll">Applicant
+                                                Payroll</button>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="job-bx-title clearfix">
+                                        <div class=" form-group" style="display: flex;">
+                                            <div>
+                                                <label style="font-size: 14px;">Client</label>
+                                                <select class="form-control" [(ngModel)]="client_id1" #myClient1
+                                                    (change)='onOptionsSelected(myClient1.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of clientList1" [value]="data.client_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.client_name}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Year</label>
+                                                <select class="form-control" [(ngModel)]="year1" #myyear2
+                                                    (change)='onYearSelected2(myyear2.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of yearList2" [value]="data.year"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.year}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Month</label>
+                                                <select class="form-control" [(ngModel)]="month1" #myMonth2
+                                                    (change)='onMonthSelected2(myMonth2.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of monthList2" [value]="data.month"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.month}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Week</label>
+                                                <select class="form-control" [(ngModel)]="week1">
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of weekList2" [value]="data.week_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.wk_start_date}} - {{data.wk_end_date}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div>
+                                                <div style="display: inline-block;margin-bottom: .5rem;"></div>
+                                                <div type="button" class="site-button2" (click)="searchList()">View
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <table class="table-job-bx cv-manager company-manage-job">
+                                        <thead>
+                                            <tr>
+                                                <th class="feature">
+
+                                                </th>
+                                                <th>Payroll File no.</th>
+                                                <th>Client</th>
+                                                <th>Year</th>
+                                                <th>Month</th>
+                                                <th>Week</th>
+                                                <th>Status</th>
+                                                <th style="text-align: center;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr *ngFor="let a of payrollDataListMain | paginate: { itemsPerPage: count, currentPage: page }">
+                                                <td class="feature">
+                                                </td>
+                                                <td class="application text-primary"><a>{{a.file_no}}</a></td>
+                                                <td class="application text-primary">
+                                                    <a>{{a.client_name}}</a>
+                                                </td>
+                                                <td class="application text-primary">{{a.year}}
+                                                </td>
+                                                <td class="application text-primary">
+                                                    <a>{{a.month}}</a>
+                                                </td>
+                                                <td class="application text-primary">
+                                                    <a>{{a.wk_start_date}} - {{a.wk_end_date}}</a>
+                                                </td>
+
+                                                <td class="expired success" style="text-transform: capitalize;"
+                                                    *ngIf="a.approval_status==='approved'">
+                                                    <a>Approved</a>
+                                                </td>
+
+                                                <td class="application text-primary" style="display: flex;
+                                                justify-content: center;">
+                                                    <button type="button" class="button-offer"
+                                                        (click)="clickDownload(a)" data-toggle="modal"
+                                                        data-target="#processPayrollSecond">Download
+                                                    </button>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination">
+                                        <pagination-controls *ngIf="payrollDataListMain.length" class="product-pagination" autoHide="false" maxSize="8" (pageChange)="onPageChanged($event)"></pagination-controls>
+                                    </div>
+                                    <!-- Edit and Approve Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="processPayrollSecond" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true"
+                                        *ngIf="showModalBox">
+                                        <div class="modal-dialog" role="document" style="max-width: 80% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Download
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #processSecondClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="payrollDataList.length!==0">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{payrollDataList[0].client_name}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Month
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{payrollDataList[0].month}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Week :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{payrollDataList[0].wk_start_date}}
+                                                                    - {{payrollDataList[0].wk_end_date}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Year
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{payrollDataList[0].year}}</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <table class="table-job-bx cv-manager company-manage-job">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="feature">
+
+                                                                    </th>
+                                                                    <th>Applicant Name</th>
+                                                                    <th>Job ID</th>
+                                                                    <th>Reg. Hr.</th>
+                                                                    <th>OT Hr.</th>
+                                                                    <th>Holiday Hr.</th>
+                                                                    <th>Taxable Income</th>
+                                                                    <th>Non-Taxable Income</th>
+                                                                    <th>Gross</th>
+                                                                    <th>Invoice (After ded)</th>
+                                                                    <th>Profit</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let a of payrollDataList;let i=index">
+                                                                    <td class="feature">
+
+                                                                    </td>
+
+                                                                    <td class="application text-primary"
+                                                                        *ngIf="a.payroll_status==='inprocess'"
+                                                                        style="color: red !important;">
+                                                                        {{a.user_first_name}}
+                                                                        {{a.user_middle_name}} {{a.user_last_name}}</td>
+                                                                    <td class="application text-primary"
+                                                                        *ngIf="a.payroll_status==='submitted'"
+                                                                        style="color: blue !important;">
+                                                                        {{a.user_first_name}}
+                                                                        {{a.user_middle_name}} {{a.user_last_name}}</td>
+                                                                    <td class="application text-primary"
+                                                                        *ngIf="a.payroll_status==='approved'">
+                                                                        {{a.user_first_name}}
+                                                                        {{a.user_middle_name}} {{a.user_last_name}}</td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.job_no}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.reg_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.ot_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.holiday_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.taxable_amt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.nontaxable_amt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.gross_amt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.deducted_invoice_amt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.profit_amt}}
+                                                                    </td>
+
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <!-- <button type="button" class="site-button"
+                                                        (click)="approvePayroll()">Download Excel</button> -->
+
+                                                    <a class="site-button"
+                                                        href="https://vishusa.com/vcsapi/get/api/approval_status/approved/accountfiledata/download/excelfile/{{user_id}}/{{acc_file_id}}/{{excelfileName}}"
+                                                        target="_blank" rel="noopener noreferrer" download>Download
+                                                        Excel</a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Recruitee Payroll Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="recruiteePayroll" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Applicant
+                                                        Payroll
+
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #process1Close aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">Applicant Name</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Enter Name"
+                                                                    [(ngModel)]="recruitee_name"
+                                                                    (input)="findrecuiteeCode($event)">
+
+                                                                <div class="alert alert-success" *ngIf="showNameList"
+                                                                    style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                                    <div *ngFor="let b of nameList"
+                                                                        (click)="selectName(b)" style="margin: 5px;">
+                                                                        {{b.user_first_name}} {{b.user_middle_name}}
+                                                                        {{b.user_last_name}}
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">Applicant Code</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Enter Code"
+                                                                    [(ngModel)]="recruitee_code"
+                                                                    (input)="findrecuiteeName($event)">
+
+                                                                <div class="alert alert-success" *ngIf="showCodeList"
+                                                                    style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                                    <div *ngFor="let b of codeList"
+                                                                        (click)="selectCode(b)" style="margin: 5px;">
+                                                                        {{b.recruitee_code}}
+                                                                    </div>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">Client</label>
+                                                                <select class="form-control" [(ngModel)]="client_id">
+                                                                    <option *ngFor="let data of clientList"
+                                                                        [value]="data.client_id"
+                                                                        style="text-transform: capitalize;">
+                                                                        {{data.client_name}}</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">Year</label>
+                                                                <select class="form-control" [(ngModel)]="year" #myyear1
+                                                                    (change)='onYearSelected(myyear1.value)'>
+                                                                    <option *ngFor="let data of yearList"
+                                                                        [value]="data.year"
+                                                                        style="text-transform: capitalize;">
+                                                                        {{data.year}}</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">Month</label>
+                                                                <select class="form-control" [(ngModel)]="month"
+                                                                    #myMonth1
+                                                                    (change)='onMonthSelected(myMonth1.value)'>
+                                                                    <option *ngFor="let data of monthList"
+                                                                        [value]="data.month"
+                                                                        style="text-transform: capitalize;">
+                                                                        {{data.month}}</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">Week</label>
+                                                                <select class="form-control" [(ngModel)]="week">
+                                                                    <option *ngFor="let data of weekList"
+                                                                        [value]="data.week_id"
+                                                                        style="text-transform: capitalize;">
+                                                                        {{data.wk_start_date}} - {{data.wk_end_date}}
+                                                                    </option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button" (click)="search()"
+                                                        data-toggle="modal"
+                                                        data-target="#paySlipDownload">Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Recuitee Payroll Payslip Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="paySlipDownload" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Applicant
+                                                        Payroll
+
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="searchPayrollList.length!==0">
+                                                    <div class="row">
+
+                                                        <table class="table-job-bx cv-manager company-manage-job">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="feature">
+
+                                                                    </th>
+                                                                    <th>Client</th>
+                                                                    <th>Job ID</th>
+                                                                    <th>Week</th>
+                                                                    <th>Payslip</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let a of searchPayrollList;let i=index">
+                                                                    <td class="feature">
+
+                                                                    </td>
+
+                                                                    <td class="application text-primary">
+                                                                        {{a.client_name}}</td>
+
+                                                                    <td class="application text-primary">
+                                                                        {{a.job_no}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.wk_start_date}} - {{a.wk_end_date}}
+                                                                    </td>
+
+                                                                    <td class="application text-primary">
+                                                                        <div class="appCount" data-toggle="modal"
+                                                                            data-target="#payslipView"
+                                                                            (click)="viewslip(a)"
+                                                                            style="background-color: #563A10;width: 75px;margin-left: -10px;">
+                                                                            Download
+                                                                        </div>
+                                                                    </td>
+
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Pay slip Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="payslipView" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Payslip
+                                                        Details
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix"
+                                                                    style="margin-top: 1px;">{{details.job_no}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Applicant Name
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix"
+                                                                    style="margin-top: 1px;">{{details.user_first_name}}
+                                                                    {{details.user_middle_name}}
+                                                                    {{details.user_last_name}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Job
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix"
+                                                                    style="margin-top: 1px;">{{details.job_title}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Assignment Status
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;"
+                                                                    *ngIf="details.assignment_status==='not_started'">Not
+                                                                    Started</span>
+                                                                <span class="clearfix" style="margin-top: 1px;"
+                                                                    *ngIf="details.assignment_status==='working'">Working</span>
+                                                                <span class="clearfix" style="margin-top: 1px;"
+                                                                    *ngIf="details.assignment_status==='closed'">Closed</span>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix"
+                                                                    style="margin-top: 1px;">{{details.client_name}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Application No.
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix"
+                                                                    style="margin-top: 1px;">{{details.application_no}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Hiring Date
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix"
+                                                                    style="margin-top: 1px;">{{details.hiring_date|date:'MM/dd/yyyy'}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="divider"></div>
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Regular Pay Rate
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">$
+                                                                    {{details.onb_regular_pay_rate}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Holiday Pay Rate
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">$
+                                                                    {{details.onb_holiday_pay_rate}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Regular Work Hours
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">
+                                                                    {{details.reg_hr}}</span>
+                                                            </div>
+
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Holiday Work Hours
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">
+                                                                    {{details.holiday_hr}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Taxable Income
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">
+                                                                    $ {{details.taxable_amt}}</span>
+                                                            </div>
+
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Bonus
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">
+                                                                    $ {{details.bonus_amount}}</span>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">OT Pay Rate
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">$
+                                                                    {{details.onb_ot_pay_rate}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Allowed Per Diem/Week
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">
+                                                                    $ {{details.per_dieum_wk}}</span>
+                                                            </div>
+
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">OT Work Hours
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">
+                                                                    {{details.ot_hr}}</span>
+                                                            </div>
+
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Total Work Hours
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">
+                                                                    {{total_work_hr}}</span>
+                                                            </div>
+
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Non-Taxable Income
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">
+                                                                    $ {{details.nontaxable_amt}}</span>
+                                                            </div>
+
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Gross Income
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix" style="margin-top: 1px;">
+                                                                    $ {{details.gross_amt}}</span>
+                                                            </div>
+
+
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="downloadPayslip()">Download</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Div PDF  -->
+
+                                    <div class="modal-content" *ngIf="showDivPdf && details" id="payslipDiv">
+                                        <div class="modal-header"
+                                            style="background-color: transparent;display: flex;width: 100%; margin-top: 30px;margin-left: 30px;margin-bottom: 0px;">
+
+                                            <div style="width: 25%;margin-top: 0px;">
+                                                <img style="height: 80px;width: 200px;" src="../assets/images/logo.png">
+                                            </div>
+                                            <div style="width: 75%;text-align: left;color: black;">
+                                                <h3>Vish Consulting Services Inc.</h3>
+                                                <p style="font-size: 18px;line-height: 8px; margin-top: 12px;">9655
+                                                    Granite Ridge Dr, STE
+                                                    200, San Diego,
+                                                    CA 92123</p>
+                                                <p style="font-size: 18px;line-height: 8px;">E: info@vishusa.com P:
+                                                    +1
+                                                    (916) 800-3762</p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul
+                                                style="text-transform: none !important;margin-left: 15px;font-size: 20px;">
+
+                                                <li style="display:flex;"><strong>Job ID :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">{{details.job_no}}</p>
+                                                </li>
+                                                <li style="display:flex;"><strong>Job :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">{{details.job_title}}
+                                                    </p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Application No. :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.application_no}}
+                                                    </p>
+                                                </li>
+
+                                                <li style="display: flex;"><strong>Date of Application :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.apply_date|date:'MM/dd/yyyy'}}</p>
+                                                </li>
+
+                                                <li style="display: flex;"><strong>Applicant Name :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.user_first_name}}
+                                                        {{details.user_middle_name}} {{details.user_last_name}}
+                                                    </p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Assignment Status :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;"
+                                                        *ngIf="details.assignment_status==='not_started'">
+                                                        Not Started</p>
+                                                    <p style="margin-left: 10px;margin-top: 3px;"
+                                                        *ngIf="details.assignment_status==='working'">Working
+                                                    </p>
+                                                    <p style="margin-left: 10px;margin-top: 3px;"
+                                                        *ngIf="details.assignment_status==='closed'">Closed
+                                                    </p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Client :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.client_name}}</p>
+                                                </li>
+
+                                                <li style="display: flex;"><strong>Hiring Date :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.hiring_date|date:'MM/dd/yyyy'}}</p>
+                                                </li>
+
+
+                                                <li style="display: flex;"><strong>Regular Pay Rate :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        $ {{details.onb_regular_pay_rate}}</p>
+                                                </li>
+
+                                                <li style="display: flex;"><strong>OT Pay Rate :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        $ {{details.onb_ot_pay_rate}}</p>
+                                                </li>
+
+                                                <li style="display: flex;"><strong>Holiday Pay Rate :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        $ {{details.onb_holiday_pay_rate}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Allowed Per Diem/Week :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        $ {{details.per_dieum_wk}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Regular Work Hours :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.reg_hr}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>OT Work Hours :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.ot_hr}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Holiday Work Hours :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.holiday_hr}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Total Work Hours :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{total_work_hr}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Taxable Income :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        $ {{details.taxable_amt}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Non-Taxable Income :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        $ {{details.nontaxable_amt}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Bonus :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        $ {{details.bonus_amount}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Gross Income :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        $ {{details.gross_amt}}</p>
+                                                </li>
+
+
+                                            </ul>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>

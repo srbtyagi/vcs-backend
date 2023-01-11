@@ -1,0 +1,44 @@
+.requiredField{
+    color: red;
+}
+.listDetails{
+    display: flex;
+}
+.listData{
+    margin-bottom: 1%;
+}
+.ulList{
+    text-transform: capitalize;
+}
+strong{
+    color: #333;
+    font-size: 16px;
+    font-family: nunito;
+    display: flex;
+    float: left;
+    margin-right: 15%;
+    width: 51%;
+}
+
+.strong2{
+    width: 25%;
+    margin-right:7%;
+    font-family: "roboto",sans-serif !important;
+}
+
+.spanStar{
+    color: red;
+}
+
+select.bs-select-hidden, select.selectpicker {
+    display: block!important;
+}
+
+.oldclass{
+
+}
+
+.active {
+    background: #e1e7ff;
+    border-left-color: #4C96D7;
+}

@@ -30,7 +30,7 @@ module.exports = function (app) {
             password: req.body.password
         }
         const options = {
-            issuer: "3.15.65.55",
+            issuer: "34.201.117.204",
             audience: req.body.email
         }
 

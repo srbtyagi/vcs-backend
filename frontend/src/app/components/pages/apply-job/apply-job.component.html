@@ -1,0 +1,285 @@
+<body id="bg">
+    <div class="page-wraper">
+        <!-- <div id="loading-area"></div> -->
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-4 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+                                                <!-- <div class="upload-link" title="update" data-toggle="tooltip"
+                                                    data-placement="right">
+                                                    <input type="file" class="update-flie">
+                                                    <i class="fa fa-pencil"></i>
+                                                </div> -->
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">JOBS</a></h4>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-8 m-b30">
+                                <div class="job-bx submit-resume">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Job Apply</h5>
+                                        <a href="" routerLink="/jobs" routerLinkActive="active"
+                                            [routerLinkActiveOptions]="{exact: true}"
+                                            class="site-button right-arrow button-sm float-right">Back</a>
+                                    </div>
+
+
+                                    <div class="candidate-info company-info">
+                                        <table>
+                                            <colgroup>
+                                                <col span="1" style="width: 28%;">
+                                                <col span="1" style="width: 22%;">
+                                                <col span="1" style="width: 25%;">
+                                                <col span="1" style="width: 25%;">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td ><strong>Job Title :</strong></td>
+                                                    <td colspan='3'>{{details.job_title}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Job Location :</strong></td>
+                                                    <td colspan='3'>{{details.city}}, {{details.state}}, {{details.country}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Job ID :</strong></td>
+                                                    <td colspan='3'>{{details.job_no}}</td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                    <td><strong>Blended Pay Rate (Traveller $/Hr) :</strong></td>
+                                                    <td>$ {{details.blended_pay_rate}}</td>
+                                                    <td><strong>Regular Pay Rate (Locals $/Hr) :</strong></td>
+                                                    <td>$ {{details.regular_pay_rate}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><strong>Job Type :</strong></td>
+                                                    <td>{{details.job_type_name}}</td>
+                                                    <td><strong>Position Type :</strong></td>
+                                                    <td>{{details.position_type_name}}</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Duration :</strong></td>
+                                                    <td>{{details.duration}}</td>
+                                                    <td><strong>Confirmed (hour/week) :</strong></td>
+                                                    <td>{{details.confirm_hr}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><strong>Shift :</strong></td>
+                                                    <td>{{details.shift}}</td>
+                                                </tr>
+                                               
+                                               
+                                                <tr>
+                                                    <td><strong>Required Information :</strong></td>
+                                                    <td colspan='3'>{{details.req_information}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Description :</strong></td>
+                                                    <td colspan='3'>{{details.job_description}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <hr />
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Applicant's Details</h5>
+                                    </div>
+                                    <table>
+                                        <colgroup>
+                                            <col span="1" style="width: 25%;">
+                                            <col span="1" style="width: 25%;">
+                                            <col span="1" style="width: 25%;">
+                                            <col span="1" style="width: 25%;">
+                                        </colgroup>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>Name:</strong></td>
+                                                <td>
+                                                    {{name}}
+                                                </td>
+
+                                                <td>
+                                                    <strong> E-mail Address:</strong>
+                                                </td>
+                                                <td> {{email}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                    <form [formGroup]="applicantForm">
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Phone No.</label>
+                                                    <div style="display: flex;">
+                                                        <input class="form-control" style="margin-right: 0px;"
+                                                            formControlName="phone_no" type="text"
+                                                            placeholder="Enter Phone No.">
+
+                                                    </div>
+                                                    <div *ngIf="applicantForm.controls.phone_no.invalid && (applicantForm.controls.phone_no.dirty || applicantForm.controls.phone_no.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="applicantForm.controls.phone_no.errors?.maxlength">
+                                                            Phone No. must be at most 10 characters
+                                                            long.
+                                                        </div>
+                                                        <div *ngIf="applicantForm.controls.phone_no.invalid">
+                                                            Phone No. is invalid.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Message</label>
+                                                    <textarea type="text" class="form-control"
+                                                        placeholder="Enter Message"
+                                                        formControlName="message"></textarea>
+                                                    <div *ngIf="applicantForm.controls.message.invalid && (applicantForm.controls.message.dirty || applicantForm.controls.message.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="applicantForm.controls.message.errors?.maxlength">
+                                                            Message must be at most 500 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Availability</label>
+                                                    <textarea type="text" class="form-control"
+                                                        placeholder="Enter Availability"
+                                                        formControlName="availability"></textarea>
+                                                    <div *ngIf="applicantForm.controls.availability.invalid && (applicantForm.controls.availability.dirty || applicantForm.controls.availability.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div
+                                                            *ngIf="applicantForm.controls.availability.errors?.maxlength">
+                                                            Availability must be at most 500 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>Resume<span class="requiredField">*</span></label>
+                                                    <div class="custom-file">
+                                                        <p class="m-a0" *ngIf="!file_name">
+                                                            <i class="fa fa-upload"></i>
+                                                            Upload File
+                                                        </p>
+                                                        <p class="m-a0" *ngIf="file_name">
+                                                            {{file_name}}
+                                                        </p>
+                                                        <input type="file" class="site-button form-control"
+                                                            id="customFile" (change)="fileUpload($event.target.files)"
+                                                            formControlName="resume">
+
+
+                                                    </div>
+                                                    <div *ngIf="viewShow==='true'" class="alert alert-success"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div>
+                                                            Document uploaded successfully.
+                                                        </div>
+
+
+
+                                                    </div>
+                                                    <div *ngIf="!status" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div>
+                                                            Resume is required.
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                    <div *ngIf="viewShow==='false'" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+
+                                                        <div *ngIf="viewShow==='false'" class="">
+                                                            Document can not be uploaded,please
+                                                            try again.
+                                                        </div>
+
+                                                    </div>
+                                                    <div *ngIf="viewfinalErr" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div>
+                                                            Something went wrong,please try again.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6" *ngIf="showProgressBar">
+                                                <circle-progress [percent]=showPercentage [radius]="40"
+                                                    [outerStrokeWidth]="6" [innerStrokeWidth]="4"
+                                                    [outerStrokeColor]="'#4C96D7'" [innerStrokeColor]="'#a6cbeb'"
+                                                    [animation]="false" [animationDuration]="10" [titleFontSize]="10"
+                                                    [renderOnClick]="false">
+                                                </circle-progress>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <br />
+                                                <br />
+                                                <div class="job-time mr-auto" *ngIf="status">
+                                                    <a [href]=url target="_blank"><span>Preview</span></a>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <button type="button" class="site-button m-b30" (click)="addApplicant()"
+                                            [disabled]="!applicantForm.valid"
+                                            [ngStyle]="{'cursor': (!applicantForm.valid? 'not-allowed':'pointer')}">Apply</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+</body>

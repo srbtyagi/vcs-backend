@@ -1,0 +1,78 @@
+<body id="bg">
+    <div class="page-wraper">
+
+        <!-- Content -->
+        <div class="page-content">
+            <!-- inner page banner -->
+            <div class="dez-bnr-inr jobs-category overlay-black-middle"
+                style="background-image:url(../assets/images/banner/checklist_banner.png);">
+                <div class="container">
+                    <div class="dez-bnr-inr-entry">
+                        <h2 style="color:white;">Skill Checklist</h2>
+                        <!-- <div class="job-search-form">
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" class="form-control"
+                                        placeholder="Job Title, Keywords Or Company Name">
+                                    <input type="text" class="form-control" placeholder="City, Province Or Region">
+                                    <div class="input-group-prepend">
+                                        <button class="site-button">Search</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="category-jobs-info">
+                            <div class="nav">
+                                <ul>
+                                    <li><a href="category-all-jobs.html">All Jobs</a></li>
+                                    <li><a href="category-company-jobs.html">Jobs by Company</a></li>
+                                    <li class="active"><a href="category-jobs.html">Jobs by Category</a></li>
+                                    <li><a href="category-location-jobs.html">Jobs by Location</a></li>
+                                    <li><a href="category-designations-jobs.html">Jobs by Designation</a></li>
+                                    <li><a href="category-skill-jobs.html">Jobs by Skill</a></li>
+                                </ul>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <!-- inner page banner END -->
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full content-inner jobs-category-bx">
+                    <div class="container">
+                        <div class="row" *ngIf="jobCategory">
+                            <div class="col-lg-12 m-b30" *ngFor="let a of jobCategory">
+                                <div class="job-bx bg-white">
+                                    <div class="job-bx-title clearfix">
+                                        <h6 class="text-uppercase">{{a.skill_category_name}}
+                                            <!-- <a href="javascript:void(0);" class="float-right font-12 text-primary">View
+                                                All</a> -->
+                                        </h6>
+                                    </div>
+                                    <div class="row" *ngIf="a.skillArea">
+                                        <div class="col-lg-4 col-sm-12" *ngFor="let b of a.skillArea" >
+                                            <ul class="category-list category-bx">
+                                                <li><a href="javascript:void(0);" (click)="getJobSector(b)">
+                                                        <div class="logo"><img src="../assets/images/logo/logo18.png" alt="">
+                                                            <!-- <i class="fa fa-angle-double-right"></i> -->
+                                                        </div>
+                                                        <span>{{b.skill_area_name}}</span>
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+</body>

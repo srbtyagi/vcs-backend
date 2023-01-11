@@ -1,0 +1,508 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+                                                <!-- <div class="upload-link" title="update" data-toggle="tooltip"
+                                                    data-placement="right">
+                                                    <input type="file" class="update-flie">
+                                                    <i class="fa fa-pencil"></i>
+                                                </div> -->
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">JOBS</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)"
+                                                    class="oldclass" id="clsActive{{a.submodule_id}}"
+                                                    style="text-decoration: none;">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>{{a.submodule_name_lower}}</span></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx submit-resume">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Post A Job</h5>
+                                        <a href="/" class="site-button right-arrow button-sm float-right">Back</a>
+                                    </div>
+                                    <form [formGroup]="postJobForm">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>Job ID<span class="spanStar">*</span></label>
+                                                    <input type="text" class="form-control" placeholder="Enter Job ID"
+                                                        formControlName="job_id" (focusout)="verifyJobId()">
+
+                                                    <div *ngIf="postJobForm.controls.job_id.invalid && (postJobForm.controls.job_id.dirty || postJobForm.controls.job_id.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="postJobForm.controls.job_id.errors?.required">
+                                                            Job ID is required.
+                                                        </div>
+                                                        <div *ngIf="postJobForm.controls.job_id.errors?.maxlength">
+                                                            Job ID must be at-most 20 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group" style="display: grid;">
+                                                    <label>State<span class="spanStar">*</span></label>
+                                                    <!-- <select class="form-control" #mySelect
+                                                        (change)='onOptionsSelected(mySelect.value)'
+                                                        formControlName="state">
+                                                        <option selected></option>
+                                                        <option *ngFor="let a of states" [value]="a.name">{{a.name}}
+                                                        </option>
+                                                    </select> -->
+
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter State Name" formControlName="state"
+                                                        (input)="searchState($event)" (focus)="focusInputState()">
+
+                                                    <div class="alert alert-success" *ngIf="stateList" style="font-size: 12px;
+                                                    padding: 0.5rem 1.25rem;
+                                                    background: #F2F2F2;
+                                                    border-color: lightgray;
+                                                    color: #000;">
+                                                        <div *ngFor="let a of states"
+                                                            (click)="onOptionsSelected(a.isoCode,a.name)"
+                                                            style="margin: 5px;">
+                                                            {{a.name}} ({{a.isoCode}})
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div *ngIf="postJobForm.controls.state.invalid && (postJobForm.controls.state.dirty || postJobForm.controls.state.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="postJobForm.controls.state.errors?.required">
+                                                            State is required.
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group" style="display: grid;">
+                                                    <label>City<span class="spanStar">*</span></label>
+                                                    <!-- <select class="form-control" formControlName="city">
+                                                        <option *ngFor="let data of filteredCity" [value]="data.name"
+                                                            style="text-transform: capitalize;">
+                                                            {{data.name}}</option>
+                                                    </select> -->
+
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter City Name" formControlName="city"
+                                                        (input)="searchCity($event)" (focus)="focusInputCity()">
+
+                                                    <div class="alert alert-success" *ngIf="cityList" style="font-size: 12px;
+                                                    padding: 0.5rem 1.25rem;
+                                                    background: #F2F2F2;
+                                                    border-color: lightgray;
+                                                    color: #000;">
+                                                        <div *ngFor="let a of filteredCity"
+                                                            (click)="onOptionsSelectedCity(a.name)"
+                                                            style="margin: 5px;">
+                                                            {{a.name}}
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div *ngIf="postJobForm.controls.city.invalid && (postJobForm.controls.city.dirty || postJobForm.controls.city.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="postJobForm.controls.city.errors?.required">
+                                                            City is required.
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Job Title<span class="spanStar">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter Job Title" formControlName="job_title">
+
+                                                    <div *ngIf="postJobForm.controls.job_title.invalid && (postJobForm.controls.job_title.dirty || postJobForm.controls.job_title.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="postJobForm.controls.job_title.errors?.required">
+                                                            Job title is required.
+                                                        </div>
+                                                        <div *ngIf="postJobForm.controls.job_title.errors?.maxlength">
+                                                            Job title must be at-most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>Bill Rate ($/Hr)<span class="spanStar">*</span></label>
+                                                    <input type="number" class="form-control" placeholder="Enter Rate"
+                                                        formControlName="bill_rate" (input)="changepayRate($event)"
+                                                        step="0.01" min="0" id="billRate"
+                                                        oninput="billRate.value>0||(value='');">
+
+                                                    <div *ngIf="postJobForm.controls.bill_rate.invalid && (postJobForm.controls.bill_rate.dirty || postJobForm.controls.bill_rate.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="postJobForm.controls.bill_rate.errors?.required">
+                                                            Bill rate is required.
+                                                        </div>
+                                                        <div *ngIf="postJobForm.controls.bill_rate.errors?.max">
+                                                            Bill rate must be at-most 30 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>Blended Pay Rate(Traveller $/Hr)<span
+                                                            class="spanStar">*</span></label>
+                                                    <input type="number" class="form-control" placeholder="Enter Rate"
+                                                        formControlName="blended_pay_rate" [(ngModel)]="blended_pay"
+                                                        min="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>Regular Pay Rate(Locals $/Hr)<span
+                                                            class="spanStar">*</span></label>
+                                                    <input type="number" class="form-control" placeholder="Enter Rate"
+                                                        formControlName="regular_pay_rate" [(ngModel)]="regular_pay"
+                                                        min="0">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>OT/Holiday Bill Rate ($/Hr)<span
+                                                            class="spanStar">*</span></label>
+                                                    <input type="number" class="form-control" placeholder="Enter Rate"
+                                                        min="0" formControlName="ot_holiday_rate"
+                                                        (input)="changeOTRate($event)" step="0.01" id="OTRate"
+                                                        oninput="OTRate.value>0||(value='');">
+
+                                                    <div *ngIf="postJobForm.controls.ot_holiday_rate.invalid && (postJobForm.controls.ot_holiday_rate.dirty || postJobForm.controls.ot_holiday_rate.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div
+                                                            *ngIf="postJobForm.controls.ot_holiday_rate.errors?.required">
+                                                            OT/Holiday rate is required.
+                                                        </div>
+                                                        <div *ngIf="postJobForm.controls.ot_holiday_rate.errors?.max">
+                                                            OT/Holiday rate must be at-most 30 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>OT/Holiday Pay Rate(Traveller $/Hr)<span
+                                                            class="spanStar">*</span></label>
+                                                    <input type="number" class="form-control" placeholder="Enter Rate"
+                                                        formControlName="ot_holiday_pay_rate_traveller"
+                                                        [(ngModel)]="ot_holiday_pay_rate_traveller" min="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>OT/Holiday Pay Rate(Locals $/Hr)<span
+                                                            class="spanStar">*</span></label>
+                                                    <input type="number" class="form-control" placeholder="Enter Rate"
+                                                        formControlName="ot_holiday_pay_rate_local"
+                                                        [(ngModel)]="ot_holiday_pay_rate_local" min="0">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group" style="display: grid;">
+                                                    <label>Position Type<span class="spanStar">*</span></label>
+                                                    <select class="form-control" formControlName="position">
+                                                        <option selected></option>
+                                                        <option *ngFor="let data of positiontype"
+                                                            [value]="data.position_type_id"
+                                                            style="text-transform: capitalize;">
+                                                            {{data.position_type_name}}</option>
+                                                    </select>
+                                                    <div *ngIf="postJobForm.controls.position.invalid && (postJobForm.controls.position.dirty || postJobForm.controls.position.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="postJobForm.controls.position.errors?.required">
+                                                            Position type is required.
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group" style="display: grid;">
+                                                        <label>Job Type</label>
+                                                        <select class="form-control" formControlName="job_type">
+                                                            <option selected></option>
+                                                            <option *ngFor="let data of jobType"
+                                                                [value]="data.job_type_id"
+                                                                style="text-transform: capitalize;">
+                                                                {{data.job_type_name}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group" style="display: grid;">
+                                                        <label>Job Sector<span class="spanStar">*</span></label>
+                                                        <select class="form-control" formControlName="job_sector">
+                                                            <option selected></option>
+                                                            <option *ngFor="let data of jobSector"
+                                                                [value]="data.job_sector_id"
+                                                                style="text-transform: capitalize;">
+                                                                {{data.job_sector_name}}</option>
+                                                        </select>
+                                                        <div *ngIf="postJobForm.controls.job_sector.invalid && (postJobForm.controls.job_sector.dirty || postJobForm.controls.job_sector.touched)"
+                                                            class="alert alert-danger"
+                                                            style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                            <div
+                                                                *ngIf="postJobForm.controls.job_sector.errors?.required">
+                                                                Job sector is required.
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group" style="display: grid;">
+                                                        <label>Client Name<span class="spanStar">*</span></label>
+                                                        <select class="form-control" formControlName="client_name">
+                                                            <option selected></option>
+                                                            <option *ngFor="let data of clientList"
+                                                                [value]="data.client_id"
+                                                                style="text-transform: capitalize;">
+                                                                {{data.client_name}}</option>
+                                                        </select>
+                                                        <div *ngIf="postJobForm.controls.client_name.invalid && (postJobForm.controls.client_name.dirty || postJobForm.controls.client_name.touched)"
+                                                            class="alert alert-danger"
+                                                            style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                            <div
+                                                                *ngIf="postJobForm.controls.client_name.errors?.required">
+                                                                Client name rate is required.
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>System Name<span class="spanStar">*</span></label>
+                                                    <select class="form-control" formControlName="system_name">
+                                                        <option selected></option>
+                                                        <option *ngFor="let data of systemList"
+                                                            [value]="data.system_name_id"
+                                                            style="text-transform: capitalize;">
+                                                            {{data.system_name}}</option>
+                                                    </select>
+
+                                                    <div *ngIf="postJobForm.controls.system_name.invalid && (postJobForm.controls.system_name.dirty || postJobForm.controls.system_name.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="postJobForm.controls.system_name.errors?.required">
+                                                            System name rate is required.
+                                                        </div>
+                                                        <div *ngIf="postJobForm.controls.system_name.errors?.maxlength">
+                                                            System name rate must be at-most 200 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Duration<span class="spanStar">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter Job Duration" formControlName="job_duration">
+
+                                                    <div *ngIf="postJobForm.controls.job_duration.invalid && (postJobForm.controls.job_duration.dirty || postJobForm.controls.job_duration.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="postJobForm.controls.job_duration.errors?.required">
+                                                            Job duration is required.
+                                                        </div>
+                                                        <div
+                                                            *ngIf="postJobForm.controls.job_duration.errors?.maxlength">
+                                                            Job duration must be at-most 50 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Shift<span class="spanStar">*</span></label>
+                                                    <div style="display: flex; padding: 10px;">
+                                                        <div class="custom-control custom-checkbox checkbox-margin">
+                                                            <input type="checkbox" class="custom-control-input" id="Day"
+                                                                name="Day" checked (click)="checkBoxSelect('Day')">
+                                                            <label class="custom-control-label font-normal"
+                                                                for="Day">Day</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox checkbox-margin"
+                                                            style="margin-left: 10px;">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                id="Night" name="Night"
+                                                                (click)="checkBoxSelect('Night')">
+                                                            <label class="custom-control-label font-normal"
+                                                                for="Night">Night</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox checkbox-margin"
+                                                            style="margin-left: 10px;">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                id="Evening" name="Evening"
+                                                                (click)="checkBoxSelect('Evening')">
+                                                            <label class="custom-control-label font-normal"
+                                                                for="Evening">Evening</label>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="shit_details.length===0" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div>
+                                                            Shift is required.
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Confirmed Hour/Week<span class="spanStar">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter Confirmed Hour"
+                                                        formControlName="confirmed_hr">
+
+                                                    <div *ngIf="postJobForm.controls.confirmed_hr.invalid && (postJobForm.controls.confirmed_hr.dirty || postJobForm.controls.confirmed_hr.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="postJobForm.controls.confirmed_hr.errors?.required">
+                                                            Confirmed Hour/Week is required.
+                                                        </div>
+                                                        <div
+                                                            *ngIf="postJobForm.controls.confirmed_hr.errors?.maxlength">
+                                                            Confirmed Hour/Week must be at-most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Required Information For Submission</label>
+                                                    <textarea type="text" class="form-control" rows="4" cols="50"
+                                                        placeholder="Enter Information"
+                                                        formControlName="req_inf"></textarea>
+
+                                                    <div *ngIf="postJobForm.controls.req_inf.invalid && (postJobForm.controls.req_inf.dirty || postJobForm.controls.req_inf.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+
+                                                        <div *ngIf="postJobForm.controls.req_inf.errors?.maxlength">
+                                                            Required Information must be at-most 1000 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Job Description<span class="spanStar">*</span></label>
+                                                    <textarea type="text" class="form-control" rows="4" cols="50"
+                                                        placeholder="Enter Job Description"
+                                                        formControlName="job_desc"></textarea>
+
+                                                    <div *ngIf="postJobForm.controls.job_desc.invalid && (postJobForm.controls.job_desc.dirty || postJobForm.controls.job_desc.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="postJobForm.controls.job_desc.errors?.required">
+                                                            Job description is required.
+                                                        </div>
+                                                        <div *ngIf="postJobForm.controls.job_desc.errors?.maxlength">
+                                                            Job description must be at-most 1000 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="site-button m-b30" (click)="submit()"
+                                            [disabled]="!postJobForm.valid || shit_details.length===0"
+                                            [ngStyle]="{'cursor': (!postJobForm.valid || shit_details.length===0? 'not-allowed':'pointer')}">Post
+                                            Job</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+</body>

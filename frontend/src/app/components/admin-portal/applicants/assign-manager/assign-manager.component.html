@@ -1,0 +1,985 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);"
+                                                        style="font-size: 1.2rem;">APPLICANT</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)"
+                                                    class="oldclass" id="clsActive{{a.submodule_id}}">
+                                                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                                    <span>{{a.submodule_name_lower}}</span></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Assign Manager</h5>
+                                        <div class="float-right" style="display: flex;">
+                                            <!-- <div class="form-group" style="margin-right: 10px;">
+                                                <input type="text" class="form-control2" placeholder="Search">
+                                            </div> -->
+                                            <a type="button" class="site-button m-b30"
+                                                href="https://vishusa.com/vcsapi/api/generate/excel/assign/manager/{{user_id_by}}/{{excelfileName}}"
+                                                target="_blank" rel="noopener noreferrer" download>Report</a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="job-bx-title clearfix">
+                                        <div class=" form-group" style="display: flex;">
+                                            <div>
+                                                <label style="font-size: 14px;">Client</label>
+                                                <!-- <select class="form-control" [(ngModel)]="client_id" #mySelectClient
+                                                    (change)='onOptionsSelected(mySelectClient.value)'>
+                                                    <option value="ALL">All</option>
+                                                    <option *ngFor="let data of clientList" [value]="data.client_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.client_name}}</option>
+                                                </select> -->
+
+                                                <input type="text" class="form-control" placeholder="Enter Client Name"
+                                                    [(ngModel)]="clientName" (input)="searchClient($event)"
+                                                    (focus)="focusClientList()">
+
+                                                <div class="alert alert-success" *ngIf="clientListShow" style="font-size: 12px;
+                                                padding: 0.5rem 1.25rem;
+                                                background: #F2F2F2;
+                                                border-color: lightgray;
+                                                color: #000;">
+                                                    <div *ngFor="let data of clientList"
+                                                        (click)="selectclientName(data)"
+                                                        style="margin: 5px;cursor: pointer;">
+                                                        {{data.client_name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Applicant</label>
+                                                <!-- <select class="form-control" [(ngModel)]="applicant">
+                                                    <option value="ALL">All</option>
+                                                    <option *ngFor="let data of applicantList" [value]="data.user_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.user_first_name}} {{data.user_middle_name}}
+                                                        {{data.user_last_name}}</option>
+                                                </select> -->
+
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter Applicant Name" [(ngModel)]="applicantName"
+                                                    (input)="searchApplicant($event)" (focus)="focusApplicantList()">
+
+                                                <div class="alert alert-success" *ngIf="applicantListShow" style="font-size: 12px;
+                                                padding: 0.5rem 1.25rem;
+                                                background: #F2F2F2;
+                                                border-color: lightgray;
+                                                color: #000;">
+                                                    <div *ngFor="let data of applicantList"
+                                                        (click)="selectApplicantName(data)"
+                                                        style="margin: 5px;cursor: pointer;">
+                                                        {{data.user_first_name}} {{data.user_middle_name}}
+                                                        {{data.user_last_name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">VCS Person</label>
+                                                <!-- <select class="form-control" [(ngModel)]="vcs_person">
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of employeeList" [value]="data.user_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.user_first_name}} {{data.user_middle_name}}
+                                                        {{data.user_last_name}}</option>
+                                                </select> -->
+
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter VCS Person Name" [(ngModel)]="vcs_person_name"
+                                                    (input)="searchEmployee($event)" (focus)="focusEmpList()">
+
+                                                <div class="alert alert-success" *ngIf="empListShow" style="font-size: 12px;
+                                                padding: 0.5rem 1.25rem;
+                                                background: #F2F2F2;
+                                                border-color: lightgray;
+                                                color: #000;">
+                                                    <div *ngFor="let data of employeeList" (click)="selectEmpName(data)"
+                                                        style="margin: 5px;cursor: pointer;">
+                                                        {{data.user_first_name}} {{data.user_middle_name}}
+                                                        {{data.user_last_name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Onboarding Mgr.</label>
+                                                <select class="form-control" [(ngModel)]="onboard_mgr">
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of employeeList" [value]="data.user_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.user_first_name}} {{data.user_middle_name}}
+                                                        {{data.user_last_name}}</option>
+                                                </select>
+                                            </div> -->
+
+                                            <div>
+                                                <div style="display: inline-block;margin-bottom: .5rem;"></div>
+                                                <div type="button" class="site-button2" (click)="searchJob()"
+                                                    [ngStyle]="{'cursor': (client_id==='' || applicant===''? 'not-allowed':'pointer')}">
+                                                    View</div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <table class="table-job-bx cv-manager company-manage-job">
+                                        <thead>
+                                            <tr>
+                                                <th class="feature">
+
+                                                </th>
+                                                <th>Client</th>
+                                                <th>Appl No.</th>
+                                                <th>Applicant Name</th>
+                                                <th>Recruiter</th>
+                                                <th>Onboarding Mgr.</th>
+                                                <th>Team-Lead</th>
+                                                <th>Manager</th>
+                                                <th style="text-align: center;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr
+                                                *ngFor="let a of applicationList | paginate: { itemsPerPage: count, currentPage: page }">
+                                                <td class="feature">
+                                                </td>
+                                                <td class="application text-primary">{{a.client_name}}</td>
+                                                <td class="application text-primary">
+                                                    <a href="javascript:void(0);" data-toggle="modal"
+                                                        data-target="#applicationDetails" class="link"
+                                                        (click)="openModal(a)">{{a.application_no}}</a>
+                                                </td>
+                                                <td class="job-name">
+                                                    <a href="javascript:void(0);" data-toggle="modal"
+                                                        data-target="#applicanDetails"
+                                                        style="text-transform: capitalize;" class="link2"
+                                                        (click)="openModal(a)">{{a.user_first_name}}
+                                                        {{a.user_middle_name}} {{a.user_last_name}}</a>
+                                                </td>
+                                                <td class="application text-primary">
+                                                    {{a.recruiterData?.user_first_name}}
+                                                    {{a.recruiterData?.user_middle_name}}
+                                                    {{a.recruiterData?.user_last_name}}</td>
+                                                <td class="application text-primary">{{a.onboardData?.user_first_name}}
+                                                    {{a.onboardData?.user_middle_name}}
+                                                    {{a.onboardData?.user_last_name}}</td>
+                                                <td class="application text-primary">{{a.teamLearData?.user_first_name}}
+                                                    {{a.teamLearData?.user_middle_name}}
+                                                    {{a.teamLearData?.user_last_name}}</td>
+                                                <td class="application text-primary">{{a.managerData?.user_first_name}}
+                                                    {{a.managerData?.user_middle_name}}
+                                                    {{a.managerData?.user_last_name}}</td>
+
+                                                <td class="job-links">
+
+                                                    <div class="dropdown">
+                                                        <a href="javascript:void(0);">
+                                                            <i class="fa fa-cog"></i></a>
+                                                        <div class="dropdown-content">
+                                                            <!-- <a href="avascript:void(0);" (click)="openModal(a)"
+                                                                data-toggle="modal"
+                                                                data-target="#assignRecruiter">Assign recruiter
+
+                                                            </a>
+                                                            <a href="avascript:void(0);" data-toggle="modal"
+                                                                data-target="#assignOnbrdMgr"
+                                                                (click)="openModal(a)">Assgn
+                                                                Onbrd Mgr.
+
+                                                            </a>
+                                                            <a href="avascript:void(0);" data-toggle="modal"
+                                                                data-target="#assignTeamLead"
+                                                                (click)="openModal(a)">Assign
+                                                                Team Lead
+
+                                                            </a>
+                                                            <a href="avascript:void(0);" data-toggle="modal"
+                                                                data-target="#assignManager"
+                                                                (click)="openModal(a)">Assign
+                                                                Manager
+
+                                                            </a> -->
+
+                                                            <a href="avascript:void(0);" (click)="openModal(a)"
+                                                                data-toggle="modal" data-target="#assignLatest">Assign
+                                                                Managers
+                                                            </a>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination">
+                                        <pagination-controls *ngIf="applicationList.length" class="product-pagination"
+                                            autoHide="false" maxSize="8" (pageChange)="onPageChanged($event)">
+                                        </pagination-controls>
+                                    </div>
+
+                                    <!-- <div class="pagination-bx m-t30 float-right">
+                                        <ul class="pagination">
+                                            <li class="previous"><a href="javascript:void(0);"><i
+                                                        class="ti-arrow-left"></i> Prev</a></li>
+                                            <li class="active"><a href="javascript:void(0);">1</a></li>
+                                            <li><a href="javascript:void(0);">2</a></li>
+                                            <li><a href="javascript:void(0);">3</a></li>
+                                            <li class="next"><a href="javascript:void(0);">Next <i
+                                                        class="ti-arrow-right"></i></a></li>
+                                        </ul>
+                                    </div> -->
+
+
+
+                                    <!-- Assign recruiter Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="assignRecruiter" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 50% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Assign
+                                                        Recruiter
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #assignRecClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Client
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.client_name}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Job Title
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.job_title}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Applicant
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.user_first_name}}
+                                                                    {{details.user_middle_name}}
+                                                                    {{details.user_last_name}}</span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Appl No.
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.application_no}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Appl Date
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.apply_date|date:'MM/dd/yyyy'}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <label style="font-size: 14px;">Recruiter</label>
+                                                            <!-- <select class="form-control" [(ngModel)]="assign_recruiter">
+                                                                <option *ngFor="let data of employeeList"
+                                                                    [value]="data.user_id"
+                                                                    style="text-transform: capitalize;">
+                                                                    {{data.user_first_name}} {{data.user_middle_name}}
+                                                                    {{data.user_last_name}}</option>
+                                                            </select> -->
+
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter Recruiter Name"
+                                                                [(ngModel)]="assign_vcs_emp_name"
+                                                                (input)="searchVCSEmployee($event)"
+                                                                (focus)="focusVCsEmpList()">
+
+                                                            <div class="alert alert-success" *ngIf="vcsempListShow"
+                                                                style="font-size: 12px;
+                                                            padding: 0.5rem 1.25rem;
+                                                            background: #F2F2F2;
+                                                            border-color: lightgray;
+                                                            color: #000;">
+                                                                <div *ngFor="let data of employeeList"
+                                                                    (click)="selectVCSReqName(data)"
+                                                                    style="margin: 5px;cursor: pointer;">
+                                                                    {{data.user_first_name}} {{data.user_middle_name}}
+                                                                    {{data.user_last_name}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="submitRecruiter('a')" [disabled]="!assign_recruiter"
+                                                        [ngStyle]="{'cursor': (!assign_recruiter? 'not-allowed':'pointer')}">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Assign Onboarding Mgr Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="assignOnbrdMgr" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 50% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Assign
+                                                        Onboard Manager
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #assignOnClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Client
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.client_name}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Job Title
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.job_title}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Applicant
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.user_first_name}}
+                                                                    {{details.user_middle_name}}
+                                                                    {{details.user_last_name}}</span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Appl No.
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.application_no}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Appl Date
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.apply_date|date:'MM/dd/yyyy'}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <label style="font-size: 14px;">Onboarding Manager</label>
+                                                            <!-- <select class="form-control"
+                                                                [(ngModel)]="assign_onboardMgr">
+                                                                <option *ngFor="let data of employeeList"
+                                                                    [value]="data.user_id"
+                                                                    style="text-transform: capitalize;">
+                                                                    {{data.user_first_name}} {{data.user_middle_name}}
+                                                                    {{data.user_last_name}}</option>
+                                                            </select> -->
+
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter Onb-Mgr Name"
+                                                                [(ngModel)]="assign_vcs_emp_name"
+                                                                (input)="searchVCSEmployee($event)"
+                                                                (focus)="focusVCsEmpList()">
+
+                                                            <div class="alert alert-success" *ngIf="vcsempListShow"
+                                                                style="font-size: 12px;
+                                                            padding: 0.5rem 1.25rem;
+                                                            background: #F2F2F2;
+                                                            border-color: lightgray;
+                                                            color: #000;">
+                                                                <div *ngFor="let data of employeeList"
+                                                                    (click)="selectVCSOnbMgrName(data)"
+                                                                    style="margin: 5px;cursor: pointer;">
+                                                                    {{data.user_first_name}} {{data.user_middle_name}}
+                                                                    {{data.user_last_name}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="submitOnbordMgr('a')" [disabled]="!assign_onboardMgr"
+                                                        [ngStyle]="{'cursor': (!assign_onboardMgr? 'not-allowed':'pointer')}">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Assign Teamlead Mgr Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="assignTeamLead" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 50% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Assign
+                                                        Team-Lead
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #assignTeamClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Client
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.client_name}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Job Title
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.job_title}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Applicant
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.user_first_name}}
+                                                                    {{details.user_middle_name}}
+                                                                    {{details.user_last_name}}</span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Appl No.
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.application_no}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Appl Date
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.apply_date|date:'MM/dd/yyyy'}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <label style="font-size: 14px;">Team-Lead</label>
+                                                            <!-- <select class="form-control" [(ngModel)]="assign_teamlead">
+                                                                <option *ngFor="let data of employeeList"
+                                                                    [value]="data.user_id"
+                                                                    style="text-transform: capitalize;">
+                                                                    {{data.user_first_name}} {{data.user_middle_name}}
+                                                                    {{data.user_last_name}}</option>
+                                                            </select> -->
+
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter Team-Lead Name"
+                                                                [(ngModel)]="assign_vcs_emp_name"
+                                                                (input)="searchVCSEmployee($event)"
+                                                                (focus)="focusVCsEmpList()">
+
+                                                            <div class="alert alert-success" *ngIf="vcsempListShow"
+                                                                style="font-size: 12px;
+                                                            padding: 0.5rem 1.25rem;
+                                                            background: #F2F2F2;
+                                                            border-color: lightgray;
+                                                            color: #000;">
+                                                                <div *ngFor="let data of employeeList"
+                                                                    (click)="selectVCSTeamLeadName(data)"
+                                                                    style="margin: 5px;cursor: pointer;">
+                                                                    {{data.user_first_name}} {{data.user_middle_name}}
+                                                                    {{data.user_last_name}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="submitOTeamLead('a')" [disabled]="!assign_teamlead"
+                                                        [ngStyle]="{'cursor': (!assign_teamlead? 'not-allowed':'pointer')}">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Assign Manager Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="assignManager" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 50% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Assign
+                                                        Manager
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #assignManagerClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Client
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.client_name}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Job Title
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.job_title}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Applicant
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.user_first_name}}
+                                                                    {{details.user_middle_name}}
+                                                                    {{details.user_last_name}}</span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Appl No.
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.application_no}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Appl Date
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.apply_date|date:'MM/dd/yyyy'}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <label style="font-size: 14px;">Manager</label>
+                                                            <!-- <select class="form-control" [(ngModel)]="assign_manager">
+                                                                <option *ngFor="let data of employeeList"
+                                                                    [value]="data.user_id"
+                                                                    style="text-transform: capitalize;">
+                                                                    {{data.user_first_name}} {{data.user_middle_name}}
+                                                                    {{data.user_last_name}}</option>
+                                                            </select> -->
+
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter Manager Name"
+                                                                [(ngModel)]="assign_vcs_emp_name"
+                                                                (input)="searchVCSEmployee($event)"
+                                                                (focus)="focusVCsEmpList()">
+
+                                                            <div class="alert alert-success" *ngIf="vcsempListShow"
+                                                                style="font-size: 12px;
+                                                            padding: 0.5rem 1.25rem;
+                                                            background: #F2F2F2;
+                                                            border-color: lightgray;
+                                                            color: #000;">
+                                                                <div *ngFor="let data of employeeList"
+                                                                    (click)="selectVCSManagerName(data)"
+                                                                    style="margin: 5px;cursor: pointer;">
+                                                                    {{data.user_first_name}} {{data.user_middle_name}}
+                                                                    {{data.user_last_name}}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button" (click)="submitManager('a')"
+                                                        [disabled]="!assign_manager"
+                                                        [ngStyle]="{'cursor': (!assign_manager? 'not-allowed':'pointer')}">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--View Applicant details Modal -->
+                                    <div class="modal fade modal-bx-info" id="applicanDetails" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <h5 class="modal-title" *ngIf="details">Applicant Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <ul>
+                                                        <li><strong>Applicant Name :</strong>
+                                                            <p> {{details.user_first_name}} {{details.user_middle_name}}
+                                                                {{details.user_last_name}}</p>
+                                                        </li>
+                                                        <li style="text-transform: none;"><strong>Email :</strong>
+                                                            <p>{{details.email}}</p>
+                                                        </li>
+                                                        <li><strong>Phone :</strong>
+                                                            <p>{{details.phone}}
+                                                            </p>
+                                                        </li>
+                                                        <li><strong>Date of Birth :</strong>
+                                                            <p>{{details.dob|date:'MM/dd/yyyy'}}</p>
+                                                        </li>
+                                                        <li><strong>SSN (Last 4 Digits) :</strong>
+                                                            <p>{{details.ssn_4digit}}</p>
+                                                        </li>
+                                                        <li><strong>Profession :</strong>
+                                                            <p>{{details.profession_name}}</p>
+                                                        </li>
+                                                        <li><strong>Speciality :</strong>
+                                                            <p>{{details.speciality_name}}</p>
+                                                        </li>
+                                                        <li><strong>Apply status :</strong>
+                                                            <p>{{details.apply_status}}</p>
+                                                        </li>
+                                                        <li><strong>Current Location :</strong>
+                                                            <p>{{details.current_location}}</p>
+                                                        </li>
+                                                        <li><strong>Desired Location 1:</strong>
+                                                            <p>{{details.desired_location_1}}</p>
+                                                        </li>
+                                                        <li><strong>Desired Location 2:</strong>
+                                                            <p>{{details.desired_location_2}}</p>
+                                                        </li>
+                                                        <li><strong>Employment Preferences:</strong>
+                                                            <p>{{details.employement_preference}}</p>
+                                                        </li>
+
+                                                        <li><strong>Applicant Availability :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.applicant_availability}}</p>
+                                                        </li>
+                                                        <li><strong>Applicant Message :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.applicant_message}}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--View Application details Modal -->
+                                    <div class="modal fade modal-bx-info" id="applicationDetails" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <h5 class="modal-title" *ngIf="details">Application Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <ul>
+                                                        <li><strong>Applicant No. :</strong>
+                                                            <p> {{details.user_first_name}}</p>
+                                                        </li>
+                                                        <li style="text-transform: none;"><strong>Application Stage
+                                                                :</strong>
+                                                            <p>{{details.application_stage}}</p>
+                                                        </li>
+                                                        <li><strong>Application Status :</strong>
+                                                            <p>{{details.application_status}}
+                                                            </p>
+                                                        </li>
+                                                        <li><strong>Date of Application :</strong>
+                                                            <p>{{details.apply_date|date:'MM/dd/yyyy'}}</p>
+                                                        </li>
+                                                        <li><strong>Applied By :</strong>
+                                                            <p>{{details.applied_by}}</p>
+                                                        </li>
+                                                        <li><strong>Apply status :</strong>
+                                                            <p>{{details.apply_status}}</p>
+                                                        </li>
+                                                        <li><strong>Client :</strong>
+                                                            <p>{{details.client_name}}</p>
+                                                        </li>
+                                                        <li><strong>Country :</strong>
+                                                            <p>{{details.country}}</p>
+                                                        </li>
+                                                        <li><strong>State :</strong>
+                                                            <p>{{details.state}}</p>
+                                                        </li>
+                                                        <li><strong>City :</strong>
+                                                            <p>{{details.city}}</p>
+                                                        </li>
+
+
+                                                        <li><strong>Job Description :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.job_description}}</p>
+                                                        </li>
+                                                        <li><strong>Required Information :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.req_information}}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Assign Modal Latest -->
+                                    <div class="modal fade modal-bx-info editor" id="assignLatest" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 50% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Assign
+                                                        Managers
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #assignLatestClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Client
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.client_name}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Job Title
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.job_title}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Applicant
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.user_first_name}}
+                                                                    {{details.user_middle_name}}
+                                                                    {{details.user_last_name}}</span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Appl No.
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.application_no}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0" style="font-size: 14px;">Appl Date
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 1px;">{{details.apply_date|date:'MM/dd/yyyy'}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="col-lg-12 col-md-12 col-sm-12">
+                                                            <div style="padding: 10px;">
+                                                                <div *ngFor="let a of allUserRole;let i = index"
+                                                                    style="display: flex;width: 100%;">
+                                                                    <div class="custom-control custom-checkbox checkbox-margin"
+                                                                        style="margin: 25px;width: 37%;">
+                                                                        <input type="checkbox"
+                                                                            class="custom-control-input" id="Day{{i}}"
+                                                                            name="Day{{i}}"
+                                                                            (click)="checkBoxSelect(a,i)"
+                                                                            [checked]="a.value">
+                                                                        <label class="custom-control-label font-normal"
+                                                                            for="Day{{i}}"
+                                                                            style="font-size: 15px;">{{a.role_name}}
+                                                                            ({{a.incentive_percentage}}
+                                                                            %)</label>
+                                                                    </div>
+
+                                                                    <select class="form-control" *ngIf="a.dropdownShow"
+                                                                        style="height: 35px;
+                                                                    margin: 20px;
+                                                                    margin-left: 0px;width: 48%" #emp
+                                                                        (change)="selectEmployee(a,emp.value)"
+                                                                        [(ngModel)]="a.selected_emp">
+                                                                        <option *ngFor="let data of a.employeeArray"
+                                                                            [value]="data.user_id"
+                                                                            style="text-transform: capitalize;">
+                                                                            {{data.user_first_name}}
+                                                                            {{data.user_middle_name}}
+                                                                            {{data.user_last_name}}</option>
+                                                                    </select>
+
+                                                                    <div class="font-normal" style="width: 15%;">
+                                                                        <!-- <label style="margin: 20px;"
+                                                                            *ngIf="a.dropdownShow">{{a.incentive_percentage}}
+                                                                            %</label> -->
+                                                                        <button type="button" class="site-button"
+                                                                            (click)="addManagers(a)"
+                                                                            *ngIf="a.dropdownShow" style="margin: 20px;"
+                                                                            [disabled]="!a.selected_emp"
+                                                                            [ngStyle]="{'cursor': (!a.selected_emp? 'not-allowed':'pointer')}">Add</button>
+
+                                                                    </div>
+
+
+
+
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- <div class="col-lg-5 col-md-5 col-sm-5">
+                                                            <div *ngFor="let a of allUserRole;let i = index">
+                                                                <select class="form-control" [(ngModel)]="system_name"
+                                                                    *ngIf="a.dropdownShow" style="height: 35px;
+                                                                    margin: 20px;
+                                                                    margin-left: 0px;">
+                                                                    <option *ngFor="let data of a.employeeArray"
+                                                                        [value]="data.user_id"
+                                                                        style="text-transform: capitalize;">
+                                                                        {{data.user_first_name}}
+                                                                        {{data.user_middle_name}}
+                                                                        {{data.user_last_name}}</option>
+                                                                </select>
+                                                            </div>
+
+                                                        </div> -->
+
+                                                        <!-- <div class="col-lg-2 col-md-2 col-sm-2">
+                                                            <p class="font-normal"
+                                                                *ngFor="let a of allUserRole;let i = index">
+                                                                <label style="margin: 20px;"
+                                                                    *ngIf="a.dropdownShow">{{a.incentive_percentage}}
+                                                                    %</label>
+
+                                                            </p>
+                                                        </div> -->
+
+                                                    </div>
+
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <!-- <button type="button" class="site-button"
+                                                        (click)="submitRecruiter()">Submit</button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>

@@ -1,0 +1,301 @@
+<body id="bg">
+  <div class="page-wraper">
+    <ngx-spinner>
+      <p style="color: white"> Loading... </p>
+    </ngx-spinner>
+    <!-- <div id="loading-area"></div> -->
+    <!-- Content -->
+    <div class="page-content bg-white">
+      <!-- contact area -->
+      <div class="content-block">
+        <!-- Browse Jobs -->
+        <div class="section-full bg-white p-t50 p-b20">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-2 col-lg-4 m-b30">
+                <div class="sticky-top">
+                  <div class="candidate-info company-info">
+                    <div class="candidate-detail text-center">
+                      <div class="canditate-des">
+                        <a href="javascript:void(0);">
+                          <img alt="" src="../assets/images/logo/icon3.jpg">
+                        </a>
+                        <!-- <div class="upload-link" title="update" data-toggle="tooltip"
+                          data-placement="right">
+                          <input type="file" class="update-flie">
+                          <i class="fa fa-pencil"></i>
+                      </div> -->
+                      </div>
+                      <div class="candidate-title">
+                        <h4 class="m-b5"><a href="javascript:void(0);">SETUP</a></h4>
+                      </div>
+                    </div>
+                    <ul>
+                      <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)" class="oldclass"
+                          id="clsActive{{a.submodule_id}}">
+                          <i class="fa fa-cog" aria-hidden="true"></i>
+                          <span>{{a.submodule_name_lower}}</span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-10 col-lg-8 m-b30">
+                <div class="job-bx clearfix">
+                  <div class="job-bx-title clearfix">
+                    <h5 class="font-weight-700 pull-left text-uppercase">Client</h5>
+                    <div class="float-right" style="display: flex;">
+                      <!--<div class="form-group" style="margin-right: 10px;">-->
+                      <!--<input type="text" class="form-control" placeholder="Search Job">-->
+                      <!--</div>-->
+                      <button type="button" class="site-button m-b30" href="javascript:void(0);" data-toggle="modal"
+                        data-target="#clientAdd">Add Client</button>
+                    </div>
+                  </div>
+                  <table class="table-job-bx cv-manager company-manage-job">
+                    <thead>
+                      <tr>
+                        <th class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="check12"
+                              class="custom-control-input selectAllCheckBox"
+                              name="example1">
+                          <label class="custom-control-label" for="check12"></label>
+                      </div> -->
+                        </th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th style="text-align: center;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="allClients">
+
+                      <tr *ngFor="let d of allClients | paginate: { itemsPerPage: count, currentPage: page }">
+                        <td class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="check1"
+                              name="example1">
+                          <label class="custom-control-label" for="check1"></label>
+                      </div> -->
+                        </td>
+                        <td class="job-name">
+                          {{d.client_name}}
+                        </td>
+                        <td class="expired pending" style="color: green" *ngIf="d.client_status=='active'">Active</td>
+                        <td class="expired pending" *ngIf="d.client_status=='inactive'">Inactive</td>
+
+                        <td class="job-links">
+                          <!-- <a href="javascript:void(0);" data-toggle="modal"
+                          data-target="#exampleModalLong">
+                          <i class="fa fa-cog"></i></a> -->
+
+                          <div class="dropdown">
+                            <a href="javascript:void(0);">
+                              <i class="fa fa-cog"></i></a>
+                            <div class="dropdown-content">
+                              <a href="javascript:void(0);" data-toggle="modal" data-target="#clientEdit"
+                                (click)="setClientId(d)">Edit</a>
+                              <a href="#" href="javascript:void(0);" data-toggle="modal"
+                                data-target="#clientChangeStatus" (click)="setClientId(d)">Change Status</a>
+                              <!--<a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModalLong">View</a>-->
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+
+
+                    </tbody>
+                  </table>
+                  <div class="pagination" *ngIf="allClients">
+                    <pagination-controls *ngIf="allClients.length" class="product-pagination" autoHide="false"
+                      maxSize="8" (pageChange)="onPageChanged($event)"></pagination-controls>
+                  </div>
+                 
+
+                  <!--model start-->
+                  <div class="modal fade modal-bx-info editor" id="clientAdd" tabindex="-1" role="dialog"
+                    aria-labelledby="clientAddModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="clientAddModalLongTitle">Add Client</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form [formGroup]="addClientForm">
+                            <div class="row">
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Name</label>
+                                  <input type="text" class="form-control" placeholder="Enter Name"
+                                    formControlName="client_name">
+                                </div>
+                              </div>
+
+
+
+                            </div>
+
+
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="site-button" data-dismiss="modal">Back</button>
+                          <button type="button" class="site-button" [disabled]="!addClientForm.valid"
+                            (click)="insertClient()"
+                            [ngStyle]="{'cursor': (!addClientForm.valid? 'not-allowed':'pointer')}"
+                            data-dismiss="modal">Submit</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade modal-bx-info editor" id="clientEdit" tabindex="-1" role="dialog"
+                    aria-labelledby="clientEditModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="clientEditModalLongTitle">Edit Client</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form [formGroup]="editClientForm">
+                            <div class="row">
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Name</label>
+                                  <input type="text" class="form-control" placeholder="Enter Name"
+                                    formControlName="edit_client">
+                                </div>
+                              </div>
+
+
+
+                            </div>
+
+
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="site-button" data-dismiss="modal">Back</button>
+                          <button type="button" class="site-button" [disabled]="!editClientForm.valid"
+                            (click)="updateClient()"
+                            [ngStyle]="{'cursor': (!editClientForm.valid? 'not-allowed':'pointer')}"
+                            data-dismiss="modal">Submit</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade modal-bx-info editor" id="clientChangeStatus" tabindex="-1" role="dialog"
+                    aria-labelledby="clientChangeStatusModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="clientChangeStatusModalLongTitle">Change Status</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="row">
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Status</label>
+                                  <div class="row" style="margin-top: 10px">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                      <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" [(ngModel)]="defaultStatus"
+                                          id="active" name="example1" value="active">
+                                        <label class="custom-control-label" for="active">Active </label>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                      <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="inactive"
+                                          [(ngModel)]="defaultStatus" name="example2" value="inactive">
+                                        <label class="custom-control-label" for="inactive">Inactive </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                            </div>
+
+
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="site-button" data-dismiss="modal">Back</button>
+                          <button type="button" class="site-button" data-dismiss="modal"
+                            (click)="changeStatusClient()">Submit</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--model end-->
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Browse Jobs END -->
+      </div>
+    </div>
+    <!-- Content END-->
+    <button class="scroltop fa fa-chevron-up"></button>
+  </div>
+
+</body>
+
+
+<!-- Modal -->
+<!--<div class="modal fade modal-bx-info" id="exampleModalLong" tabindex="-1"-->
+<!--role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<div class="logo-img">-->
+<!--<img alt="" src="../assets/images/logo/icon2.png">-->
+<!--</div>-->
+<!--<h5 class="modal-title">Company Name</h5>-->
+<!--<button type="button" class="close" data-dismiss="modal"-->
+<!--aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<ul>-->
+<!--<li><strong>Job Title :</strong>-->
+<!--<p> Web Developer – PHP, HTML, CSS </p>-->
+<!--</li>-->
+<!--<li><strong>Experience :</strong>-->
+<!--<p>5 Year 3 Months</p>-->
+<!--</li>-->
+<!--<li><strong>Deseription :</strong>-->
+<!--<p>Lorem Ipsum is simply dummy text of the printing and-->
+<!--typesetting industry has been the industry's standard-->
+<!--dummy text ever since.</p>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary"-->
+<!--data-dismiss="modal">Close</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!-- Modal End -->

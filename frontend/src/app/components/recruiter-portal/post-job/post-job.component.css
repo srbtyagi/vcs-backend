@@ -1,0 +1,16 @@
+.spanStar{
+    color: red;
+}
+
+select.bs-select-hidden, select.selectpicker {
+    display: block!important;
+}
+
+.oldclass{
+
+}
+
+.active {
+    background: #e1e7ff;
+    border-left-color: #4C96D7;
+}

@@ -1,0 +1,168 @@
+<body id="bg">
+
+    <div class="page-wraper">
+        <!-- Content -->
+        <div class="page-content">
+            <!-- Section Banner -->
+            <div class="dez-bnr-inr dez-bnr-inr-md overlay-black-dark"
+                style="background-image:url(../assets/images/main-slider/vcs_main_image_3.png);">
+                <div class="container">
+                    <div class="dez-bnr-inr-entry align-m text-white">
+                        <div class=" job-search-form">
+                            <h2 class="text-center" style="filter: brightness(200%);">Vish Consulting
+                                Services</h2>
+                            <h3 style="filter: brightness(200%);">Leading Provider of Staffing and Recruitment Services
+                            </h3>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Section Banner END -->
+            <!-- About Us -->
+            <div class="row" style="margin-top: 60px;
+            margin-bottom: 30px;
+            margin-left: 10px;
+            margin-right: 10px;">
+                <div class="col-lg-4 col-md-4 col-sm-12 m-b30">
+                    <div class="icon-bx-wraper p-a30 center bg-gray radius-sm">
+                        <div class="text-primary m-b20"> <a routerLink="/healthcare-staffing" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}" class="icon-cell text-primary"><img
+                                    src="../assets/images/our-work/senior-Nursing-Care.jpeg"
+                                    title="Happy Registered Nurses"></a>
+                        </div>
+                        <div class="icon-content" routerLink="/healthcare-staffing" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact: true}">
+                            <h5 class="dlab-tilte text-uppercase">Our Healthcare Services</h5>
+                            <p>We provide best services for healthcare staffing.Our heartfelt gratitude to the
+                                healthcare heroes
+                                #SupportHealthcareHeroes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 m-b30">
+                    <div class="icon-bx-wraper p-a30 center bg-gray radius-sm">
+                        <div class="text-primary m-b20"> <a routerLink="/clients" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}" class="icon-cell text-primary"><img
+                                    src="../assets/images/background/business_main_page.jpg"></a>
+                        </div>
+                        <div class="icon-content" routerLink="/clients" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact: true}">
+                            <h5 class="dlab-tilte text-uppercase">CLIENT & PARTNERS</h5>
+                            <p>We offer tremendous business advantages to our clients by providing experienced
+                                professionals within their budget.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 m-b30">
+                    <div class="icon-bx-wraper p-a30 center bg-gray radius-sm">
+                        <div class="text-primary m-b20"> <a routerLink="/jobs" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}" class="icon-cell text-primary"><img
+                                    src="../assets/images/background/job-seeker.jpg"></a>
+                        </div>
+                        <div class="icon-content" routerLink="/jobs" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact: true}">
+                            <h5 class="dlab-tilte text-uppercase">JOBS</h5>
+                            <p>We welcome you to enhance your career with our firm. Our clients all across the country
+                                would love to have you onboard.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- About Us END -->
+            <!-- Call To Action -->
+            <div class="section-full content-inner-2 call-to-action overlay-black-dark text-white text-center bg-img-fix"
+                style="background-image: url(../assets/images/background/make_difference.jpeg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h2 class="m-b10">Signup to create your profile with us</h2>
+                            <p class="m-b0">Creating a profile will help us submit your profile faster and get an offer
+                                quicker.
+                            </p>
+                            <a href="/register" class="site-button m-t20 outline outline-2 radius-xl">Create
+                                an
+                                Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Call To Action END -->
+            <!-- Our Job -->
+            <div class="section-full bg-white content-inner-2">
+                <div class="container">
+                    <div class="d-flex job-title-bx section-head">
+                        <div class="mr-auto">
+                            <h2 class="m-b5">Recent Jobs</h2>
+                            <h6 class="fw4 m-b0">20+ Recently Added Jobs</h6>
+                        </div>
+                        <div class="align-self-end">
+                            <a href="/jobs" class="site-button button-sm">Browse All Jobs <i
+                                    class="fa fa-long-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <ul class="post-job-bx browse-job">
+                                <li *ngFor="let data of allJobs;index as i">
+                                    <div class="post-bx">
+                                        <div class="d-flex m-b30">
+                                            <div class="job-post-company">
+                                                <span><img alt="" src="../assets/images/logo/icon1.png" /></span>
+                                            </div>
+                                            <div class="job-post-info">
+                                                <h4><a href="javascript:void(0);"
+                                                        (click)="goTo(data)">{{data.job_title}}</a>
+                                                </h4>
+                                                <ul>
+                                                    <li><i class="fa fa-map-marker"></i> {{data.city}}, {{data.state}}
+                                                    </li>
+                                                    <li *ngIf="data.position_type_name"><i class="fa fa-bookmark-o"></i>
+                                                        {{data.position_type_name}}
+                                                    </li>
+                                                    <li><i class="fa fa-clock-o"></i> Published {{data.job_post_date}}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="job-time mr-auto" *ngIf="data.job_type_name">
+                                                <a href="javascript:void(0);"><span>{{data.job_type_name}}</span></a>
+                                            </div>
+                                            <div class=" mr-auto" *ngIf="!data.job_type_name">
+                                                <span></span>
+                                            </div>
+
+                                            <div class="salary-bx">
+                                                <span>${{data.regular_pay}} - ${{data.blended_pay}} /hr</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="sticky-top">
+
+                                <div class="quote-bx">
+                                    <div class="quote-info">
+                                        <h4>Signup to create your profile with us</h4>
+                                        <p>Creating a profile will help us submit your profile faster and get an offer
+                                            quicker.</p>
+                                        <a href="/register" class="site-button">Create an Account</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Our Job END -->
+
+        </div>
+        <!-- Content End -->
+    </div>
+</body>

@@ -1,0 +1,450 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);"
+                                                        style="font-size: 1.2rem;">FINANCE</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)"
+                                                    class="oldclass" id="clsActive{{a.submodule_id}}">
+                                                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                                    <span>{{a.submodule_name_lower}}</span></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Incentive Processing</h5>
+                                        <div class="float-right" style="display: flex;">
+                                            <button type="button" class="site-button m-b30" data-toggle="modal"
+                                                data-target="#processIncentive">Process Incentive
+                                            </button>
+                                            <button type="button" class="site-button m-b30" data-toggle="modal"
+                                                data-target="#backlogIncentive" style="margin-left: 10px;"
+                                                (click)="openBacklog()">Process
+                                                Backlog Incentive
+                                            </button>
+                                            <button type="button" class="site-button m-b30" style="margin-left: 10px;"
+                                                data-toggle="modal" data-target="#incentiveReport">Incentive
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="job-bx-title clearfix">
+                                        <div class=" form-group" style="display: flex;">
+                                            <div>
+                                                <label style="font-size: 14px;">Client</label>
+                                                <select class="form-control" [(ngModel)]="client_id1" #myClient1
+                                                    (change)='onOptionsSelected(myClient1.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of clientList1" [value]="data.client_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.client_name}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Year</label>
+                                                <select class="form-control" [(ngModel)]="year1" #myyear2
+                                                    (change)='onYearSelected2(myyear2.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of yearList2" [value]="data.year"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.year}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Month</label>
+                                                <select class="form-control" [(ngModel)]="month1" #myMonth2>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of monthList2" [value]="data.month"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.month}}</option>
+                                                </select>
+                                            </div>
+
+
+                                            <div>
+                                                <div style="display: inline-block;margin-bottom: .5rem;"></div>
+                                                <div type="button" class="site-button2" (click)="searchList()">View
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <table class="table-job-bx cv-manager company-manage-job">
+                                        <thead>
+                                            <tr>
+                                                <th class="feature">
+
+                                                </th>
+                                                <th>Incentive File no.</th>
+                                                <th>File Type</th>
+                                                <th>Client</th>
+                                                <th>Year</th>
+                                                <th>Month</th>
+                                                <th>Created By</th>
+                                                <th>Dt of Creation</th>
+                                                <th style="text-align: center;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr *ngFor="let a of incentiveDataListMain | paginate: { itemsPerPage: count, currentPage: page }">
+                                                <td class="feature">
+                                                </td>
+                                                <td class="application text-primary"><a>{{a.inc_file_no}}</a></td>
+                                                <td class="application text-primary"><a>{{a.file_type}}</a></td>
+                                                <td class="application text-primary">
+                                                    <a>{{a.client_name}}</a>
+                                                </td>
+                                                <td class="application text-primary">{{a.year}}
+                                                </td>
+                                                <td class="application text-primary">
+                                                    <a>{{a.month}}</a>
+                                                </td>
+                                                <td class="application text-primary">
+                                                    <a>{{a.user_first_name}} {{a.user_middle_name}}
+                                                        {{a.user_last_name}}</a>
+                                                </td>
+                                                <td class="application text-primary">
+                                                    <a>{{a.create_date|date:'MM/dd/yyyy'}}</a>
+                                                </td>
+
+                                                <td class="application text-primary" style="display: flex;
+                                                justify-content: center;">
+
+                                                    <a class="site-button"
+                                                        href="https://vishusa.com/vcsapi/get/incentive/file/download/excel/{{a.inc_file_id}}/{{a.client_id}}/{{a.create_by}}/{{excelfileName}}"
+                                                        target="_blank" rel="noopener noreferrer" download>Download
+                                                    </a>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination">
+                                        <pagination-controls *ngIf="incentiveDataListMain.length" class="product-pagination" autoHide="false" maxSize="8" (pageChange)="onPageChanged($event)"></pagination-controls>
+                                    </div>
+
+                                    <!-- Process Incentive Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="processIncentive" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 50% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Process
+                                                        Incentive
+
+
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #processIncentiveClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">Client</label>
+                                                                <select class="form-control" [(ngModel)]="client_id">
+                                                                    <option *ngFor="let data of clientList"
+                                                                        [value]="data.client_id"
+                                                                        style="text-transform: capitalize;">
+                                                                        {{data.client_name}}</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">Year</label>
+                                                                <select class="form-control" [(ngModel)]="year" #myyear1
+                                                                    (change)='onYearSelected(myyear1.value)'>
+                                                                    <option *ngFor="let data of yearList"
+                                                                        [value]="data.year"
+                                                                        style="text-transform: capitalize;">
+                                                                        {{data.year}}</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">Month</label>
+                                                                <select class="form-control" [(ngModel)]="month"
+                                                                    #mymonth1
+                                                                    (change)='onMonthSelected(mymonth1.value)'>
+                                                                    <option *ngFor="let data of monthList"
+                                                                        [value]="data.month"
+                                                                        style="text-transform: capitalize;">
+                                                                        {{data.month}}</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div *ngIf="approveErr"
+                                                            class="alert alert-danger col-lg-12 col-md-12"
+                                                            style="font-size: 12px;padding: .5rem 1.25rem;text-transform: none;">
+
+                                                            <div>
+                                                                <strong>Remarks : </strong>Bills are not generated for
+                                                                all weeks.
+                                                            </div>
+
+                                                        </div>
+                                                        <div *ngIf="alreadyExistErr"
+                                                            class="alert alert-danger col-lg-12 col-md-12"
+                                                            style="font-size: 12px;padding: .5rem 1.25rem;text-transform: none;">
+
+                                                            <div>
+                                                                <strong>Remarks : </strong>Incentive was already
+                                                                generated for this month.
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div *ngIf="approveSuccess" class="col-lg-12 col-md-12"
+                                                            style="font-size: 12px;padding: .5rem 1.25rem;text-transform: none;">
+
+                                                            <strong>Remarks :</strong>
+                                                            <p>Incentives are processed for following weeks.</p>
+                                                            <div *ngFor="let a of weekList" style="padding: 5px;">
+                                                                <strong>{{a.seriel_no}} : {{a.wk_start_date}} -
+                                                                    {{a.wk_end_date}}</strong>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="generateIncentives()"
+                                                        [disabled]="approveErr || alreadyExistErr || !approveSuccess"
+                                                        [ngStyle]="{'cursor': (approveErr || alreadyExistErr || !approveSuccess? 'not-allowed':'pointer')}">Generate</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Backlog Incentive Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="backlogIncentive" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Process Backlog
+                                                        Incentives
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #backlogIncentiveClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+
+                                                    <table class="table-job-bx cv-manager company-manage-job">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="feature">
+
+                                                                </th>
+                                                                <th>Applicant</th>
+                                                                <th>Client</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let a of backlogData;let i=index">
+                                                                <td class="feature">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <input type="checkbox"
+                                                                            class="custom-control-input" id="check{{i}}"
+                                                                            (click)="entryValue(a)">
+
+                                                                        <label class="custom-control-label"
+                                                                            for="check{{i}}"></label>
+                                                                    </div>
+                                                                </td>
+
+
+                                                                <td class="application text-primary">
+                                                                    {{a.user_first_name}}
+                                                                    {{a.user_middle_name}} {{a.user_last_name}}</td>
+                                                                <td class="application text-primary">{{a.client_name}}
+                                                                </td>
+
+
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+
+                                                    <div class="alert alert-danger col-lg-12 col-md-12"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;text-transform: none;">
+
+                                                        <div>
+                                                            <strong>Note : </strong>Select applicant of same client.
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="generateBacklog()">Generate
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--  Incentive Report Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="incentiveReport" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">
+                                                        Incentive
+
+
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal" #abc
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row" style="margin-top: 30px;margin-bottom: 25px;">
+
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">VCS Employee</label>
+                                                                <!-- <select class="form-control" [(ngModel)]="vcs_employee">
+                                                                    <option value="ALL">All</option>
+                                                                    <option *ngFor="let data of employeeList"
+                                                                        [value]="data.user_id"
+                                                                        style="text-transform: capitalize;">
+                                                                        {{data.user_first_name}}
+                                                                        {{data.user_middle_name}}
+                                                                        {{data.user_last_name}}</option>
+                                                                </select> -->
+
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="VCS Employee Name"
+                                                                    [(ngModel)]="vcs_person_name"
+                                                                    (input)="searchEmployee($event)"
+                                                                    (focus)="focusEmpList()">
+
+                                                                <div class="alert alert-success" *ngIf="empListShow"
+                                                                    style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                                    <div *ngFor="let data of employeeList"
+                                                                        (click)="selectEmpName(data)"
+                                                                        style="margin: 5px;">
+                                                                        {{data.user_first_name}}
+                                                                        {{data.user_middle_name}}
+                                                                        {{data.user_last_name}}
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">From Month</label>
+                                                                <dp-date-picker dir="ltr" theme="dp-material"
+                                                                    placeholder="YYYY/MM" required="true" ngModel
+                                                                    (ngModelChange)="fDateChanged($event)"
+                                                                    [config]="datePickerConfig">
+                                                                </dp-date-picker>
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">To Month</label>
+                                                                <dp-date-picker dir="ltr" theme="dp-material"
+                                                                    placeholder="YYYY/MM" ngModel
+                                                                    (ngModelChange)="lDateChanged($event)"
+                                                                    required="true" [config]="datePickerConfig">
+                                                                </dp-date-picker>
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <a class="site-button"
+                                                        [ngStyle]="{'cursor': (!from_month || !to_month || vcs_employee===''? 'not-allowed':'pointer')}"
+                                                        href="https://vishusa.com/vcsapi/api/generate/excel/incentive_process/{{vcs_employee}}/{{from_month}}/{{to_month}}/{{user_id}}/{{excelfileName}}"
+                                                        target="_blank" rel="noopener noreferrer" download>Download
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>

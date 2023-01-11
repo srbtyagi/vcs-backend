@@ -1,0 +1,353 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a> 
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a style="font-size: 1.2rem;">APPLICANT</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Job Application > Add
+                                            Applicant
+                                        </h5>
+                                        <a (click)="back()" class="site-button right-arrow button-sm float-right"
+                                            style="color: #FFF;">Back</a>
+                                    </div>
+
+
+                                    <div class="candidate-info company-info">
+                                        <ul class="ulList">
+
+                                            <li class="col-lg-12 listData"><strong class="strong2">Job Title :</strong>
+                                                <span> {{data.job_title}} </span>
+                                            </li>
+
+                                            <li class="col-lg-12 listData"><strong class="strong2">Job ID :</strong>
+                                                <span>{{data.job_no}}</span>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                    <hr />
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Applicant's Details</h5>
+                                    </div>
+                                    <form [formGroup]="applicantFormAdmin">
+                                        <div class="row">
+
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Email<span style="color: red;">*</span></label>
+                                                    <input type="text" class="form-control" placeholder="Enter email"
+                                                        formControlName="email"
+                                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                                        (input)="checkEmail()">
+
+                                                    <div *ngIf="applicantFormAdmin.controls.email.invalid && (applicantFormAdmin.controls.email.dirty || applicantFormAdmin.controls.email.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="applicantFormAdmin.controls.email.errors?.required">
+                                                            Email is required.
+                                                        </div>
+                                                        <div *ngIf="applicantFormAdmin.controls.email.invalid">
+                                                            Email is invalid.
+                                                        </div>
+                                                        <div
+                                                            *ngIf="applicantFormAdmin.controls.email.errors?.maxlength">
+                                                            Email must be at most 60 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Phone<span style="color: red;">*</span></label>
+
+                                                    <input type="number" class="form-control"
+                                                        placeholder="Enter phone number" formControlName="phone_no"
+                                                        style="margin-left: 10px;" pattern="[-+]?\d*"
+                                                        [(ngModel)]="phone_no">
+
+
+                                                    <div *ngIf="applicantFormAdmin.controls.phone_no.invalid && (applicantFormAdmin.controls.phone_no.dirty || applicantFormAdmin.controls.phone_no.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div *ngIf="applicantFormAdmin.controls.phone_no.invalid">
+                                                            Enter valid number.
+                                                        </div>
+                                                        <div
+                                                            *ngIf="applicantFormAdmin.controls.phone_no.errors?.required">
+                                                            Phone number is required.
+                                                        </div>
+                                                        <div *ngIf="applicantFormAdmin.controls.phone_no.errors?.max">
+                                                            Phone number must be at most 14 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>First Name<span class="spanStar">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter First Name" formControlName="first_name"
+                                                        [(ngModel)]="first_name">
+
+                                                    <div *ngIf="applicantFormAdmin.controls.first_name.invalid && (applicantFormAdmin.controls.first_name.dirty || applicantFormAdmin.controls.first_name.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div
+                                                            *ngIf="applicantFormAdmin.controls.first_name.errors?.required">
+                                                            First name is required.
+                                                        </div>
+                                                        <div
+                                                            *ngIf="applicantFormAdmin.controls.first_name.errors?.maxlength">
+                                                            First name must be at-most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>Middle Name</label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter Middle Name" formControlName="middle_namee"
+                                                        [(ngModel)]="middle_namee">
+
+                                                    <div *ngIf="applicantFormAdmin.controls.middle_namee.invalid && (applicantFormAdmin.controls.middle_namee.dirty || applicantFormAdmin.controls.middle_namee.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div
+                                                            *ngIf="applicantFormAdmin.controls.middle_namee.errors?.maxlength">
+                                                            Middle name must be at most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>Last Name<span style="color: red;">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter last Name" formControlName="last_name"
+                                                        [(ngModel)]="last_name">
+                                                    <div *ngIf="applicantFormAdmin.controls.last_name.invalid && (applicantFormAdmin.controls.last_name.dirty || applicantFormAdmin.controls.last_name.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div
+                                                            *ngIf="applicantFormAdmin.controls.last_name.errors?.required">
+                                                            Last name is required.
+                                                        </div>
+                                                        <div
+                                                            *ngIf="applicantFormAdmin.controls.last_name.errors?.maxlength">
+                                                            Last name must be at most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <!-- <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Current Location<span style="color: red;">*</span></label>
+                                                    <input class="form-control" formControlName="current_loc"
+                                                        placeholder="Enter current location" type="text">
+
+                                                    <div *ngIf="applicantFormAdmin.controls.current_loc.invalid && (applicantFormAdmin.controls.current_loc.dirty || applicantFormAdmin.controls.current_loc.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div
+                                                            *ngIf="applicantFormAdmin.controls.current_loc.errors?.required">
+                                                            Current Location is required.
+                                                        </div>
+
+                                                        <div
+                                                            *ngIf="applicantFormAdmin.controls.current_loc.errors?.maxlength">
+                                                            Current Location must be at most 500 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <!-- <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Employement Preference<span
+                                                            class="requiredField">*</span></label>
+                                                    <div style="display: flex; padding: 10px;">
+                                                        <div class="custom-control custom-checkbox checkbox-margin">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                id="permanent" name="permanent" checked
+                                                                (click)="checkBoxSelect('permanent')">
+                                                            <label class="custom-control-label font-normal"
+                                                                for="permanent">Permanent</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox checkbox-margin"
+                                                            style="margin-left: 10px;">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                id="travel" name="travel"
+                                                                (click)="checkBoxSelect('travel')">
+                                                            <label class="custom-control-label font-normal"
+                                                                for="travel">Travel</label>
+                                                        </div>
+                                                        <div class="custom-control custom-checkbox checkbox-margin"
+                                                            style="margin-left: 10px;">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                id="per_diem" name="per_diem"
+                                                                (click)="checkBoxSelect('per_diem')">
+                                                            <label class="custom-control-label font-normal"
+                                                                for="per_diem">Per Diem</label>
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="emp_preference.length===0" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div>
+                                                            Employement Preference is required.
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Message</label>
+                                                    <textarea type="text" class="form-control" rows="4" cols="50"
+                                                        placeholder="Enter Message"
+                                                        formControlName="message"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">
+                                                    <label>Availability</label>
+                                                    <textarea type="text" class="form-control" rows="4" cols="50"
+                                                        placeholder="Enter Availability"
+                                                        formControlName="availability"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-4">
+                                                <div class="form-group">
+                                                    <label>Resume<span style="color: red;">*</span></label>
+                                                    <div class="custom-file">
+                                                        <p class="m-a0" *ngIf="!file_name">
+                                                            <i class="fa fa-upload"></i>
+                                                            Upload File
+                                                        </p>
+
+                                                        <p class="m-a0" *ngIf="file_name">
+                                                            {{file_name}}
+                                                        </p>
+                                                        <input type="file" class="site-button form-control"
+                                                            id="customFile" formControlName="resume"
+                                                            (change)="handleFileInput($event.target.files)">
+
+
+
+                                                    </div>
+
+                                                    <div *ngIf="applicantFormAdmin.controls.resume.invalid && (applicantFormAdmin.controls.resume.dirty || applicantFormAdmin.controls.resume.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div
+                                                            *ngIf="applicantFormAdmin.controls.resume.errors?.required">
+                                                            Resume is required.
+                                                        </div>
+
+                                                    </div>
+                                                    <!-- <div *ngIf="file_name===''" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div>
+                                                            Resume is required.
+                                                        </div>
+
+                                                    </div> -->
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <br />
+                                                <br />
+                                                <div class="job-time mr-auto" *ngIf="resumeStatus===true">
+                                                    <a href="https://vishusa.com/vcsapi/get/resume/{{recruitee_id_exist}}/applicant_resume"
+                                                        target="_blank"><span>Preview</span></a>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <button type="button" class="site-button m-b30" (click)="back()">Back</button>
+                                        <button type="button" class="site-button m-b30" (click)="addApplicant()"
+                                            style="margin-left: 12px;"
+                                            [disabled]="!applicantFormAdmin.valid || emp_preference.length===0  || resumeStatus!==true"
+                                            [ngStyle]="{'cursor': (!applicantFormAdmin.valid || emp_preference.length===0  || resumeStatus!==true? 'not-allowed':'pointer')}">Add
+                                            Applicant</button>
+                                    </form>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>

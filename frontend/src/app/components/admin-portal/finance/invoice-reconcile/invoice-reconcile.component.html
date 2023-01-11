@@ -1,0 +1,725 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                 </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);"
+                                                        style="font-size: 1.2rem;">FINANCE</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)"
+                                                    class="oldclass" id="clsActive{{a.submodule_id}}">
+                                                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                                    <span>{{a.submodule_name_lower}}</span></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Invoice Reconcile</h5>
+                                        <div class="float-right" style="display: flex;">
+                                            <button type="button" class="site-button m-b30" data-toggle="modal"
+                                                data-target="#reconReport">Reconciliation
+                                                Report</button>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="job-bx-title clearfix">
+                                        <div class=" form-group" style="display: flex;">
+                                            <div>
+                                                <label style="font-size: 14px;">Client</label>
+                                                <select class="form-control" [(ngModel)]="client_id1" #myClient1
+                                                    (change)='onOptionsSelected(myClient1.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of clientList1" [value]="data.client_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.client_name}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Year</label>
+                                                <select class="form-control" [(ngModel)]="year1" #myyear2
+                                                    (change)='onYearSelected2(myyear2.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of yearList2" [value]="data.year"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.year}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Month</label>
+                                                <select class="form-control" [(ngModel)]="month1" #myMonth2
+                                                    (change)='onMonthSelected2(myMonth2.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of monthList2" [value]="data.month"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.month}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Week</label>
+                                                <select class="form-control" [(ngModel)]="week1">
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of weekList2" [value]="data.week_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.wk_start_date}} - {{data.wk_end_date}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div>
+                                                <div style="display: inline-block;margin-bottom: .5rem;"></div>
+                                                <div type="button" class="site-button2" (click)="searchList()">View
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <table class="table-job-bx cv-manager company-manage-job">
+                                        <thead>
+                                            <tr>
+                                                <th class="feature">
+
+                                                </th>
+                                                <th>Payroll File no.</th>
+                                                <th>Client</th>
+                                                <th>Year</th>
+                                                <th>Month</th>
+                                                <th>Week</th>
+                                                <th>Recon Status</th>
+                                                <th>Recon</th>
+                                                <th style="text-align: center;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr *ngFor="let a of payrollDataList | paginate: { itemsPerPage: count, currentPage: page }">
+                                                <td class="feature">
+                                                </td>
+                                                <td class="application text-primary"><a>{{a.file_no}}</a></td>
+                                                <td class="application text-primary">
+                                                    <a>{{a.client_name}}</a>
+                                                </td>
+                                                <td class="application text-primary">{{a.year}}
+                                                </td>
+                                                <td class="application text-primary">
+                                                    <a>{{a.month}}</a>
+                                                </td>
+                                                <td class="application text-primary">
+                                                    <a>{{a.wk_start_date}} - {{a.wk_end_date}}</a>
+                                                </td>
+                                                <td class="expired pending" style="text-transform: capitalize;"
+                                                    *ngIf="a.payroll_and_reconcile_data[0].recon_status!=='done'">
+                                                    <a>Not-Done</a>
+                                                </td>
+                                                <td class="expired success" style="text-transform: capitalize;"
+                                                    *ngIf="a.payroll_and_reconcile_data[0].recon_status==='done'">
+                                                    <a>Done</a>
+                                                </td>
+                                                <td class="application text-primary">
+                                                    <div class="appCount" (click)="ReconcileModal(a)"
+                                                        data-toggle="modal" data-target="#processView"
+                                                        *ngIf="a.payroll_and_reconcile_data[0].recon_status==='done'">
+                                                        <i class="fa fa-eye"></i>
+                                                    </div>
+                                                </td>
+
+                                                <td class="job-links">
+
+                                                    <div class="dropdown">
+                                                        <a href="javascript:void(0);">
+                                                            <i class="fa fa-cog"></i></a>
+                                                        <div class="dropdown-content">
+                                                            <a href="avascript:void(0);" (click)="ReconcileModal(a)"
+                                                                data-toggle="modal"
+                                                                data-target="#processPayrollSecond">Reconciliation
+                                                            </a>
+                                                            <a *ngIf="a.payroll_and_reconcile_data[0].recon_status==='done'"
+                                                                href="https://vishusa.com/vcsapi/generate/excle/invoice_recon/{{a.acc_file_id}}/{{user_id}}/{{a.client_id}}/{{excelfileName}}"
+                                                                target="_blank" rel="noopener noreferrer"
+                                                                download>Download
+                                                            </a>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination">
+                                        <pagination-controls *ngIf="payrollDataList.length" class="product-pagination" autoHide="false" maxSize="8" (pageChange)="onPageChanged($event)"></pagination-controls>
+                                    </div>
+                                    <!-- Recon Report Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="reconReport" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content" style="height: 450px;">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Reconciliation
+                                                        Report
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #reconReportClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" style="padding-top: 70px;">
+                                                    <div class="row">
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label style="font-size: 14px;">Client<span
+                                                                        style="color: red;">*</span></label>
+                                                                <select class="form-control" [(ngModel)]="client_id">
+                                                                    <option *ngFor="let data of clientList1"
+                                                                        [value]="data.client_id"
+                                                                        style="text-transform: capitalize;">
+                                                                        {{data.client_name}}</option>
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label>From Date<span
+                                                                        style="color: red;">*</span></label>
+
+                                                                <dp-date-picker dir="ltr" theme="dp-material"
+                                                                    placeholder="MM-DD-YYYY" required="true"
+                                                                    [(ngModel)]="from_date" [config]="datePickerConfig">
+                                                                </dp-date-picker>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6">
+                                                            <div class="form-group">
+                                                                <label>To Date<span style="color: red;">*</span></label>
+
+                                                                <dp-date-picker dir="ltr" theme="dp-material"
+                                                                    placeholder="MM-DD-YYYY" required="true"
+                                                                    [(ngModel)]="to_date" [config]="datePickerConfig">
+                                                                </dp-date-picker>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <a class="site-button"
+                                                        href="https://vishusa.com/vcsapi/generate/excle/invoice_recon/{{client_id}}/{{user_id}}/{{from_date}}/{{to_date}}/{{excelfileName}}"
+                                                        target="_blank" rel="noopener noreferrer" download>Download</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Recon 1st Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="processPayrollSecond" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true"
+                                        data-backdrop="static" data-keyboard="false">
+                                        <div class="modal-dialog" role="document" style="max-width: 80% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Reconciliation :
+                                                        {{acc_file_no}}
+
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #processSecondClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="reconcileDataList.length!==0">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{client_name}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Week :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{wk_start_date}}
+                                                                    - {{wk_end_date}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Month
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{month}}</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Year
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{year}}</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <table class="table-job-bx cv-manager company-manage-job"
+                                                            *ngIf="showTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="feature">
+
+                                                                    </th>
+                                                                    <th>Applicant Name</th>
+                                                                    <th>Job ID</th>
+                                                                    <th>Reg. Hr.</th>
+                                                                    <th>Reg. Hr. (Clt)</th>
+                                                                    <th>OT Hr.</th>
+                                                                    <th>OT Hr. (Clt)</th>
+                                                                    <th>Holiday Hr.</th>
+                                                                    <th>Holiday Hr. (Clt)</th>
+                                                                    <th>Invoice</th>
+                                                                    <th>Invoice (Ded.)</th>
+                                                                    <th>Invoice (Clt)</th>
+                                                                    <th>Difference</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let a of reconcileDataList;let i=index">
+                                                                    <td class="feature">
+
+                                                                    </td>
+
+                                                                    <td class="application text-primary">
+                                                                        {{a.user_first_name}}
+                                                                        {{a.user_middle_name}} {{a.user_last_name}}</td>
+
+                                                                    <td class="application text-primary">
+                                                                        {{a.job_no}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.reg_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        <input type="number" class="form-control"
+                                                                            name="arrayReg[]" [value]="a.reg_hr_clt"
+                                                                            (input)="changepayRateRegHr($event,a.rec_payroll_id)">
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.ot_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        <input type="number" class="form-control"
+                                                                            name="arrayot[]" [value]="a.ot_hr_clt"
+                                                                            (input)="changepayRateOTHr($event,a.rec_payroll_id)">
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.holiday_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        <input type="number" class="form-control"
+                                                                            name="arrayHr[]" [value]="a.holiday_hr_clt"
+                                                                            (input)="changepayRateHolidayHr($event,a.rec_payroll_id)">
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.invoice_amt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.deducted_invoice_amt}}
+                                                                    </td>
+
+                                                                    <td class="application text-primary">
+                                                                        <input type="number" class="form-control"
+                                                                            name="arrayIn[]" [value]="a.invoice_amt_clt"
+                                                                            (input)="changepayRateInvoice($event,a.rec_payroll_id)">
+                                                                    </td>
+                                                                    <td class="application text-primary"
+                                                                        *ngIf="a.difference_amt>0 || a.difference_amt===0">
+                                                                        {{a.difference_amt}}
+                                                                    </td>
+
+                                                                    <td class="expired pending"
+                                                                        *ngIf="a.difference_amt<0">
+                                                                        {{a.difference_amt}}
+                                                                    </td>
+
+
+
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+
+                                                    <button type="button" class="site-button"
+                                                        data-toggle="modal" data-target="#processPayrollThird"
+                                                        [disabled]="diffErr==='true'"
+                                                        [ngStyle]="{'cursor': (diffErr==='true'? 'not-allowed':'pointer')}">Preview</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--  Recon second Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="processPayrollThird" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true"
+                                        data-backdrop="static" data-keyboard="false">
+                                        <div class="modal-dialog" role="document" style="max-width: 80% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Reconciliation :
+                                                        {{acc_file_no}}
+
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #processThirdClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="reconcileDataList.length!==0">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{client_name}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Week :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{wk_start_date}}
+                                                                    - {{wk_end_date}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Month
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{month}}</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Year
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{year}}</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <table class="table-job-bx cv-manager company-manage-job"
+                                                            *ngIf="showTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="feature">
+
+                                                                    </th>
+                                                                    <th>Applicant Name</th>
+                                                                    <th>Job ID</th>
+                                                                    <th>Reg. Hr.</th>
+                                                                    <th>Reg. Hr. (Clt)</th>
+                                                                    <th>OT Hr.</th>
+                                                                    <th>OT Hr. (Clt)</th>
+                                                                    <th>Holiday Hr.</th>
+                                                                    <th>Holiday Hr. (Clt)</th>
+                                                                    <th>Invoice</th>
+                                                                    <th>Invoice (Ded.)</th>
+                                                                    <th>Invoice (Clt)</th>
+                                                                    <th>Difference</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let a of reconcileDataList;let i=index">
+                                                                    <td class="feature">
+
+                                                                    </td>
+
+                                                                    <td class="application text-primary">
+                                                                        {{a.user_first_name}}
+                                                                        {{a.user_middle_name}} {{a.user_last_name}}</td>
+
+                                                                    <td class="application text-primary">
+                                                                        {{a.job_no}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.reg_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.reg_hr_clt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.ot_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.ot_hr_clt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.holiday_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.holiday_hr_clt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.invoice_amt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.deducted_invoice_amt}}
+                                                                    </td>
+
+                                                                    <td class="application text-primary">
+                                                                        {{a.invoice_amt_clt}}
+                                                                    </td>
+                                                                    <td class="application text-primary"
+                                                                        *ngIf="a.difference_amt>0 || a.difference_amt===0">
+                                                                        {{a.difference_amt}}
+                                                                    </td>
+
+                                                                    <td class="expired pending"
+                                                                        *ngIf="a.difference_amt<0">
+                                                                        {{a.difference_amt}}
+                                                                    </td>
+
+
+
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+
+                                                    <button type="button" class="site-button"
+                                                        (click)="submitFile()">Submit</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- View Recon Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="processView" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true"
+                                        data-backdrop="static" data-keyboard="false">
+                                        <div class="modal-dialog" role="document" style="max-width: 80% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Reconciliation
+                                                        : {{acc_file_no}}
+
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #processViewClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="reconcileDataList.length!==0">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{client_name}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Week :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{wk_start_date}}
+                                                                    - {{wk_end_date}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Month
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{month}}</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3 col-md-3 col-sm-3">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Year
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{year}}</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <table class="table-job-bx cv-manager company-manage-job"
+                                                            *ngIf="showTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="feature">
+
+                                                                    </th>
+                                                                    <th>Applicant Name</th>
+                                                                    <th>Job ID</th>
+                                                                    <th>Reg. Hr.</th>
+                                                                    <th>Reg. Hr. (Clt)</th>
+                                                                    <th>OT Hr.</th>
+                                                                    <th>OT Hr. (Clt)</th>
+                                                                    <th>Holiday Hr.</th>
+                                                                    <th>Holiday Hr. (Clt)</th>
+                                                                    <th>Invoice</th>
+                                                                    <th>Invoice (Ded.)</th>
+                                                                    <th>Invoice (Clt)</th>
+                                                                    <th>Difference</th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let a of reconcileDataList;let i=index">
+                                                                    <td class="feature">
+
+                                                                    </td>
+
+                                                                    <td class="application text-primary">
+                                                                        {{a.user_first_name}}
+                                                                        {{a.user_middle_name}} {{a.user_last_name}}</td>
+
+                                                                    <td class="application text-primary">
+                                                                        {{a.job_no}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.reg_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.reg_hr_clt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.ot_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.ot_hr_clt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.holiday_hr}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.holiday_hr_clt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.invoice_amt}}
+                                                                    </td>
+                                                                    <td class="application text-primary">
+                                                                        {{a.deducted_invoice_amt}}
+                                                                    </td>
+
+                                                                    <td class="application" style="color: blue;">
+                                                                        {{a.invoice_amt_clt}}
+                                                                    </td>
+
+                                                                    <td class="application text-primary"
+                                                                        *ngIf="a.difference_amt>0 || a.difference_amt===0">
+                                                                        {{a.difference_amt}}
+                                                                    </td>
+
+                                                                    <td class="expired pending"
+                                                                        *ngIf="a.difference_amt<0">
+                                                                        {{a.difference_amt}}
+                                                                    </td>
+
+
+
+                                                                </tr>
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Close</button>
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>

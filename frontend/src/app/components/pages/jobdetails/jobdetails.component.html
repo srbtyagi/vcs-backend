@@ -1,0 +1,219 @@
+<body id="bg">
+    <div class="page-wraper">
+        <!-- <div id="loading-area"></div> -->
+
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-4 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">JOBS</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-8 m-b30">
+                                <div class="job-bx submit-resume">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Job Details</h5>
+                                        <a href="" routerLink="/jobs" routerLinkActive="active"
+                                            [routerLinkActiveOptions]="{exact: true}"
+                                            class="site-button right-arrow button-sm float-right">Back</a>
+                                    </div>
+
+
+                                    <div class="candidate-info company-info" *ngIf="details">
+
+                                        <table>
+                                            <colgroup>
+                                                <col span="1" style="width: 28%;">
+                                                <col span="1" style="width: 22%;">
+                                                <col span="1" style="width: 25%;">
+                                                <col span="1" style="width: 25%;">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>Job Title :</strong></td>
+                                                    <td colspan='3'>{{details.job_title}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Job Location :</strong></td>
+                                                    <td colspan='3'>{{details.city}}, {{details.state}},
+                                                        {{details.country}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Job ID :</strong></td>
+                                                    <td colspan='3'>{{details.job_no}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><strong>Blended Pay Rate (Traveller $/Hr) :</strong></td>
+                                                    <td>$ {{details.blended_pay_rate}}</td>
+                                                    <td><strong>Regular Pay Rate (Locals $/Hr) :</strong></td>
+                                                    <td>$ {{details.regular_pay_rate}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><strong>Job Type :</strong></td>
+                                                    <td>{{details.job_type_name}}</td>
+                                                    <td><strong>Position Type :</strong></td>
+                                                    <td>{{details.position_type_name}}</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Duration :</strong></td>
+                                                    <td>{{details.duration}}</td>
+                                                    <td><strong>Confirmed (hour/week) :</strong></td>
+                                                    <td>{{details.confirm_hr}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><strong>Shift :</strong></td>
+                                                    <td>{{details.shift}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><strong>Required Information :</strong></td>
+                                                    <td colspan='3'>{{details.req_information}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Description :</strong></td>
+                                                    <td colspan='3'>{{details.job_description}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+                                    <div>
+                                        <!-- <span><button *ngIf="checkLoggedIn" type="button" class="site-button"  (click)="toApplicant()">Apply</button></span> -->
+                                        <!-- <span><button  *ngIf="!checkLoggedIn" type="button" class="site-button" data-toggle="modal"  data-target='#login' >Apply</button></span> -->
+                                        <div *ngIf="(checkLoggedIn && checkUserType)">
+                                            <span><button type="submit" class="site-button"
+                                                    (click)="toApplicant()">APPLY</button></span>
+                                        </div>
+                                        <div *ngIf="checkLoggedIn && !checkUserType">
+                                            <span><button type="submit" class="site-button"
+                                                    (click)="createAccountCheck()">APPLY</button></span>
+                                        </div>
+                                        <div *ngIf="!checkLoggedIn">
+                                            <span><button type="submit" class="site-button"
+                                                    (click)="loginGuest()">APPLY</button></span>
+                                        </div>
+                                        <!-- <div *ngIf="!checkLoggedIn" data-toggle="modal" data-target="#login">
+                                            <span><button type="submit" class="site-button">APPLY</button></span>
+                                        </div> -->
+                                        <!-- <div *ngIf="!applyStatus">
+                                            <span><button type="submit" class="site-button"
+                                                    (click)="applyStatusFalse()">APPLY</button></span>
+                                        </div> -->
+                                    </div>
+
+
+
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+    <!-- Modal Box -->
+    <div class="modal fade lead-form-modal" id="login" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModal>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body row m-a0 clearfix">
+                    <div class="col-lg-6 col-md-6 overlay-primary-dark d-flex p-a0"
+                        style="background-image: url(../assets/images/background/login_2.jpg);  background-position:center; background-size:cover;">
+                        <div class="form-info text-white align-self-center">
+                            <h3 class="m-b15">Login To Apply</h3>
+                            <p class="m-b15">Welcome to Vish Consulting Services, USA..</p>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 p-a0">
+                        <div class="lead-form browse-job text-left">
+                            <form [formGroup]="loginForm">
+                                <h3 class="m-t0">Login</h3>
+                                <div class="form-group">
+                                    <input value="" class="form-control" placeholder="E-Mail Address"
+                                        formControlName="email" />
+                                    <div *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)"
+                                        class="alert alert-danger" style="font-size: 12px;padding: .5rem 1.25rem;">
+                                        <div *ngIf="loginForm.controls.email.errors?.required">
+                                            Email is required.
+                                        </div>
+                                        <div *ngIf="loginForm.controls.email.invalid">
+                                            Email is invalid.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input value="" class="form-control" placeholder="Password" type="password"
+                                        formControlName="password" />
+                                    <div *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+                                        class="alert alert-danger" style="font-size: 12px;padding: .5rem 1.25rem;">
+                                        <div *ngIf="loginForm.controls.password.errors?.required">
+                                            Password is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <button type="button" class="btn-primary site-button btn-block"
+                                        [disabled]="loginForm.invalid"
+                                        [ngStyle]="{'cursor': (!loginForm.valid? 'not-allowed':'pointer')}"
+                                        (click)="login()">Login </button>
+                                </div>
+                                <div class="clearfix">
+                                    <button type="button" class="btn-primary site-button btn-block"
+                                        style="margin-top: 1%;" (click)="loginGuest()">Apply without Login</button>
+                                </div>
+                                <div style="text-align: center; margin-top:2%;">
+                                    <small class="clearfix">Not Registered Yet?
+                                        <a href="javascript:void(0);" (click)="createAccountCheck2()">Register here</a>
+                                    </small>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Box End -->
+
+    <!-- <script type="application/ld+json">${jsonLD2}</script> -->
+
+</body>

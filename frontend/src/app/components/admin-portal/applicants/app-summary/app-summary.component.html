@@ -1,0 +1,697 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);"
+                                                        style="font-size: 1.2rem;">APPLICANT</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Job Application > Summary
+                                        </h5>
+                                        <a (click)="back()" class="site-button right-arrow button-sm float-right" style="color: #FFF;
+                                            margin-bottom: 18px;
+                                            width: 60px;
+                                            height: 27px;
+                                            padding: 3px;">Back</a>
+                                    </div>
+
+
+
+                                    <table class="table-job-bx cv-manager company-manage-job">
+                                        <thead>
+                                            <tr>
+                                                <th class="feature">
+
+                                                </th>
+                                                <th>Appl No.</th>
+                                                <th>Applicant</th>
+                                                <th>Recruiter</th>
+                                                <th>Application</th>
+                                                <th>Applied</th>
+                                                <th>Submitted</th>
+                                                <th>Offered</th>
+                                                <th>Rejected</th>
+                                                <th>Offer Accepted</th>
+                                                <!-- <th>Offer Accepted (by Recruiter)</th> -->
+                                                <th>Pay rate</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr *ngFor="let a of appSummryList">
+                                                <td class="feature">
+                                                </td>
+                                                <td class="application text-primary">{{a.application_no}}
+                                                    &nbsp;<span style="color: red;"
+                                                        *ngIf="a.apply_status==='DNH'">({{a.apply_status}})</span></td>
+
+                                                <td class="application text-primary">{{a.user_first_name}}
+                                                    {{a.user_middle_name}} {{a.user_last_name}}</td>
+                                                <td class="application text-primary">{{a.recruiter_first_name}}
+                                                    {{a.recruiter_middle_name}} {{a.recruiter_last_name}}</td>
+                                                <td class="application text-primary" style="display: flex;
+                                                justify-content: center;">
+                                                    <div class="appCount" (click)="reviewAppl(a)" data-toggle="modal"
+                                                        data-target="#viewModal">
+                                                        <i class="fa fa-eye"></i>
+                                                    </div>
+                                                </td>
+                                                <td class="application text-primary">
+                                                    {{a.apply_date|date:'MM/dd/yyyy'}}</td>
+                                                <td class="application text-primary">
+                                                    {{a.sort_listing_date|date:'MM/dd/yyyy'}}</td>
+                                                <td class="application text-primary">
+                                                    {{a.offering_date|date:'MM/dd/yyyy'}}</td>
+                                                <td class="application text-primary">
+                                                    {{a.offer_reject_date|date:'MM/dd/yyyy'}}</td>
+                                                <td class="application text-primary">
+                                                    <a
+                                                        *ngIf="a.offer_accepted_by==='Applicant' && a.application_status==='accepted'">
+                                                        {{a.applicant_reply_date|date:'MM/dd/yyyy'}}<span>(A)</span></a>
+                                                    <a
+                                                        *ngIf="a.offer_accepted_by==='Recruiter' && a.application_status==='accepted'">
+                                                        {{a.applicant_reply_date|date:'MM/dd/yyyy'}}<span>(R)</span></a>
+                                                    <button type="button" class="button-offer" data-toggle="modal"
+                                                        data-target="#changeStatus" style="text-transform: capitalize;"
+                                                        (click)="onChangeStatus(a)"
+                                                        *ngIf="a.application_stage==='offered'">Accept Offer</button>
+                                                </td>
+                                                <!-- <td class="application text-primary">
+                                                    <a
+                                                        *ngIf="a.offer_accepted_by==='Recruiter' && a.application_status==='accepted'">
+                                                        {{a.applicant_reply_date|date:'MM/dd/yyyy'}}</a>
+                                                    <button type="button" class="button-offer" data-toggle="modal"
+                                                        data-target="#changeStatus" style="text-transform: capitalize;"
+                                                        (click)="onChangeStatus(a)"
+                                                        *ngIf="a.application_stage==='offered'">Accept Offer</button>
+                                                </td> -->
+
+                                                <td class="application text-primary">
+
+                                                    <button type="button" class="button-offer" (click)="onBoard(a)"
+                                                        data-toggle="modal" data-target="#onBoardModal"
+                                                        *ngIf="a.application_status==='accepted'">
+                                                        Rate Fixing</button>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <!-- <div class="pagination-bx m-t30 float-right">
+                                        <ul class="pagination">
+                                            <li class="previous"><a href="javascript:void(0);"><i
+                                                        class="ti-arrow-left"></i> Prev</a></li>
+                                            <li class="active"><a href="javascript:void(0);">1</a></li>
+                                            <li><a href="javascript:void(0);">2</a></li>
+                                            <li><a href="javascript:void(0);">3</a></li>
+                                            <li class="next"><a href="javascript:void(0);">Next <i
+                                                        class="ti-arrow-right"></i></a></li>
+                                        </ul>
+                                    </div> -->
+
+                                    <!--View Modal -->
+                                    <div class="modal fade modal-bx-info" id="viewModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" *ngIf="details">
+                                                        Application : {{details.application_no}}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <ul style="text-transform: none !important;">
+                                                        <li><strong>Job Title :</strong>
+                                                            <p> {{details.job_title}} </p>
+                                                        </li>
+                                                        <li><strong>Job ID :</strong>
+                                                            <p>{{details.job_no}}</p>
+                                                        </li>
+                                                        <li><strong>Application No. :</strong>
+                                                            <p>{{details.application_no}}
+                                                            </p>
+                                                        </li>
+
+                                                        <li><strong>Date of Application :</strong>
+                                                            <p>{{details.apply_date|date:'MM/dd/yyyy'}}</p>
+                                                        </li>
+
+                                                        <li><strong>Applicant Name :</strong>
+                                                            <p>{{details.user_first_name}}
+                                                                {{details.user_middle_name}} {{details.user_last_name}}
+                                                            </p>
+                                                        </li>
+                                                        <li><strong>Email :</strong>
+                                                            <p>{{details.email}}</p>
+                                                        </li>
+                                                        <li><strong>Phone :</strong>
+                                                            <p>{{details.phone}}</p>
+                                                        </li>
+                                                        <li><strong>Message :</strong>
+                                                            <p>{{details.applicant_message}}</p>
+                                                        </li>
+                                                        <li><strong>Availability :</strong>
+                                                            <p>{{details.applicant_availability}}</p>
+                                                        </li>
+                                                        <li><strong>Resume :</strong>
+                                                            <a type="button" class="btn btn-secondary"
+                                                                style="margin-top: -5px;"
+                                                                href="https://vishusa.com/vcsapi/get/resume/{{details.user_id}}/applicant_resume"
+                                                                target="_blank" rel="noopener noreferrer"
+                                                                download>Download</a>
+                                                        </li>
+                                                    </ul>
+
+                                                    <hr>
+                                                    <ul>
+                                                        <li *ngFor="let a of docs">
+                                                            <strong class="innerStrng">{{a.rec_doc_name}} </strong>
+                                                            <a type="button" class="btn btn-secondary"
+                                                                style="margin-top: -5px;"
+                                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{details.user_id}}/{{a.rec_doc_name}}"
+                                                                target="_blank" rel="noopener noreferrer"
+                                                                download>Download</a>
+                                                            <hr>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                                        (click)="downloadApplForm()">Download Application</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--Change Status Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="changeStatus" tabindex="-1"
+                                        role="dialog" aria-labelledby="changeStatusTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="changeStatusTitle">Offer Accept/Reject
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #closeStatusModal aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="row">
+
+                                                            <div class="col-lg-12 col-md-12">
+                                                                <div class="form-group">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                                                            <div class="custom-control custom-radio">
+                                                                                <input type="radio"
+                                                                                    class="custom-control-input"
+                                                                                    id="offer_accepted" name="accept1"
+                                                                                    [(ngModel)]="job_offer_status"
+                                                                                    value="offer_accepted">
+                                                                                <label class="custom-control-label"
+                                                                                    for="offer_accepted">Accept</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                                                            <div class="custom-control custom-radio">
+                                                                                <input type="radio"
+                                                                                    class="custom-control-input"
+                                                                                    id="offer_declined" name="decline1"
+                                                                                    [(ngModel)]="job_offer_status"
+                                                                                    value="offer_declined">
+                                                                                <label class="custom-control-label"
+                                                                                    for="offer_declined">Reject</label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="changeStatus()">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Rate fix Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="onBoardModal" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Fix Rates
+
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #onBoardModalClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <form [formGroup]="onBoardForm">
+                                                        <div class="row">
+
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.job_no}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Applicant Name
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.user_first_name}}
+                                                                        {{details.user_middle_name}}
+                                                                        {{details.user_last_name}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.client_name}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Application No.
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.application_no}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="divider"></div>
+
+
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Proposed Start Date<span
+                                                                            style="color: red;">*</span></label>
+
+                                                                    <dp-date-picker dir="ltr" theme="dp-material"
+                                                                        placeholder="MM/DD/YYYY" required="true"
+                                                                        [(ngModel)]="pstart_date"
+                                                                        formControlName="pstart_date"
+                                                                        [config]="datePickerConfig">
+                                                                    </dp-date-picker>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Proposed End Date<span
+                                                                            style="color: red;">*</span></label>
+
+                                                                    <dp-date-picker dir="ltr" theme="dp-material"
+                                                                        placeholder="MM/DD/YYYY" required="true"
+                                                                        [(ngModel)]="pend_date"
+                                                                        formControlName="pend_date"
+                                                                        [config]="datePickerConfig">
+                                                                    </dp-date-picker>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Regular Bill Rate ($/Hr)<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Enter Rate"
+                                                                        formControlName="Rbill_rate"
+                                                                        [(ngModel)]="Rbill_rate"
+                                                                        (input)="changepayRate($event)" step="0.01"
+                                                                        min="0" id="RbillRate"
+                                                                        oninput="RbillRate.value>0||(value='');">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>OT Bill Rate ($/Hr)<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Enter Rate"
+                                                                        formControlName="OTbill_rate"
+                                                                        [(ngModel)]="OTbill_rate"
+                                                                        (input)="changepayRate($event)" step="0.01"
+                                                                        min="0" id="OTbillRate"
+                                                                        oninput="OTbillRate.value>0||(value='');">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Holiday Bill Rate ($/Hr)<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Enter Rate"
+                                                                        formControlName="Hbill_rate"
+                                                                        [(ngModel)]="Hbill_rate"
+                                                                        (input)="changepayRate($event)" step="0.01"
+                                                                        min="0" id="HbillRate"
+                                                                        oninput="HbillRate.value>0||(value='');">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Regular Pay Rate ($/Hr)<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Enter Rate"
+                                                                        formControlName="Rpay_rate"
+                                                                        [(ngModel)]="Rpay_rate"
+                                                                        (input)="changepayRate($event)" step="0.01"
+                                                                        min="0" id="RpayRate"
+                                                                        oninput="RpayRate.value>0||(value='');">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>OT Pay Rate ($/Hr)<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Enter Rate"
+                                                                        formControlName="OTpay_rate"
+                                                                        [(ngModel)]="OTpay_rate"
+                                                                        (input)="changepayRate($event)" step="0.01"
+                                                                        min="0" id="OTpayRate"
+                                                                        oninput="OTpayRate.value>0||(value='');">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Holiday Pay Rate ($/Hr)<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Enter Rate"
+                                                                        formControlName="Hpay_rate"
+                                                                        [(ngModel)]="Hpay_rate"
+                                                                        (input)="changepayRate($event)" step="0.01"
+                                                                        min="0" id="HpayRate"
+                                                                        oninput="HpayRate.value>0||(value='');">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Allowed per Diem/week</label>
+                                                                    <input type="number" class="form-control"
+                                                                        placeholder="Enter Value"
+                                                                        formControlName="per_diem"
+                                                                        [(ngModel)]="per_diem">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>OT starts after (Hours)<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Enter Hour"
+                                                                        formControlName="after_hour"
+                                                                        [(ngModel)]="after_hour">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Contract Duration(Week)<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Enter Duration"
+                                                                        formControlName="contract_duration"
+                                                                        [(ngModel)]="contract_duration">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-12 col-md-12">
+                                                                <div class="form-group">
+                                                                    <label>Pay Package/Miscellaneous<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <textarea type="text" class="form-control" rows="4"
+                                                                        cols="50" placeholder="Enter Pay Package"
+                                                                        formControlName="pay_package"
+                                                                        [(ngModel)]="pay_package"></textarea>
+                                                                    <div *ngIf="onBoardForm.controls.pay_package.invalid && (onBoardForm.controls.pay_package.dirty || onBoardForm.controls.pay_package.touched)"
+                                                                        class="alert alert-danger"
+                                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                                        <div
+                                                                            *ngIf="onBoardForm.controls.pay_package.errors?.maxlength">
+                                                                            Pay Package/Miscellaneous must be at-most
+                                                                            1000
+                                                                            characters
+                                                                            long.
+                                                                        </div>
+
+                                                                        <div
+                                                                            *ngIf="onBoardForm.controls.pay_package.errors?.required">
+                                                                            Shift Details is required.
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Shift (Hours/Week)<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Enter Shift Hour"
+                                                                        formControlName="shift_hour"
+                                                                        [(ngModel)]="shift_hour">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Shift Details<span
+                                                                            style="color: red;">*</span></label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Enter Shift Details"
+                                                                        formControlName="shift_details"
+                                                                        [(ngModel)]="shift_details">
+                                                                    <div *ngIf="onBoardForm.controls.shift_details.invalid && (onBoardForm.controls.shift_details.dirty || onBoardForm.controls.shift_details.touched)"
+                                                                        class="alert alert-danger"
+                                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                                        <div
+                                                                            *ngIf="onBoardForm.controls.shift_details.errors?.maxlength">
+                                                                            Shift Details must be at-most
+                                                                            100
+                                                                            characters
+                                                                            long.
+                                                                        </div>
+
+                                                                        <div
+                                                                            *ngIf="onBoardForm.controls.shift_details.errors?.required">
+                                                                            Shift Details is required.
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4 col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>RTO<span style="color: red;">*</span></label>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Enter RTO" formControlName="rto"
+                                                                        [(ngModel)]="rto">
+                                                                    <div *ngIf="onBoardForm.controls.rto.invalid && (onBoardForm.controls.rto.dirty || onBoardForm.controls.rto.touched)"
+                                                                        class="alert alert-danger"
+                                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                                        <div
+                                                                            *ngIf="onBoardForm.controls.rto.errors?.maxlength">
+                                                                            RTO must be at-most
+                                                                            100
+                                                                            characters
+                                                                            long.
+                                                                        </div>
+
+                                                                        <div
+                                                                            *ngIf="onBoardForm.controls.rto.errors?.required">
+                                                                            Shift Details is required.
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <!-- <button type="button" class="site-button" (click)="updateDetails()"
+                                                        [disabled]="!onBoardForm.valid || application_stage==='offer_accepted' || application_stage==='offer_declined' || application_stage==='onboarding' || application_stage==='hired'"
+                                                        [ngStyle]="{'cursor': (!onBoardForm.valid || application_stage==='offer_accepted' || application_stage==='offer_declined' || application_stage==='onboarding' || application_stage==='hired'? 'not-allowed':'pointer')}">Submit
+                                                    </button> -->
+
+                                                    <button type="button" class="site-button" (click)="updateDetails()"
+                                                        [disabled]="!onBoardForm.valid"
+                                                        [ngStyle]="{'cursor': (!onBoardForm.valid? 'not-allowed':'pointer')}">Submit
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Div PDF  -->
+
+                                    <div class="modal-content" *ngIf="showDivPdf && details" id="applFormFDiv">
+                                        <div class="modal-header"
+                                            style="background-color: transparent;display: flex;width: 100%; margin-top: 30px;margin-left: 30px;margin-bottom: 0px;">
+
+                                            <div style="width: 25%;margin-top: 0px;">
+                                                <img style="height: 80px;width: 200px;" src="../assets/images/logo.png">
+                                            </div>
+                                            <div style="width: 75%;text-align: left;color: black;">
+                                                <h3>Vish Consulting Services Inc.</h3>
+                                                <p style="font-size: 18px;line-height: 8px; margin-top: 12px;">9655
+                                                    Granite Ridge Dr, STE
+                                                    200, San Diego,
+                                                    CA 92123</p>
+                                                <p style="font-size: 18px;line-height: 8px;">E: info@vishusa.com P:
+                                                    +1
+                                                    (916) 800-3762</p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <ul
+                                                style="text-transform: none !important;margin-left: 30px;font-size: 20px;">
+                                                <li style="display: flex;"><strong>Job Title :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;"> {{details.job_title}}
+                                                    </p>
+                                                </li>
+                                                <li style="display:flex;"><strong>Job ID :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">{{details.job_no}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Application No. :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.application_no}}
+                                                    </p>
+                                                </li>
+
+                                                <li style="display: flex;"><strong>Date of Application :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.apply_date|date:'MM/dd/yyyy'}}</p>
+                                                </li>
+
+                                                <li style="display: flex;"><strong>Applicant Name :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.user_first_name}}
+                                                        {{details.user_middle_name}} {{details.user_last_name}}
+                                                    </p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Email :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">{{details.email}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Phone :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">{{details.phone}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Message :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.applicant_message}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Availability :</strong>
+                                                    <p style="margin-left: 10px;margin-top: 3px;">
+                                                        {{details.applicant_availability}}</p>
+                                                </li>
+                                                <li style="display: flex;"><strong>Resume :</strong>
+                                                    <p style="color: green;margin-left: 10px;margin-top: 3px;">Available
+                                                    </p>
+                                                </li>
+                                            </ul>
+
+                                            <hr>
+                                            <ul style="margin-left: 30px;font-size: 20px;">
+                                                <li *ngFor="let a of docs" style="display: flex;">
+                                                    <strong class="innerStrng">{{a.rec_doc_name}} : </strong>
+                                                    <p style="color: green;margin-left: 10px;margin-top: 3px;">Available
+                                                    </p>
+                                                    <hr>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                        <!-- <div class="modal-footer">
+                                            <div>
+                                                <p>Page <span class="pageCounter"></span>/<span
+                                                        class="totalPages"></span></p>
+                                            </div>
+                                        </div> -->
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>

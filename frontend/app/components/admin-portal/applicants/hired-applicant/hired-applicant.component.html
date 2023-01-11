@@ -1,0 +1,1007 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);"
+                                                        style="font-size: 1.2rem;">APPLICANT</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)"
+                                                    class="oldclass" id="clsActive{{a.submodule_id}}">
+                                                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                                    <span>{{a.submodule_name_lower}}</span></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Hired</h5>
+                                        <div class="float-right" style="display: flex;">
+                                            <!-- <div class="form-group" style="margin-right: 10px;">
+                                                <input type="text" class="form-control2" placeholder="Search">
+                                            </div> -->
+                                            <a type="button" class="site-button m-b30"
+                                                href="https://vishusa.com/vcsapi/api/generate/excel/hired/applicant/{{user_id_by}}/{{excelfileName}}"
+                                                target="_blank" rel="noopener noreferrer" download>Report</a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="job-bx-title clearfix">
+                                        <div class=" form-group" style="display: flex;">
+                                            <div>
+                                                <label style="font-size: 14px;">Client</label>
+                                                <!-- <select class="form-control" [(ngModel)]="client_id" #myClient
+                                                    (change)='onOptionsSelected(myClient.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of clientList" [value]="data.client_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.client_name}}</option>
+                                                </select> -->
+
+                                                <input type="text" class="form-control" placeholder="Enter Client Name"
+                                                    [(ngModel)]="clientName" (input)="searchClient($event)"
+                                                    (focus)="focusClientList()">
+
+                                                <div class="alert alert-success" *ngIf="clientListShow"
+                                                    style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                    <div *ngFor="let data of clientList"
+                                                        (click)="selectclientName(data)" style="margin: 5px;">
+                                                        {{data.client_name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Job</label>
+                                                <select class="form-control" [(ngModel)]="job_id">
+                                                    <option value="ALL">All</option>
+                                                    <option *ngFor="let data of jobList" [value]="data.job_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.job_title}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Status</label>
+                                                <select class="form-control" [(ngModel)]="status">
+                                                    <option value="ALL" selected>All</option>
+                                                    <option value="not_started">Not Started</option>
+                                                    <option value="working">Working</option>
+                                                    <option value="closed">Closed</option>
+                                                </select>
+                                            </div>
+
+                                            <div>
+                                                <div style="display: inline-block;margin-bottom: .5rem;"></div>
+                                                <div type="button" class="site-button2" (click)="searchJob()">View</div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <table class="table-job-bx cv-manager company-manage-job">
+                                        <thead>
+                                            <tr>
+                                                <th class="feature">
+
+                                                </th>
+                                                <th>Client</th>
+                                                <th>Job</th>
+                                                <th>Applicant</th>
+                                                <th>Assignment Status</th>
+                                                <th style="text-align: center;">Assignment</th>
+                                                <th style="text-align: center;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr *ngFor="let a of applicationList | paginate: { itemsPerPage: count, currentPage: page }">
+                                                <td class="feature">
+                                                </td>
+                                                <td class="application text-primary">{{a.client_name}}</td>
+                                                <td class="application text-primary">
+                                                    <a href="javascript:void(0);" data-toggle="modal"
+                                                        data-target="#applicationDetails" class="link"
+                                                        (click)="openFinish(a)">{{a.job_title}}</a>
+                                                </td>
+                                                <td class="application text-primary">
+                                                    <a href="javascript:void(0);" data-toggle="modal"
+                                                        data-target="#applicanDetails"
+                                                        style="text-transform: capitalize;" class="link"
+                                                        (click)="openFinish(a)">{{a.user_first_name}}
+                                                        {{a.user_middle_name}} {{a.user_last_name}}</a>
+                                                </td>
+
+                                                <td class="application text-primary">
+                                                    <a *ngIf="a.assignment_status==='not_started'"
+                                                        style="color: blue;">Not started</a>
+                                                    <a *ngIf="a.assignment_status==='working'"
+                                                        style="color: green;">Working</a>
+                                                    <a *ngIf="a.assignment_status==='closed'"
+                                                        style="color: red;">Closed</a>
+                                                </td>
+
+                                                <td class="application text-primary">
+                                                    <div class="appCount" style="background-color: #563A10;"
+                                                        (click)="openAssignment(a)" data-toggle="modal"
+                                                        data-target="#assignmentDetails">Details
+                                                    </div>
+                                                </td>
+                                                <td class="job-links" style="justify-content: center;">
+
+                                                    <div class="dropdown">
+                                                        <a href="javascript:void(0);">
+                                                            <i class="fa fa-cog"></i></a>
+                                                        <div class="dropdown-content">
+
+                                                            <a href="avascript:void(0);" data-toggle="modal"
+                                                                data-target="#changeStatus"
+                                                                (click)="openFinish(a)">Change Status
+
+                                                            </a>
+
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination">
+                                        <pagination-controls *ngIf="applicationList.length" class="product-pagination" autoHide="false" maxSize="8" (pageChange)="onPageChanged($event)"></pagination-controls>
+                                    </div>
+                                    <!-- <div class="pagination-bx m-t30 float-right">
+                                        <ul class="pagination">
+                                            <li class="previous"><a href="javascript:void(0);"><i
+                                                        class="ti-arrow-left"></i> Prev</a></li>
+                                            <li class="active"><a href="javascript:void(0);">1</a></li>
+                                            <li><a href="javascript:void(0);">2</a></li>
+                                            <li><a href="javascript:void(0);">3</a></li>
+                                            <li class="next"><a href="javascript:void(0);">Next <i
+                                                        class="ti-arrow-right"></i></a></li>
+                                        </ul>
+                                    </div> -->
+
+                                    <!--View Applicant details Modal -->
+                                    <div class="modal fade modal-bx-info" id="applicanDetails" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <h5 class="modal-title" *ngIf="details">Applicant Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <ul>
+                                                        <li><strong>Applicant Name :</strong>
+                                                            <p> {{details.user_first_name}} {{details.user_middle_name}}
+                                                                {{details.user_last_name}}</p>
+                                                        </li>
+                                                        <li style="text-transform: none;"><strong>Email :</strong>
+                                                            <p>{{details.email}}</p>
+                                                        </li>
+                                                        <li><strong>Phone :</strong>
+                                                            <p>{{details.phone}}
+                                                            </p>
+                                                        </li>
+                                                        <li><strong>Date of Birth :</strong>
+                                                            <p>{{details.dob|date:'MM/dd/yyyy'}}</p>
+                                                        </li>
+                                                        <li><strong>SSN (Last 4 Digits) :</strong>
+                                                            <p>{{details.ssn_4digit}}</p>
+                                                        </li>
+                                                        <li><strong>Profession :</strong>
+                                                            <p>{{details.profession_name}}</p>
+                                                        </li>
+                                                        <li><strong>Speciality :</strong>
+                                                            <p>{{details.speciality_name}}</p>
+                                                        </li>
+                                                        <li><strong>Apply status :</strong>
+                                                            <p>{{details.apply_status}}</p>
+                                                        </li>
+                                                        <li><strong>Current Location :</strong>
+                                                            <p>{{details.current_location}}</p>
+                                                        </li>
+                                                        <li><strong>Desired Location 1:</strong>
+                                                            <p>{{details.desired_location_1}}</p>
+                                                        </li>
+                                                        <li><strong>Desired Location 2:</strong>
+                                                            <p>{{details.desired_location_2}}</p>
+                                                        </li>
+                                                        <li><strong>Employment Preferences:</strong>
+                                                            <p>{{details.employement_preference}}</p>
+                                                        </li>
+
+                                                        <li><strong>Applicant Availability :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.applicant_availability}}</p>
+                                                        </li>
+                                                        <li><strong>Applicant Message :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.applicant_message}}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--View Application details Modal -->
+                                    <div class="modal fade modal-bx-info" id="applicationDetails" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <h5 class="modal-title" *ngIf="details">Application Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <ul>
+                                                        <li><strong>Applicant No. :</strong>
+                                                            <p> {{details.application_no}}</p>
+                                                        </li>
+                                                        <li style="text-transform: capitalize;"><strong>Application
+                                                                Stage
+                                                                :</strong>
+                                                            <p>{{details.application_stage}}</p>
+                                                        </li>
+                                                        <li><strong>Application Status :</strong>
+                                                            <p>{{details.application_status}}
+                                                            </p>
+                                                        </li>
+                                                        <li><strong>Date of Application :</strong>
+                                                            <p>{{details.apply_date|date:'MM/dd/yyyy'}}</p>
+                                                        </li>
+                                                        <li><strong>Applied By :</strong>
+                                                            <p>{{details.applied_by}}</p>
+                                                        </li>
+                                                        <li><strong>Apply status :</strong>
+                                                            <p>{{details.apply_status}}</p>
+                                                        </li>
+                                                        <li><strong>Client :</strong>
+                                                            <p>{{details.client_name}}</p>
+                                                        </li>
+                                                        <li><strong>Country :</strong>
+                                                            <p>{{details.country}}</p>
+                                                        </li>
+                                                        <li><strong>State :</strong>
+                                                            <p>{{details.state}}</p>
+                                                        </li>
+                                                        <li><strong>City :</strong>
+                                                            <p>{{details.city}}</p>
+                                                        </li>
+
+
+                                                        <li><strong>Job Description :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.job_description}}</p>
+                                                        </li>
+                                                        <li><strong>Required Information :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.req_information}}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--Change Status Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="changeStatus" tabindex="-1"
+                                        role="dialog" aria-labelledby="EmploymentModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EmploymentModalLongTitle">Change Status
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #changeStatusclose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <form style="margin-top: 30px;">
+                                                        <div class="row">
+
+                                                            <div class="col-lg-12 col-md-12">
+                                                                <div class="form-group">
+                                                                    <label
+                                                                        *ngIf="details.assignment_status==='not_started'">Present
+                                                                        Status : Not started</label>
+                                                                    <label
+                                                                        *ngIf="details.assignment_status==='working'">Present
+                                                                        Status :
+                                                                        Working</label>
+                                                                    <label
+                                                                        *ngIf="details.assignment_status==='closed'">Present
+                                                                        Status :
+                                                                        Closed</label>
+                                                                    <div class="row">
+
+                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                                                            <div class="custom-control custom-radio">
+                                                                                <input type="radio"
+                                                                                    class="custom-control-input"
+                                                                                    id="not_started" name="not_started1"
+                                                                                    [(ngModel)]="assignment_status"
+                                                                                    [ngModelOptions]="{standalone: true}"
+                                                                                    value="not_started">
+                                                                                <label class="custom-control-label"
+                                                                                    for="not_started">Not
+                                                                                    started</label>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                                                            <div class="custom-control custom-radio">
+                                                                                <input type="radio"
+                                                                                    class="custom-control-input"
+                                                                                    id="working" name="working1"
+                                                                                    [(ngModel)]="assignment_status"
+                                                                                    [ngModelOptions]="{standalone: true}"
+                                                                                    value="working">
+                                                                                <label class="custom-control-label"
+                                                                                    for="working">Working</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                                                            <div class="custom-control custom-radio">
+                                                                                <input type="radio"
+                                                                                    class="custom-control-input"
+                                                                                    id="closed" name="closed1"
+                                                                                    [(ngModel)]="assignment_status"
+                                                                                    [ngModelOptions]="{standalone: true}"
+                                                                                    value="closed">
+                                                                                <label class="custom-control-label"
+                                                                                    for="closed">Close</label>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                        <div class="col-lg-6 col-md-6"
+                                                                            style="margin-top: 30px;"
+                                                                            *ngIf="assignment_status==='working'">
+                                                                            <div class="form-group">
+                                                                                <label>Effective Start Date<span
+                                                                                        style="color: red;">*</span></label>
+
+
+                                                                                <dp-date-picker dir="ltr"
+                                                                                    theme="dp-material"
+                                                                                    placeholder="MM/DD/YYYY"
+                                                                                    required="true"
+                                                                                    [(ngModel)]="effective_date"
+                                                                                    [ngModelOptions]="{standalone: true}"
+                                                                                    [config]="datePickerConfig">
+                                                                                </dp-date-picker>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-lg-6 col-md-6"
+                                                                            style="margin-top: 30px;"
+                                                                            *ngIf="assignment_status==='working'">
+                                                                            <div class="form-group">
+                                                                                <label>Effective End Date<span
+                                                                                        style="color: red;">*</span></label>
+
+
+                                                                                <dp-date-picker dir="ltr"
+                                                                                    theme="dp-material"
+                                                                                    placeholder="MM/DD/YYYY"
+                                                                                    required="true"
+                                                                                    [(ngModel)]="effective_end_date"
+                                                                                    [ngModelOptions]="{standalone: true}"
+                                                                                    [config]="datePickerConfig">
+                                                                                </dp-date-picker>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-lg-6 col-md-6"
+                                                                            style="margin-top: 30px;"
+                                                                            *ngIf="assignment_status==='closed'">
+                                                                            <div class="form-group">
+                                                                                <label>Effective End Date<span
+                                                                                        style="color: red;">*</span></label>
+
+
+                                                                                <dp-date-picker dir="ltr"
+                                                                                    theme="dp-material"
+                                                                                    placeholder="MM/DD/YYYY"
+                                                                                    required="true"
+                                                                                    [(ngModel)]="effective_end_date"
+                                                                                    [ngModelOptions]="{standalone: true}"
+                                                                                    [config]="datePickerConfig">
+                                                                                </dp-date-picker>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="changeStatus()">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--View Assignment details Modal -->
+                                    <div class="modal fade modal-bx-info" id="assignmentDetails" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <h5 class="modal-title" *ngIf="details">Assignment Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <div class="row">
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{details.job_no}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Applicant Name
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{details.user_first_name}}
+                                                                    {{details.user_middle_name}}
+                                                                    {{details.user_last_name}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Job
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{details.job_title}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Assignment Status
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13" style="margin-top: 3px;"
+                                                                    *ngIf="details.assignment_status==='not_started'">Not
+                                                                    Started</span>
+                                                                <span class="clearfix font-13" style="margin-top: 3px;"
+                                                                    *ngIf="details.assignment_status==='working'">Working</span>
+                                                                <span class="clearfix font-13" style="margin-top: 3px;"
+                                                                    *ngIf="details.assignment_status==='closed'">Closed</span>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{details.client_name}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Application No.
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{details.application_no}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Hiring Date
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{details.hiring_date|date:'MM/dd/yyyy'}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="divider"></div>
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Proposed start date
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{details.proposed_start_date|date:'MM/dd/yyyy'}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Regular Bill Rate ($/Hr)
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">$
+                                                                    {{details.onb_regular_bill_rate}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Holiday Bill Rate ($/Hr)
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">$
+                                                                    {{details.onb_holiday_bill_rate}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">OT Pay Rate ($/Hr)
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">$
+                                                                    {{details.onb_ot_pay_rate}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Allowed Per Diem/Week
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13" style="margin-top: 3px;">
+                                                                    {{details.per_dieum_wk}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Contract Duration (Week)
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13" style="margin-top: 3px;">
+                                                                    {{details.contract_duration_wk}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Shift (Hours/Week)
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13" style="margin-top: 3px;">
+                                                                    {{details.total_shift_hr}}</span>
+                                                            </div>
+
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Pay Package/Miscellaneous
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13" style="margin-top: 3px;">
+                                                                    {{details.pay_package_remarks}}</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Proposed end date
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">{{details.proposed_end_date|date:'MM/dd/yyyy'}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">OT Bill Rate ($/Hr)
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">$
+                                                                    {{details.onb_ot_bill_rate}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Regular Pay Rate ($/Hr)
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">$
+                                                                    {{details.onb_regular_pay_rate}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Holiday Pay Rate ($/Hr)
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13"
+                                                                    style="margin-top: 3px;">$
+                                                                    {{details.onb_holiday_pay_rate}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">OT Starts After (Hours)
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13" style="margin-top: 3px;">
+                                                                    {{details.ot_starts_after_wk}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">RTO
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13" style="margin-top: 3px;">
+                                                                    {{details.rto}}</span>
+                                                            </div>
+                                                            <div class="clearfix m-b20" style="display: flex;">
+                                                                <label class="m-b0">Shift Details
+                                                                    :&nbsp;&nbsp;</label>
+                                                                <span class="clearfix font-13" style="margin-top: 3px;">
+                                                                    {{details.shift_details}}</span>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div style="display: flex;width: 100%;">
+                                                            <div class="divider2"></div>
+                                                            <div style="width: 32%;margin-top: 4px;text-align: center;">
+                                                                <h5 class="font-weight-700 text-uppercase">
+                                                                    Standard Documents</h5>
+                                                            </div>
+                                                            <div class="divider2"></div>
+                                                        </div>
+
+                                                        <ul style="width: 100%;
+                                                        margin-top: 2%;
+                                                        margin-left: 2%;">
+                                                            <li class="innerLi" *ngFor="let a of standard_doc">
+                                                                <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
+                                                                <a class="site-button" style="margin-top: -5px;"
+                                                                    href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                                                    target="_blank" rel="noopener noreferrer"
+                                                                    download>Download</a>
+                                                                <hr>
+                                                            </li>
+                                                        </ul>
+
+                                                        <div style="display: flex;width: 100%;">
+                                                            <div class="divider2" style="width: 25%;margin-top: 4%;">
+                                                            </div>
+                                                            <div
+                                                                style="width: 46%;margin-top: 22px;text-align: center;">
+                                                                <h5 class="font-weight-700 text-uppercase">
+                                                                    Facility Specific Documents</h5>
+                                                            </div>
+                                                            <div class="divider2" style="width: 25%; margin-top: 4%;">
+                                                            </div>
+                                                        </div>
+
+                                                        <ul style="width: 100%;
+                                                        margin-top: 2%;
+                                                        margin-left: 2%;">
+                                                            <li class="innerLi" *ngFor="let a of fac_specc_doc">
+                                                                <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
+                                                                <a class="site-button" style="margin-top: -5px;"
+                                                                    href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                                                    target="_blank" rel="noopener noreferrer"
+                                                                    download>Download</a>
+                                                                <hr>
+                                                            </li>
+                                                        </ul>
+
+                                                        <div style="display: flex;width: 100%;">
+                                                            <div class="divider2"></div>
+                                                            <div style="width: 32%;margin-top: 4px;text-align: center;">
+                                                                <h5 class="font-weight-700 text-uppercase">
+                                                                    Other Documents</h5>
+                                                            </div>
+                                                            <div class="divider2"></div>
+                                                        </div>
+
+                                                        <ul style="width: 100%;
+                                                        margin-top: 2%;
+                                                        margin-left: 2%;">
+                                                            <li class="innerLi" *ngFor="let a of others_doc">
+                                                                <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
+                                                                <a class="site-button" style="margin-top: -5px;"
+                                                                    href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                                                    target="_blank" rel="noopener noreferrer"
+                                                                    download>Download</a>
+                                                                <strong class="innerStrng"
+                                                                    style="color: red;">{{a.expiry_date|date:'MM/dd/yyyy'}}
+                                                                </strong>
+                                                                <hr>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        (click)="downloadApplForm()">Download</button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- PDF Div -->
+
+                                    <div class="modal-content" id="assignFormFDiv" *ngIf="showDivPdf && details">
+                                        <div class="modal-header"
+                                            style="background-color: transparent;display: flex;width: 100%; margin-top: 30px;margin-left: 30px;margin-bottom: 0px;">
+
+                                            <div style="width: 25%;margin-top: 0px;">
+                                                <img style="height: 80px;width: 200px;" src="../assets/images/logo.png">
+                                            </div>
+                                            <div style="width: 75%;text-align: left;color: black;">
+                                                <h3>Vish Consulting Services Inc.</h3>
+                                                <p style="font-size: 18px;line-height: 8px; margin-top: 12px;">9655
+                                                    Granite Ridge Dr, STE
+                                                    200, San Diego,
+                                                    CA 92123</p>
+                                                <p style="font-size: 18px;line-height: 8px;">E: info@vishusa.com P:
+                                                    +1
+                                                    (916) 800-3762</p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13"
+                                                            style="margin-top: 3px;">{{details.job_no}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Applicant Name
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13"
+                                                            style="margin-top: 3px;">{{details.user_first_name}}
+                                                            {{details.user_middle_name}}
+                                                            {{details.user_last_name}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Job
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13"
+                                                            style="margin-top: 3px;">{{details.job_title}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Assignment Status
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;"
+                                                            *ngIf="details.assignment_status==='not_started'">Not
+                                                            Started</span>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;"
+                                                            *ngIf="details.assignment_status==='working'">Working</span>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;"
+                                                            *ngIf="details.assignment_status==='closed'">Closed</span>
+                                                    </div>
+
+                                                </div>
+
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13"
+                                                            style="margin-top: 3px;">{{details.client_name}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Application No.
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13"
+                                                            style="margin-top: 3px;">{{details.application_no}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Hiring Date
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13"
+                                                            style="margin-top: 3px;">{{details.hiring_date|date:'MM/dd/yyyy'}}</span>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="divider"></div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Proposed start date
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13"
+                                                            style="margin-top: 3px;">{{details.proposed_start_date|date:'MM/dd/yyyy'}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Regular Bill Rate ($/Hr)
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">$
+                                                            {{details.onb_regular_bill_rate}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Holiday Bill Rate ($/Hr)
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">$
+                                                            {{details.onb_holiday_bill_rate}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">OT Pay Rate ($/Hr)
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">$
+                                                            {{details.onb_ot_pay_rate}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Allowed Per Diem/Week
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">
+                                                            {{details.per_dieum_wk}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Contract Duration (Week)
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">
+                                                            {{details.contract_duration_wk}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Shift (Hours/Week)
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">
+                                                            {{details.total_shift_hr}}</span>
+                                                    </div>
+
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Pay Package/Miscellaneous
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">
+                                                            {{details.pay_package_remarks}}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Proposed end date
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13"
+                                                            style="margin-top: 3px;">{{details.proposed_end_date|date:'MM/dd/yyyy'}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">OT Bill Rate ($/Hr)
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">$
+                                                            {{details.onb_ot_bill_rate}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Regular Pay Rate ($/Hr)
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">$
+                                                            {{details.onb_regular_pay_rate}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Holiday Pay Rate ($/Hr)
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">$
+                                                            {{details.onb_holiday_pay_rate}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">OT Starts After (Hours)
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">
+                                                            {{details.ot_starts_after_wk}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">RTO
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">
+                                                            {{details.rto}}</span>
+                                                    </div>
+                                                    <div class="clearfix m-b20" style="display: flex;">
+                                                        <label class="m-b0">Shift Details
+                                                            :&nbsp;&nbsp;</label>
+                                                        <span class="clearfix font-13" style="margin-top: 3px;">
+                                                            {{details.shift_details}}</span>
+                                                    </div>
+
+                                                </div>
+
+                                                <div style="display: flex;width: 100%;" *ngIf="standard_doc.length!==0">
+                                                    <div class="divider2"></div>
+                                                    <div style="width: 32%;margin-top: 4px;text-align: center;">
+                                                        <h5 class="font-weight-700 text-uppercase">
+                                                            Standard Documents</h5>
+                                                    </div>
+                                                    <div class="divider2"></div>
+                                                </div>
+
+                                                <ul style="width: 100%;
+                                                margin-top: 2%;
+                                                margin-left: 2%;">
+                                                    <li class="innerLi" *ngFor="let a of standard_doc">
+                                                        <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
+                                                        <a style="color: Green;margin-left: 15px;">Available</a>
+                                                        <hr>
+                                                    </li>
+                                                </ul>
+
+                                                <div style="display: flex;width: 100%;"
+                                                    *ngIf="fac_specc_doc.length!==0">
+                                                    <div class="divider2" style="width: 25%;margin-top: 4%;">
+                                                    </div>
+                                                    <div style="width: 46%;margin-top: 22px;text-align: center;">
+                                                        <h5 class="font-weight-700 text-uppercase">
+                                                            Facility Specific Documents</h5>
+                                                    </div>
+                                                    <div class="divider2" style="width: 25%; margin-top: 4%;">
+                                                    </div>
+                                                </div>
+
+                                                <ul style="width: 100%;
+                                                margin-top: 2%;
+                                                margin-left: 2%;">
+                                                    <li class="innerLi" *ngFor="let a of fac_specc_doc">
+                                                        <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
+                                                        <a style="color: Green;margin-left: 15px;">Available</a>
+                                                        <hr>
+                                                    </li>
+                                                </ul>
+
+                                                <div style="display: flex;width: 100%;" *ngIf="others_doc.length!==0">
+                                                    <div class="divider2"></div>
+                                                    <div style="width: 32%;margin-top: 4px;text-align: center;">
+                                                        <h5 class="font-weight-700 text-uppercase">
+                                                            Other Documents</h5>
+                                                    </div>
+                                                    <div class="divider2"></div>
+                                                </div>
+
+                                                <ul style="width: 100%;
+                                                margin-top: 2%;
+                                                margin-left: 2%;">
+                                                    <li class="innerLi" *ngFor="let a of others_doc">
+                                                        <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
+                                                        <a style="color: Green;margin-left: 15px;">Available</a>
+                                                        <hr>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>

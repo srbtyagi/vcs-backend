@@ -1,0 +1,307 @@
+<body id="bg">
+    <div class="page-wraper">
+        <!-- <div id="loading-area"></div> -->
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- inner page banner -->
+            <div class="dez-bnr-inr overlay-black-middle"
+                style="background-image:url(../assets/images/banner/nuring_job_banner.png);">
+                <div class="container">
+                    <div class="dez-bnr-inr-entry">
+                        <h1 class="text-dark">Jobs</h1>
+                        <!-- Breadcrumb row -->
+                        <div class="breadcrumb-row" style="color: black;">
+                            <ul class="list-inline" style="color: black;">
+                                <li><a href="#" style="color: black;">Home</a></li>
+                                <li style="color: black;">Jobs</li>
+                            </ul>
+                        </div>
+                        <!-- Breadcrumb row END -->
+                    </div>
+                </div>
+            </div>
+            <!-- inner page banner END -->
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Filters Search -->
+                <div class="section-full browse-job-find">
+                    <div class="container">
+                        <div class="find-job-bx">
+                            <form class="dezPlaceAni">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="form-group">
+                                            <!-- <label>Job Title, Keywords, or Phrase</label> -->
+                                            <div class="input-group">
+                                                <input type="text" class="form-control"
+                                                    placeholder="Job Title, Keywords, or Phrase" [(ngModel)]="search1"
+                                                    [ngModelOptions]="{standalone: true}">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="form-group">
+                                            <!-- <label>City, State or Country</label> -->
+                                            <div class="input-group">
+                                                <input type="text" class="form-control"
+                                                    placeholder="City, State or Country" [(ngModel)]="search2"
+                                                    [ngModelOptions]="{standalone: true}">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i
+                                                            class="fa fa-map-marker"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6">
+                                        <div class="form-group" style="display: grid;">
+                                            <select class="form-control" [(ngModel)]="search3"
+                                                [ngModelOptions]="{standalone: true}">
+                                                <option value="" selected style="color: gray!important;">Select Position
+                                                    Type</option>
+
+                                                <option *ngFor="let i of positiontype" [value]="i.position_type_id">
+                                                    {{i.position_type_name}}
+                                                </option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6">
+                                        <button type="submit" class="site-button btn-block" (click)="getAllJobs()">Find
+                                            Job</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Search END -->
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-b50">
+                    <div class="container">
+                        <div class="job-bx-title clearfix">
+                            <h5 class="font-weight-700 pull-left text-uppercase">{{allJobs.length}} Jobs Found</h5>
+                        </div>
+                        <ul class="post-job-bx browse-job-grid row">
+                            <li *ngFor="let data of allJobs;index as i" class="col-lg-4 col-md-6">
+                                <div class="post-bx">
+                                    <div class="d-flex m-b30">
+                                        <div class="job-post-info">
+                                            <h5><a style="cursor:pointer;" href="/job-details?special={{data.job_id}}"
+                                                    (click)="goTo(data)">{{data.job_title}}</a>
+                                            </h5>
+                                            <ul>
+                                                <li style="display: block;"><i class="fa fa-map-marker"></i>
+                                                    {{data.city}}, {{data.state}}</li>
+                                                <li style="display: block;" *ngIf="data.position_type_name"><i
+                                                        class="fa fa-bookmark-o"></i>
+                                                    {{data.position_type_name}}</li>
+                                                <li style="display: block;"><i class="fa fa-clock-o"></i> Published
+                                                    {{data.job_post_date}}</li>
+                                                <li style="display: block;" *ngIf="!data.position_type_name">
+                                                    <span>&nbsp;&nbsp;</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="job-time mr-auto" *ngIf="data.job_type_name">
+                                            <a style="cursor: pointer;"><span>{{data.job_type_name}}</span></a>
+
+                                        </div>
+                                        <div style="margin-right: 34%;" *ngIf="!data.job_type_name">
+                                            <span></span>
+
+                                        </div>
+
+
+
+                                        <div class="job-time mr-auto">
+                                            <h5>${{data.regular_pay}} - ${{data.blended_pay}} /hr</h5>
+                                        </div>
+                                        <div class="salary-bx" *ngIf="(checkLoggedIn && checkUserType)">
+                                            <span><button type="submit" class="site-button btn-block buttonApply"
+                                                    (click)="jobApply(data,i)">APPLY</button></span>
+                                        </div>
+                                        <div class="salary-bx" *ngIf="checkLoggedIn && !checkUserType">
+                                            <span><button type="submit" class="site-button btn-block buttonApply"
+                                                    (click)="createAccountCheck(data)">APPLY</button></span>
+                                        </div>
+                                        <div class="salary-bx" *ngIf="!checkLoggedIn">
+                                            <span><button type="submit" class="site-button btn-block buttonApply"
+                                                    (click)="loginGuest(data)">APPLY</button></span>
+                                        </div>
+                                        <!-- <div class="salary-bx" *ngIf="!checkLoggedIn" data-toggle="modal"
+                                            data-target="#login">
+                                            <span><button type="submit" class="site-button btn-block buttonApply"
+                                                    (click)="beforeApplyLogin(data)">APPLY</button></span>
+                                        </div> -->
+                                        <!-- <div class="salary-bx" *ngIf="!applyStatus">
+                                            <span><button type="submit" class="site-button btn-block buttonApply"
+                                                    (click)="applyStatusFalse()">APPLY</button></span>
+                                        </div> -->
+                                    </div>
+                                    <!-- <label class="like-btn">
+                                        <input type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label> -->
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- <div class="pagination-bx m-t30">
+                            <ul class="pagination">
+                                <li class="previous"><a href="javascript:void(0);"><i class="ti-arrow-left"></i>
+                                        Prev</a></li>
+                                <li class="active"><a href="javascript:void(0);">1</a></li>
+                                <li><a href="javascript:void(0);">2</a></li>
+                                <li><a href="javascript:void(0);">3</a></li>
+                                <li class="next"><a href="javascript:void(0);">Next <i class="ti-arrow-right"></i></a>
+                                </li>
+                            </ul>
+                        </div> -->
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+    </div>
+
+    <!-- Modal Box -->
+    <div class="modal fade lead-form-modal" id="login" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModal>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body row m-a0 clearfix">
+                    <div class="col-lg-6 col-md-6 overlay-primary-dark d-flex p-a0"
+                        style="background-image: url(../assets/images/background/login_2.jpg);  background-position:center; background-size:cover;">
+                        <div class="form-info text-white align-self-center">
+                            <h3 class="m-b15">Login To Apply</h3>
+                            <p class="m-b15">Welcome to Vish Consulting Services, USA.</p>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 p-a0">
+                        <div class="lead-form browse-job text-left">
+                            <form [formGroup]="loginForm">
+                                <h3 class="m-t0">Login</h3>
+                                <div class="form-group">
+                                    <input value="" class="form-control" placeholder="E-Mail Address"
+                                        formControlName="email" />
+                                    <div *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)"
+                                        class="alert alert-danger" style="font-size: 12px;padding: .5rem 1.25rem;">
+                                        <div *ngIf="loginForm.controls.email.errors?.required">
+                                            Email is required.
+                                        </div>
+                                        <div *ngIf="loginForm.controls.email.invalid">
+                                            Email is invalid.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input value="" class="form-control" placeholder="Password" type="password"
+                                        formControlName="password" />
+                                    <div *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+                                        class="alert alert-danger" style="font-size: 12px;padding: .5rem 1.25rem;">
+                                        <div *ngIf="loginForm.controls.password.errors?.required">
+                                            Password is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <button type="button" class="btn-primary site-button btn-block"
+                                        [disabled]="loginForm.invalid"
+                                        [ngStyle]="{'cursor': (!loginForm.valid? 'not-allowed':'pointer')}"
+                                        (click)="login()">Login </button>
+                                </div>
+                                <div class="clearfix">
+                                    <button type="button" class="btn-primary site-button btn-block"
+                                        style="margin-top: 1%;" (click)="loginGuest2()">Apply without Login</button>
+                                </div>
+                                <div style="text-align: center; margin-top:2%;">
+                                    <small class="clearfix">Not Registered Yet?
+                                        <a href="javascript:void(0);" (click)="createAccountCheck2()">Register here</a>
+                                    </small>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Box End -->
+
+    <!-- MODAL VIEW
+    <div class="modal fade modal-bx-info" id="jobView" tabindex="-1"
+                                        role="dialog" aria-labelledby="jobViewTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <div class="logo-img">
+                                                        <img alt="" src="../assets/images/logo/icon2.png">
+                                                    </div>
+                                                    <h5 class="modal-title" *ngIf="details">{{details.job_title}}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <ul>
+                                                        <li><strong>Job Title :</strong>
+                                                            <p> {{details.job_title}} </p>
+                                                        </li>
+                                                        <li><strong>Job ID :</strong>
+                                                            <p>{{details.job_no}}</p>
+                                                        </li>
+                                                        <li><strong>Job Location :</strong>
+                                                            <p>{{details.city}}, {{details.state}}, {{details.country}}
+                                                            </p>
+                                                        </li>
+                                                        <li><strong>Job Type :</strong>
+                                                            <p>{{details.job_type}}</p>
+                                                        </li>
+                                                        <li><strong>Position Type :</strong>
+                                                            <p>{{details.position_type}}</p>
+                                                        </li>
+                                                        <li><strong>Date of Posting :</strong>
+                                                            <p>{{details.job_post_date|date:'MM/dd/yyyy'}}</p>
+                                                        </li>
+                                                        <li><strong>Bill Rate ($/Hr) :</strong>
+                                                            <p>$ {{details.bill_rate}}</p>
+                                                        </li>
+                                                        <li><strong>Blended Pay Rate(Traveller $/Hr) :</strong>
+                                                            <p>$ {{details.blended_pay_rate}}</p>
+                                                        </li>
+                                                        <li><strong>Regular Pay Rate(Locals $/Hr) :</strong>
+                                                            <p>$ {{details.regular_pay_rate}}</p>
+                                                        </li>
+                                                        <li><strong>OT/Holiday Rate ($/Hr) :</strong>
+                                                            <p>$ {{details.at_holiday_rate}}</p>
+                                                        </li>
+                                                        <li><strong>Description :</strong>
+                                                            <p>{{details.job_description}}</p>
+                                                        </li>
+                                                        <li><strong>Required Informations :</strong>
+                                                            <p>{{details.req_information}}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+</body>

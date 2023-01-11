@@ -1,0 +1,161 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">MY PROFILE</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngIf="checkUserType"><a class="oldclass" style="text-decoration: none;"
+                                                    routerLink="/candi-profile" routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Profile</span></a></li>
+                                            <li *ngIf="checkUserType"><a
+                                                    class="oldclass" 
+                                                    style="text-decoration: none;" routerLink="/my-documents"
+                                                    routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"> 
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i> 
+                                                    <span>My Documents</span>
+                                                    <span class="badge badge-danger" style="margin-left:2%;" *ngIf="badge">{{badge}}</span>
+                                                    
+                                                    </a></li>
+                                            <li *ngIf="checkUserType"><a class="oldclass" style="text-decoration: none;"
+                                                    routerLink="/password-change" routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Change Password</span></a></li>
+                                            <li *ngIf="checkUserType"><a class="oldclass" style="text-decoration: none;"
+                                                    routerLink="/change-passcode" routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Change Passcode</span></a></li>
+                                            <li *ngIf="checkUserType"><a class="oldclass" style="text-decoration: none;"
+                                                    routerLink="/edit-skill-set" routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Skill Set</span></a></li>
+
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx submit-resume">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Profile</h5>
+
+                                    </div>
+                                    <div *ngIf="userData">
+                                        <table>
+                                            <colgroup>
+                                                <col span="1" style="width: 25%;">
+                                                <col span="1" style="width: 75%;">
+                                            </colgroup>
+                                            <tbody>
+                                                <tr>
+                                                    <td ><strong>Name :</strong></td>
+                                                    <td>{{userData.user_first_name}} {{userData.user_middle_name}}
+                                                        {{userData.user_last_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Email :</strong></td>
+                                                    <td >{{userData.email}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Phone No. :</strong></td>
+                                                    <td>{{userData.phone}}</td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                    <td><strong>DOB :</strong></td>
+                                                    <td>{{userData.dob}}</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><strong>Last 4 Digits of SSN :</strong></td>
+                                                    <td>{{userData.ssn_4digit}}</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Profession :</strong></td>
+                                                    <td>{{userData.profession_name}}</td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                    <td><strong>Speciality :</strong></td>
+                                                    <td>{{userData.speciality_name}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Current Location :</strong></td>
+                                                    <td>{{userData.current_location}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Desired Location-1 :</strong></td>
+                                                    <td>{{userData.desired_location_1}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Desired Location-2 :</strong></td>
+                                                    <td>{{userData.desired_location_2}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Employement Preference :</strong></td>
+                                                    <td style="text-transform: capitalize;">{{userData.employement_preference}}</td>
+                                                </tr>
+                                                <tr *ngIf="status">
+                                                    <td><strong>Resume :</strong></td>
+                                                    <td><a [href]=url target="_blank" class="site-button" style="text-decoration: none;"><span>Download</span></a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="modal-footer"
+                                            style="justify-content: flex-start; border: none;margin-top: 15px;padding-left: 0;">
+                                            <button type="button" class="site-button" routerLink="/profile"
+                                                routerLinkActive="active"
+                                                [routerLinkActiveOptions]="{exact: true}">Edit</button>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>

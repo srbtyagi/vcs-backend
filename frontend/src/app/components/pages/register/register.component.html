@@ -1,0 +1,388 @@
+<body id="bg">
+    <div class="page-wraper">
+        <!-- <div id="loading-area"></div> -->
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content">
+            <!-- inner page banner -->
+            <div class="dez-bnr-inr overlay-black-middle"
+                style="background-image:url(../assets/images/banner/checklist_banner.png);">
+                <div class="container">
+                    <div class="dez-bnr-inr-entry">
+                        <h1 class="text-white">Sign Up</h1>
+                        <!-- Breadcrumb row -->
+                        <div class="breadcrumb-row">
+                            <!-- <ul class="list-inline">
+                                <li><a href="#">Home</a></li>
+                                <li>Free Job Alerts</li>
+                            </ul> -->
+                        </div>
+                        <!-- Breadcrumb row END -->
+                    </div>
+                </div>
+            </div>
+            <!-- inner page banner END -->
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full browse-job content-inner-2">
+                    <div class="container">
+                        <div class="job-bx bg-white">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <form class="job-alert-bx" [formGroup]="registerForm">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>First Name<span class="requiredField">*</span></label>
+                                                    <input class="form-control" formControlName="first_name"
+                                                        [ngClass]="{'form-control2': (!registerForm.valid)}"
+                                                        type="text">
+                                                    <div *ngIf="registerForm.controls.first_name.invalid && (registerForm.controls.first_name.dirty || registerForm.controls.first_name.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="registerForm.controls.first_name.errors?.required">
+                                                            First Name is required.
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.first_name.errors?.maxlength">
+                                                            First Name must be at most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Middle Name</label>
+                                                    <input class="form-control" formControlName="middle_name"
+                                                        type="text">
+                                                    <div *ngIf="registerForm.controls.middle_name.invalid && (registerForm.controls.middle_name.dirty || registerForm.controls.middle_name.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div
+                                                            *ngIf="registerForm.controls.middle_name.errors?.maxlength">
+                                                            Middle Name must be at most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Last Name<span class="requiredField">*</span></label>
+                                                    <input class="form-control" formControlName="last_name" type="text">
+                                                    <div *ngIf="registerForm.controls.last_name.invalid && (registerForm.controls.last_name.dirty || registerForm.controls.last_name.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="registerForm.controls.last_name.errors?.required">
+                                                            Last Name is required.
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.last_name.errors?.maxlength">
+                                                            Last Name must be at most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>E-Mail Address <span class="ext-label">(will be your user
+                                                            name)</span><span class="requiredField">*</span></label>
+                                                    <input class="form-control" formControlName="email" type="email"
+                                                        (input)="checkUniqueEmail()">
+                                                    <div *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;margin-bottom: 0px;">
+                                                        <div *ngIf="registerForm.controls.email.errors?.required">
+                                                            Email is required.
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.email.invalid">
+                                                            Email is invalid.
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.email.errors?.maxlength">
+                                                            Email must be at most 60 characters
+                                                            long.
+                                                        </div>
+                                                        <!-- <div *ngIf="checkEmail">
+                                                            Already registered with this E-mail Address.
+                                                          </div> -->
+                                                    </div>
+                                                    <div *ngIf="(registerForm.controls.email.dirty || registerForm.controls.email.touched) && checkEmail"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="checkEmail">
+                                                            Email already exist.
+                                                          </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Phone No.<span class="requiredField">*</span></label>
+                                                    <div style="display: flex;">
+                                                        
+                                                        <input class="form-control" style="margin-right: 0px;"
+                                                            formControlName="phone_no" type="text">
+                                                    </div>
+                                                    <div *ngIf="registerForm.controls.phone_no.invalid && (registerForm.controls.phone_no.dirty || registerForm.controls.phone_no.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="registerForm.controls.phone_no.invalid">
+                                                            Phone No. must be 10 digits
+                                                            long.
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.phone_no.errors?.required">
+                                                            Phone No. is required.
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Password<span class="requiredField">*</span></label>
+                                                    <input class="form-control" formControlName="password"
+                                                        type="password" (input)="reset_retype_pass()">
+                                                    <div *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="registerForm.controls.password.errors?.required">
+                                                            Password is required.
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.password.errors?.pattern">
+                                                            Password must has at least 8 characters that include atleast
+                                                            1 uppercase character, 1 lowercase character, 1 number, and
+                                                            1 special character in(#?!@$%^&*-).
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.password.errors?.maxlength">
+                                                            Password must be at most 30 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Confirm Password<span class="requiredField">*</span></label>
+                                                    <input class="form-control" formControlName="retype_password"
+                                                        type="password">
+
+                                                    <div *ngIf="(registerForm.controls.retype_password.invalid) && (registerForm.controls.retype_password.dirty || registerForm.controls.retype_password.touched) "
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;margin-bottom: 0px;">
+                                                        <div
+                                                            *ngIf="registerForm.controls.retype_password.errors?.required">
+                                                            Confirm Password is required.
+                                                        </div>
+                                           
+                                                        
+                                               
+
+                                                    </div>
+                                                    <div *ngIf=" (registerForm.controls.retype_password.value!==registerForm.controls.password.value) && (registerForm.controls.retype_password.dirty || registerForm.controls.retype_password.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;margin-bottom: 0px;">
+                                                       
+                                           
+                                                        <div
+                                                            *ngIf="registerForm.controls.retype_password.value!==registerForm.controls.password.value">
+                                                            Confirm Password does not match.
+                                                        </div>
+
+                                                        
+                                               
+
+                                                    </div>
+
+                                                    <div *ngIf=" (!registerForm.controls.password.value) && (registerForm.controls.retype_password.dirty || registerForm.controls.retype_password.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem; ">
+                                                       
+                                           
+
+                                                        <div *ngIf="!registerForm.controls.password.value ">
+                                                            Password is Empty.
+                                                        </div>
+                                               
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Resume</label>
+                                                    <div class="custom-file">
+                                                        <p class="m-a0" *ngIf="!file_name">
+                                                            <i class="fa fa-upload"></i>
+                                                            Upload File
+                                                        </p>
+                                                        <p class="m-a0" *ngIf="file_name">
+                                                            {{file_name}}
+                                                        </p>
+                                                        <input type="file" class="site-button form-control"
+                                                            id="customFile" (change)="fileUpload($event.target.files)"
+                                                            formControlName="resume">
+
+
+                                                    </div>
+                                                    <div *ngIf="viewShow==='true'" class="alert alert-success"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div>
+                                                            Document uploaded successfully.
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                    <div *ngIf="viewShow==='try'"
+                                                                        class="alert alert-warning"
+                                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                                        <div *ngIf="viewShow==='try'" class="">
+                                                                            Uploading in process...
+                                                                        </div>
+
+                                                                    </div>
+
+                                                    <div *ngIf="viewShow==='false'" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+
+                                                        <div *ngIf="viewShow==='false'" class="">
+                                                            Document can not be uploaded,please
+                                                            try again.
+                                                        </div>
+
+                                                    </div>
+                                                    <div *ngIf="viewfinalErr" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div>
+                                                            Something went wrong,please try again.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6" *ngIf="showProgressBar">
+                                                <circle-progress [percent]=showPercentage [radius]="40"
+                                                    [outerStrokeWidth]="6" [innerStrokeWidth]="4"
+                                                    [outerStrokeColor]="'#4C96D7'" [innerStrokeColor]="'#a6cbeb'"
+                                                    [animation]="false" [animationDuration]="10" [titleFontSize]="10"
+                                                    [renderOnClick]="false">
+                                                </circle-progress>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <br />
+                                                <br />
+                                                <div class="job-time mr-auto" *ngIf="status">
+                                                    <a [href]=url target="_blank"><span>Preview</span></a>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                            formControlName="tc" id="t&c" name="t&c">
+
+                                                        <label class="custom-control-label" for="t&c">
+                                                            I agree to the <a href="javascript:void(0);" data-toggle="modal"
+                                                                data-target="#termsandcondition">
+                                                                Terms of Service & Privacy Policy</a>.
+                                                        </label>
+
+                                                    </div>
+                                                    <div *ngIf="registerForm.controls.tc.invalid && (registerForm.controls.tc.dirty || registerForm.controls.tc.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="registerForm.controls.tc.errors?.required">
+                                                            Terms & Conditions is required.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 text-left" style="margin-top:3%;">
+                                                <button class="site-button" routerLink="/login"
+                                                    routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                                                    (click)="deleteTempREgistration()">Back</button>
+                                                <button class="site-button " style="margin-left: 1%;"
+                                                    [disabled]="registerForm.invalid || checkEmail || (registerForm.controls.retype_password.value!==registerForm.controls.password.value)"
+                                                    [ngStyle]="{'cursor': ((!registerForm.valid || checkEmail || (registerForm.controls.retype_password.value!==registerForm.controls.password.value))? 'not-allowed':'pointer')}"
+                                                    (click)="register()">Submit</button>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- VIEW Modal -->
+                                <div class="modal fade modal-bx-info editor" id="termsandcondition" tabindex="-1"
+                                    role="dialog" aria-labelledby="termsandconditionTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Terms & Conditions
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal" #closeEdit
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+
+                                                <div class="col-lg-12 col-md-12">
+                                                    <h6>abcdrfghijklmnopqrstuvwxyz.....................</h6>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="site-button"
+                                                    data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal End -->
+
+
+                                <div class="col-lg-4 bg-gray">
+                                    <div class="p-a25">
+                                        <h6>Benefits</h6>
+                                        <ul class="list-check primary">
+                                            <li>Get relevant jobs directly in your inbox</li>
+                                            <li>Stay updated with latest opportunities</li>
+                                            <li>Be the first one to apply</li>
+                                            <li>Create up to 5 personalized job alerts</li>
+                                        </ul>
+                                        <div class="dez-divider bg-gray-dark"></div>
+                                        <!-- <h6 class="font-14">Why info@example.com</h6>
+                                        <p class="m-b10"><strong class="text-black m-r10">800,000+ </strong> Jobs</p>
+                                        <p class="m-b10"><strong class="text-black m-r10">100,000+</strong> CV searches
+                                            daily</p>
+                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry has
+                                            been the industry.</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+
+</body>

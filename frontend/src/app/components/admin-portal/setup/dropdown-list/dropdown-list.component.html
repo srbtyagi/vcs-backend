@@ -1,0 +1,1109 @@
+<body id="bg">
+  <div class="page-wraper">
+    <!-- <div id="loading-area"></div> -->
+    <ngx-spinner>
+      <p style="color: white"> Loading... </p>
+    </ngx-spinner>
+    <!-- Content -->
+    <div class="page-content bg-white">
+      <!-- contact area -->
+      <div class="content-block">
+        <!-- Browse Jobs -->
+        <div class="section-full bg-white p-t50 p-b20">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-2 col-lg-4 m-b30">
+                <div class="sticky-top">
+                  <div class="candidate-info company-info">
+                    <div class="candidate-detail text-center">
+                      <div class="canditate-des">
+                        <a href="javascript:void(0);">
+                          <img alt="" src="../assets/images/logo/icon3.jpg">
+                        </a>
+                        <!-- <div class="upload-link" title="update" data-toggle="tooltip"
+                          data-placement="right">
+                          <input type="file" class="update-flie">
+                          <i class="fa fa-pencil"></i>
+                      </div> -->
+                      </div>
+                      <div class="candidate-title">
+                        <h4 class="m-b5"><a href="javascript:void(0);">SETUP</a></h4>
+                      </div>
+                    </div>
+                    <ul>
+                      <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)" class="oldclass"
+                          id="clsActive{{a.submodule_id}}">
+                          <i class="fa fa-cog" aria-hidden="true"></i>
+                          <span>{{a.submodule_name_lower}}</span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-10 col-lg-8 m-b30">
+                <div class="job-bx clearfix">
+                  <div class="job-bx-title clearfix">
+                    <h5 class="font-weight-700 pull-left text-uppercase">DropDown List Options</h5>
+                    <div class="float-right" style="display: flex;">
+                      <!--<div class="form-group" style="margin-right: 10px;">-->
+                      <!--<input type="text" class="form-control" placeholder="Search Job">-->
+                      <!--</div>-->
+                    </div>
+                  </div>
+                  <table class="table-job-bx cv-manager company-manage-job">
+                    <thead>
+                      <tr>
+                        <th class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="check12"
+                              class="custom-control-input selectAllCheckBox"
+                              name="example1">
+                          <label class="custom-control-label" for="check12"></label>
+                      </div> -->
+                        </th>
+                        <th>Filed Name</th>
+                        <th style="text-align: center;">Add options</th>
+                        <th style="text-align: center;">Change Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr style="background: transparent">
+                        <td class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="check1"
+                              name="example1">
+                          <label class="custom-control-label" for="check1"></label>
+                      </div> -->
+                        </td>
+                        <td class="job-name" class="link2">
+                          <a href="javascript:void(0);" data-toggle="modal" (click)="headerSHowFunctions(false)"
+                            data-target="#listShow1">
+                            Profession</a>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" data-target="#dropDownAdd"
+                            (click)="addButtonHit('Profession')" class="site-button">
+                            Add
+                          </button>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" data-target="#listShow1"
+                            (click)="headerSHowFunctions(true)" class="site-button">
+                            Status
+                          </button>
+                        </td>
+                      </tr>
+                      <tr style="background: transparent">
+                        <td class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="check1"
+                              name="example1">
+                          <label class="custom-control-label" for="check1"></label>
+                      </div> -->
+                        </td>
+                        <td class="job-name" class="link2">
+                          <a href="javascript:void(0);" data-toggle="modal" (click)="headerSHowFunctions(false)"
+                            data-target="#listShow2">
+                            Speciality</a>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" data-target="#dropDownAdd"
+                            (click)="addButtonHit('Speciality')" class="site-button">
+                            Add
+                          </button>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;" data-target="#listShow2">
+                          <button type="button" data-toggle="modal" (click)="headerSHowFunctions(true)"
+                            data-target="#listShow2" class="site-button">
+                            Status
+                          </button>
+                        </td>
+                      </tr>
+                      <tr style="background: transparent">
+                        <td class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="check1"
+                              name="example1">
+                          <label class="custom-control-label" for="check1"></label>
+                      </div> -->
+                        </td>
+                        <td class="job-name" class="link2">
+                          <a href="javascript:void(0);" data-toggle="modal" (click)="headerSHowFunctions(false)"
+                            data-target="#listShow3">
+                            Job Sector</a>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" data-target="#dropDownAdd"
+                            (click)="addButtonHit('Job Sector')" class="site-button">
+                            Add
+                          </button>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" (click)="headerSHowFunctions(true)"
+                            data-target="#listShow3" class="site-button">
+                            Status
+                          </button>
+                        </td>
+                      </tr>
+                      <tr style="background: transparent">
+                        <td class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="check1"
+                              name="example1">
+                          <label class="custom-control-label" for="check1"></label>
+                      </div> -->
+                        </td>
+                        <td class="job-name" class="link2">
+                          <a href="javascript:void(0);" data-toggle="modal" (click)="headerSHowFunctions(false)"
+                            data-target="#listShow4">
+                            Position Type </a>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" data-target="#dropDownAdd"
+                            (click)="addButtonHit('Position Type')" class="site-button">
+                            Add
+                          </button>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" (click)="headerSHowFunctions(true)"
+                            data-target="#listShow4" class="site-button">
+                            Status
+                          </button>
+                        </td>
+                      </tr>
+                      <tr style="background: transparent">
+                        <td class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="check1"
+                              name="example1">
+                          <label class="custom-control-label" for="check1"></label>
+                      </div> -->
+                        </td>
+                        <td class="job-name" class="link2">
+                          <a href="javascript:void(0);" class="link2" data-toggle="modal"
+                            (click)="headerSHowFunctions(false)" data-target="#listShow5">
+                            Job Type </a>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" data-target="#dropDownAdd"
+                            (click)="addButtonHit('Job Type')" class="site-button">
+                            Add
+                          </button>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" (click)="headerSHowFunctions(true)"
+                            data-target="#listShow5" class="site-button">
+                            Status
+                          </button>
+                        </td>
+                      </tr>
+                      <tr style="background: transparent">
+                        <td class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="check1"
+                              name="example1">
+                          <label class="custom-control-label" for="check1"></label>
+                      </div> -->
+                        </td>
+                        <td class="job-name" class="link2">
+                          <a href="javascript:void(0);" data-toggle="modal" (click)="headerSHowFunctions(false)"
+                            data-target="#listShow6">
+                            System Name </a>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" data-target="#dropDownAdd"
+                            (click)="addButtonHit('System Name')" class="site-button">
+                            Add
+                          </button>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" (click)="headerSHowFunctions(true)"
+                            data-target="#listShow6" class="site-button">
+                            Status
+                          </button>
+                        </td>
+                      </tr>
+                      <tr style="background: transparent">
+                        <td class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="check1"
+                              name="example1">
+                          <label class="custom-control-label" for="check1"></label>
+                      </div> -->
+                        </td>
+                        <td class="job-name" class="link2">
+                          <a href="javascript:void(0);" data-toggle="modal" (click)="headerSHowFunctions(false)"
+                            data-target="#listShow7">
+                            Standard Document </a>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" data-target="#dropDownAdd"
+                            (click)="addButtonHit('Standard Document')" class="site-button">
+                            Add
+                          </button>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" (click)="headerSHowFunctions(true)"
+                            data-target="#listShow7" class="site-button">
+                            Status
+                          </button>
+                        </td>
+                      </tr>
+                      <tr style="background: transparent">
+                        <td class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="check1"
+                              name="example1">
+                          <label class="custom-control-label" for="check1"></label>
+                      </div> -->
+                        </td>
+                        <td class="job-name" class="link2">
+                          <a href="javascript:void(0);" data-toggle="modal" (click)="headerSHowFunctions(false)"
+                            data-target="#listShow8">
+                            Designation </a>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" data-target="#dropDownAdd"
+                            (click)="addButtonHit('Designation')" class="site-button">
+                            Add
+                          </button>
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" (click)="headerSHowFunctions(true)"
+                            data-target="#listShow8" class="site-button">
+                            Status
+                          </button>
+                        </td>
+                      </tr>
+
+
+
+
+
+                    </tbody>
+                  </table>
+                  <!--pagination start-->
+                  <!--<div class="pagination-bx m-t30 float-right">-->
+                  <!--<ul class="pagination">-->
+                  <!--<li class="previous"><a href="javascript:void(0);"><i-->
+                  <!--class="ti-arrow-left"></i> Prev</a></li>-->
+                  <!--<li class="active"><a href="javascript:void(0);">1</a></li>-->
+                  <!--<li><a href="javascript:void(0);">2</a></li>-->
+                  <!--<li><a href="javascript:void(0);">3</a></li>-->
+                  <!--<li class="next"><a href="javascript:void(0);">Next <i-->
+                  <!--class="ti-arrow-right"></i></a></li>-->
+                  <!--</ul>-->
+                  <!--</div>-->
+                  <!--pagination end-->
+
+                  <!--model start-->
+                  <!--view models all-->
+                  <div class="modal fade modal-bx-info editor" id="listShow1" tabindex="-1" role="dialog"
+                    aria-labelledby="listShow1ModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="listShow1ModalLongTitle">View Profession options </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="padding: 0">
+                          <table class="table-job-bx cv-manager company-manage-job">
+                            <thead>
+                              <tr>
+                                <th class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="check12"
+                                      class="custom-control-input selectAllCheckBox"
+                                      name="example1">
+                                  <label class="custom-control-label" for="check12"></label>
+                              </div> -->
+                                </th>
+                                <th>Options</th>
+                                <th>Status</th>
+                                <th style="text-align: center;" *ngIf="hideShowHeader===false">Edit options</th>
+
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===true"> Change Status</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr style="background: transparent" *ngFor="let d of allProfessionData">
+                                <td class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="check1"
+                                      name="example1">
+                                  <label class="custom-control-label" for="check1"></label>
+                              </div> -->
+                                </td>
+                                <td class="job-name">
+                                  {{d.profession_name}}
+                                </td>
+                                <td class="expired pending" style="color: green;" *ngIf="d.profession_status=='active'">
+                                  Active
+                                </td>
+                                <td class="expired pending" *ngIf="d.profession_status=='inactive'">
+                                  Inactive
+                                </td>
+
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===false">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownEdit"
+                                    (click)="editButtonHit('Profession',d)" class="site-button">
+                                    Edit
+                                  </button>
+                                </td>
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===true">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownChangeStatus"
+                                    (click)="editButtonHit('Profession',d)" class="site-button">
+                                    Status
+                                  </button>
+                                </td>
+
+                              </tr>
+                            </tbody>
+                          </table>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade modal-bx-info editor" id="listShow2" tabindex="-1" role="dialog"
+                    aria-labelledby="listShow2ModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="listShow2ModalLongTitle">View Speciality options </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="padding: 0">
+                          <table class="table-job-bx cv-manager company-manage-job">
+                            <thead>
+                              <tr>
+                                <th class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="check12"
+                                      class="custom-control-input selectAllCheckBox"
+                                      name="example1">
+                                  <label class="custom-control-label" for="check12"></label>
+                              </div> -->
+                                </th>
+                                <th>Options</th>
+                                <th>Status</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===false">Edit options</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===true">Change Status</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr style="background: transparent" *ngFor="let d of allSpecialityData">
+                                <td class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="check1"
+                                      name="example1">
+                                  <label class="custom-control-label" for="check1"></label>
+                              </div> -->
+                                </td>
+                                <td class="job-name">
+                                  {{d.speciality_name}}
+                                </td>
+                                <td class="expired pending" style="color: green;"
+                                  *ngIf=" d.speciality_status=='active'">Active
+                                </td>
+                                <td class="expired pending" *ngIf="d.speciality_status=='inactive'">
+                                  Inactive
+                                </td>
+
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===false">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownEdit"
+                                    (click)="editButtonHit('Speciality',d)" class="site-button">
+                                    Edit
+                                  </button>
+                                </td>
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===true">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownChangeStatus"
+                                    (click)="editButtonHit('Speciality',d)" class="site-button">
+                                    Status
+                                  </button>
+                                </td>
+
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade modal-bx-info editor" id="listShow3" tabindex="-1" role="dialog"
+                    aria-labelledby="listShow3ModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="listShow3ModalLongTitle">View Job Sector options </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="padding: 0">
+                          <table class="table-job-bx cv-manager company-manage-job">
+                            <thead>
+                              <tr>
+                                <th class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="check12"
+                                      class="custom-control-input selectAllCheckBox"
+                                      name="example1">
+                                  <label class="custom-control-label" for="check12"></label>
+                              </div> -->
+                                </th>
+                                <th>Options</th>
+                                <th>Status</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===false">Edit options</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===true">Change Status</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr style="background: transparent" *ngFor="let d of allJobSectorData">
+                                <td class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="check1"
+                                      name="example1">
+                                  <label class="custom-control-label" for="check1"></label>
+                              </div> -->
+                                </td>
+                                <td class="job-name">
+                                  {{d.job_sector_name}}
+                                </td>
+
+                                <td class="expired pending" style="color: green;" *ngIf="d.job_sector_status=='active'">
+                                  Active
+                                </td>
+                                <td class="expired pending" *ngIf="d.job_sector_status=='inactive'">
+                                  Inactive
+                                </td>
+
+
+
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===false">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownEdit"
+                                    (click)="editButtonHit('Job Sector',d)" class="site-button">
+                                    Edit
+                                  </button>
+                                </td>
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===true">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownChangeStatus"
+                                    (click)="editButtonHit('Job Sector',d)" class="site-button">
+                                    Status
+                                  </button>
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade modal-bx-info editor" id="listShow4" tabindex="-1" role="dialog"
+                    aria-labelledby="listShow4ModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="listShow4ModalLongTitle">View Position Type options </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="padding: 0">
+                          <table class="table-job-bx cv-manager company-manage-job">
+                            <thead>
+                              <tr>
+                                <th class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="check12"
+                                      class="custom-control-input selectAllCheckBox"
+                                      name="example1">
+                                  <label class="custom-control-label" for="check12"></label>
+                              </div> -->
+                                </th>
+                                <th>Options</th>
+                                <th>Status</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===false">Edit options</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===true">Change Status</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr style="background: transparent" *ngFor="let d of allPositionTypeData">
+                                <td class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="check1"
+                                      name="example1">
+                                  <label class="custom-control-label" for="check1"></label>
+                              </div> -->
+                                </td>
+                                <td class="job-name">
+                                  {{d.position_type_name}}
+                                </td>
+
+                                <td class="expired pending" style="color: green;"
+                                  *ngIf="d.position_type_status=='active'">Active
+                                </td>
+                                <td class="expired pending" *ngIf="d.position_type_status=='inactive'">
+                                  Inactive
+                                </td>
+
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===false">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownEdit"
+                                    (click)="editButtonHit('Position Type',d)" class="site-button">
+                                    Edit
+                                  </button>
+                                </td>
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===true">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownChangeStatus"
+                                    (click)="editButtonHit('Position Type',d)" class="site-button">
+                                    Status
+                                  </button>
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade modal-bx-info editor" id="listShow5" tabindex="-1" role="dialog"
+                    aria-labelledby="listShow5ModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="listShow5ModalLongTitle">View Job Type options </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="padding: 0">
+                          <table class="table-job-bx cv-manager company-manage-job">
+                            <thead>
+                              <tr>
+                                <th class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" id="check12"
+                                      class="custom-control-input selectAllCheckBox"
+                                      name="example1">
+                                  <label class="custom-control-label" for="check12"></label>
+                              </div> -->
+                                </th>
+                                <th>Options</th>
+                                <th>Status</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===false">Edit options</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===true">Change Status</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr style="background: transparent" *ngFor="let d of allJobTypeData">
+                                <td class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="check1"
+                                      name="example1">
+                                  <label class="custom-control-label" for="check1"></label>
+                              </div> -->
+                                </td>
+                                <td class="job-name">
+                                  {{d.job_type_name}}
+                                </td>
+
+                                <td class="expired pending" style="color: green;" *ngIf="d.job_type_status=='active'">
+                                  Active
+                                </td>
+                                <td class="expired pending" *ngIf="d.job_type_status=='inactive'">
+                                  Inactive
+                                </td>
+
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===false">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownEdit"
+                                    (click)="editButtonHit('Job Type',d)" class="site-button">
+                                    Edit
+                                  </button>
+                                </td>
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===true">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownChangeStatus"
+                                    (click)="editButtonHit('Job Type',d)" class="site-button">
+                                    Status
+                                  </button>
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade modal-bx-info editor" id="listShow6" tabindex="-1" role="dialog"
+                    aria-labelledby="listShow6ModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="listShow6ModalLongTitle">View System options </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="padding: 0">
+                          <table class="table-job-bx cv-manager company-manage-job">
+                            <thead>
+                              <tr>
+                                <th class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                <input type="checkbox" id="check12"
+                                    class="custom-control-input selectAllCheckBox"
+                                    name="example1">
+                                <label class="custom-control-label" for="check12"></label>
+                            </div> -->
+                                </th>
+                                <th>Options</th>
+                                <th>Status</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===false">Edit options</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===true">Change Status</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr style="background: transparent" *ngFor="let d of allSystemNameData">
+                                <td class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="check1"
+                                    name="example1">
+                                <label class="custom-control-label" for="check1"></label>
+                            </div> -->
+                                </td>
+                                <td class="job-name">
+                                  {{d.system_name}}
+                                </td>
+
+                                <td class="expired pending" style="color: green;"
+                                  *ngIf="d.system_name_status=='active'">
+                                  Active
+                                </td>
+                                <td class="expired pending" *ngIf="d.system_name_status=='inactive'">
+                                  Inactive
+                                </td>
+
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===false">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownEdit"
+                                    (click)="editButtonHit('System Name',d)" class="site-button">
+                                    Edit
+                                  </button>
+                                </td>
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===true">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownChangeStatus"
+                                    (click)="editButtonHit('System Name',d)" class="site-button">
+                                    Status
+                                  </button>
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade modal-bx-info editor" id="listShow7" tabindex="-1" role="dialog"
+                    aria-labelledby="listShow7ModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="listShow7ModalLongTitle">View Standard Document options </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="padding: 0">
+                          <table class="table-job-bx cv-manager company-manage-job">
+                            <thead>
+                              <tr>
+                                <th class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                <input type="checkbox" id="check12"
+                                    class="custom-control-input selectAllCheckBox"
+                                    name="example1">
+                                <label class="custom-control-label" for="check12"></label>
+                            </div> -->
+                                </th>
+                                <th>Options</th>
+                                <th>Status</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===false">Edit options</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===true">Change Status</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr style="background: transparent" *ngFor="let d of allStandardDocumentData">
+                                <td class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="check1"
+                                    name="example1">
+                                <label class="custom-control-label" for="check1"></label>
+                            </div> -->
+                                </td>
+                                <td class="job-name">
+                                  {{d.doc_name}}
+                                </td>
+
+                                <td class="expired pending" style="color: green;" *ngIf="d.doc_status=='active'">
+                                  Active
+                                </td>
+                                <td class="expired pending" *ngIf="d.doc_status=='inactive'">
+                                  Inactive
+                                </td>
+
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===false">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownEdit"
+                                    (click)="editButtonHit('Standard Document',d)" class="site-button">
+                                    Edit
+                                  </button>
+                                </td>
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===true">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownChangeStatus"
+                                    (click)="editButtonHit('Standard Document',d)" class="site-button">
+                                    Status
+                                  </button>
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="modal fade modal-bx-info editor" id="listShow8" tabindex="-1" role="dialog"
+                    aria-labelledby="listShow8ModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="listShow8ModalLongTitle">View Designation Options </h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="padding: 0">
+                          <table class="table-job-bx cv-manager company-manage-job">
+                            <thead>
+                              <tr>
+                                <th class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                <input type="checkbox" id="check12"
+                                    class="custom-control-input selectAllCheckBox"
+                                    name="example1">
+                                <label class="custom-control-label" for="check12"></label>
+                            </div> -->
+                                </th>
+                                <th>Options</th>
+                                <th>Status</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===false">Edit options</th>
+
+                                <th style="text-align: center;" *ngIf="hideShowHeader===true">Change Status</th>
+
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr style="background: transparent" *ngFor="let d of allGetDesignation">
+                                <td class="feature">
+                                  <!-- <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="check1"
+                                    name="example1">
+                                <label class="custom-control-label" for="check1"></label>
+                            </div> -->
+                                </td>
+                                <td class="job-name">
+                                  {{d.designation_name}}
+                                </td>
+
+                                <td class="expired pending" style="color: green;"
+                                  *ngIf="d.designation_status=='active'">
+                                  Active
+                                </td>
+                                <td class="expired pending" *ngIf="d.designation_status=='inactive'">
+                                  Inactive
+                                </td>
+
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===false">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownEdit"
+                                    (click)="editButtonHit('Designation',d)" class="site-button"
+                                    *ngIf="d.designation_name!=='admin' &&  d.designation_name!=='Team Lead'
+                                    &&  d.designation_name!=='Manager' &&  d.designation_name!=='Recruiter' &&  d.designation_name!=='On-boarding Member'">
+                                    Edit
+                                  </button>
+                                </td>
+                                <td class="application text-primary" style="text-align: center;"
+                                  *ngIf="hideShowHeader===true">
+                                  <button type="button" data-toggle="modal" data-target="#dropDownChangeStatus"
+                                    (click)="editButtonHit('Designation',d)" class="site-button"
+                                    *ngIf="d.designation_name!=='admin' &&  d.designation_name!=='Team Lead'
+                                    &&  d.designation_name!=='Manager' &&  d.designation_name!=='Recruiter' &&  d.designation_name!=='On-boarding Member'">
+                                    Status
+                                  </button>
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                  <!--Add models-->
+                  <div class="modal fade modal-bx-info editor" id="dropDownAdd" tabindex="-1" role="dialog"
+                    aria-labelledby="dropDownAddModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="dropDownAddModalLongTitle">Add {{addHeaderShow}}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form [formGroup]="addDropDownList">
+                            <div class="row">
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Name</label>
+                                  <input type="text" class="form-control" placeholder="Enter Name"
+                                    formControlName="name" (input)="checkUniqueDesignation()">
+                                </div>
+                              </div>
+
+
+                            </div>
+
+
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="site-button" data-dismiss="modal">Back</button>
+                          <button type="button" class="site-button" [disabled]="!addDropDownList.valid"
+                            (click)="addsubmitHit()"
+                            [ngStyle]="{'cursor': (!addDropDownList.valid? 'not-allowed':'pointer')}"
+                            data-dismiss="modal">Submit
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--edit model-->
+                  <div class="modal fade modal-bx-info editor" id="dropDownEdit" tabindex="-1" role="dialog"
+                    aria-labelledby="dropDownEditModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="dropDownEditModalLongTitle">Edit {{editHeaderShow}}</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form [formGroup]="editDropDownList">
+                            <div class="row">
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Name</label>
+                                  <input type="text" class="form-control" placeholder="Enter Name"
+                                    formControlName="edit_name" (input)="checkUniqueDesignationEdit()">
+                                </div>
+                              </div>
+
+
+                            </div>
+
+
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="site-button" data-dismiss="modal">Back</button>
+                          <button type="button" class="site-button" [disabled]="!editDropDownList.valid"
+                            (click)="editsubmitHit()"
+                            [ngStyle]="{'cursor': (!editDropDownList.valid? 'not-allowed':'pointer')}"
+                            data-dismiss="modal">Submit
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--status change-->
+                  <div class="modal fade modal-bx-info editor" id="dropDownChangeStatus" tabindex="-1" role="dialog"
+                    aria-labelledby="dropDownChangeStatusModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="dropDownChangeStatusModalLongTitle">Change Status</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="row">
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Status</label>
+                                  <div class="row" style="margin-top: 10px">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                      <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" [(ngModel)]="defaultStatus"
+                                          id="active" name="example1" value="active">
+                                        <label class="custom-control-label" for="active">Active </label>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                      <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="inactive"
+                                          [(ngModel)]="defaultStatus" name="example2" value="inactive">
+                                        <label class="custom-control-label" for="inactive">Inactive </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                            </div>
+
+
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="site-button" data-dismiss="modal">Back</button>
+                          <button type="button" class="site-button" data-dismiss="modal"
+                            (click)="statussubmitHit()">Submit</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--model end-->
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Browse Jobs END -->
+      </div>
+    </div>
+    <!-- Content END-->
+    <button class="scroltop fa fa-chevron-up"></button>
+  </div>
+
+</body>

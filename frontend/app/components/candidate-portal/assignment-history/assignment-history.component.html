@@ -1,0 +1,1111 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);"
+                                                        style="font-size: 1.2rem;">ASSIGNMENTS</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngIf="checkUserType"><a class="oldclass" style="text-decoration: none;"
+                                                    routerLink="/current-assignment" routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Current Assgn</span></a></li>
+                                            <li *ngIf="checkUserType"><a class="oldclass" style="text-decoration: none;"
+                                                    routerLink="/assignment-history" routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Assgn History</span></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Assignment History</h5>
+                                        <!-- <div class="float-right" style="display: flex;">
+                                            
+                                            <button type="button" class="site-button m-b30" data-toggle="modal"
+                                                data-target="#workModal">Submit Work Hour</button>
+                                        </div> -->
+                                    </div>
+                                    
+
+
+                                    <div class="job-bx-title clearfix">
+                                        <div class=" form-group" style="display: flex;">
+                                            <div>
+                                                <label style="font-size: 14px;">Client</label>
+                                                <select class="form-control" [(ngModel)]="client_id">
+                                                    <option value="ALL" selected>All</option>
+                                                    <ng-container *ngFor="let data of clientList">
+                                                        <option *ngIf="data.client_status==='active'"
+                                                            [value]="data.client_id"
+                                                            style="text-transform: capitalize;">
+                                                            {{data.client_name}}</option>
+                                                    </ng-container>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Year</label>
+                                                <select class="form-control" [(ngModel)]="year" #selectYear
+                                                    (change)='getMonthData(selectYear.value)'> (selectYear.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of yearList" [value]="data.year"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.year}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Month</label>
+                                                <select class="form-control" [(ngModel)]="month">
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of monthList" [value]="data.month"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.month}}</option>
+                                                </select>
+                                            </div>
+
+
+
+                                            <div>
+                                                <div style="display: inline-block;margin-bottom: .5rem;"></div>
+                                                <div type="button" class="site-button2" (click)="searchAssignments()">
+                                                    View</div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <table class="table-job-bx cv-manager company-manage-job">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">Client</th>
+                                                <th style="text-align: center;">Job ID</th>
+                                                <th style="text-align: center;">Week</th>
+                                                <th style="text-align: center;">Assignment</th>
+                                                <th style="text-align: center;">Pay Slip</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr *ngFor="let a of assignmentList" style="text-align: center;">
+                                                <td class="application text-primary">{{a.client_name}}</td>
+                                                <td class="application text-primary">{{a.job_no}}
+                                                </td>
+                                                <td class="application text-primary">
+                                                    {{a.wk_start_date}}-{{a.wk_end_date}}
+                                                </td>
+                                                <td class="application" style="text-transform: capitalize;">
+                                                    <span class="appCount" (click)="onClickAssignment(a)" style="background-color: turquoise;"
+                                                        data-toggle="modal" data-target="#assignmentView">
+                                                        <i class="fa fa-eye"></i>
+                                                    </span>
+                                                </td>
+                                                <td class="application" style="text-transform: capitalize;">
+                                                    <span class="appCount" (click)="onClickPaySlip(a)"
+                                                        data-toggle="modal" data-target="#paySlipView">
+                                                        <i class="fa fa-eye"></i>
+                                                    </span>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+
+
+                <!-- Pay slip Modal -->
+                <div class="modal fade modal-bx-info editor" id="paySlipView" tabindex="-1" role="dialog"
+                    aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EducationModalLongTitle">Pay Slip
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" #payslipModalClose
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" *ngIf="details">
+                                <div class="row">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 1px;">{{details.job_no}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Applicant Name
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 1px;">{{details.name}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Job
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 1px;">{{details.job_title}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Assignment Status
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;"
+                                                *ngIf="details.assignment_status==='not_started'">Not
+                                                Started</span>
+                                            <span class="clearfix" style="margin-top: 1px;"
+                                                *ngIf="details.assignment_status==='working'">Working</span>
+                                            <span class="clearfix" style="margin-top: 1px;"
+                                                *ngIf="details.assignment_status==='closed'">Closed</span>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 1px;">{{details.client_name}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Application No.
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 1px;">{{details.application_no}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Hiring Date
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 1px;">{{details.hiring_date|date:'MM/dd/yyyy'}}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="divider"></div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Regular Pay Rate
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">$
+                                                {{details.onb_regular_pay_rate}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Holiday Pay Rate
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">$
+                                                {{details.onb_holiday_pay_rate}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Regular Work Hours
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">
+                                                {{details.reg_hr}}</span>
+                                        </div>
+
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Holiday Work Hours
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">
+                                                {{details.holiday_hr}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Taxable Income
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">
+                                                $ {{details.taxable_amt}}</span>
+                                        </div>
+
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Bonus
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">
+                                                $ {{details.bonus_amount}}</span>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">OT Pay Rate
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">$
+                                                {{details.onb_ot_pay_rate}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Allowed Per Diem/Week
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">
+                                                $ {{details.per_dieum_wk}}</span>
+                                        </div>
+
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">OT Work Hours
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">
+                                                {{details.ot_hr}}</span>
+                                        </div>
+
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Total Work Hours
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">
+                                                {{details.total_wk_hr}}</span>
+                                        </div>
+
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Non-Taxable Income
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">
+                                                $ {{details.nontaxable_amt}}</span>
+                                        </div>
+
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Gross Income
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 1px;">
+                                                $ {{details.gross_amt}}</span>
+                                        </div>
+
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <!-- <div class="modal-body" *ngIf="details">
+                                <table>
+                                    <colgroup>
+                                        <col span="1" style="width: 22%;">
+                                        <col span="1" style="width: 11%;">
+                                        <col span="1" style="width: 22%;">
+                                        <col span="1" style="width: 11%;">
+                                        <col span="1" style="width: 22%;">
+                                        <col span="1" style="width: 11%;">
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Name :</strong></td>
+                                            <td colspan='5'>{{details.name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Client :</strong></td>
+                                            <td colspan='5'>{{details.client_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Job :</strong></td>
+                                            <td colspan='5'> {{details.job_title}} </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Regular Pay Rate :</strong></td>
+                                            <td>{{details.onb_regular_pay_rate}}</td>
+                                            <td><strong style="font-weight: 600;">OT Pay Rate :</strong></td>
+                                            <td>{{details.onb_ot_pay_rate}}</td>
+                                            <td><strong style="font-weight: 600;">Holiday Pay Rate :</strong></td>
+                                            <td>{{details.onb_holiday_pay_rate}}</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">OT Pay Rate :</strong></td>
+                                            <td>{{details.onb_ot_pay_rate}}</td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Holiday Pay Rate :</strong></td>
+                                            <td>{{details.onb_holiday_pay_rate}}</td>
+                                        </tr> 
+
+                                        <tr>
+                                            
+                                            <td><strong style="font-weight: 600;">Per Diem :</strong></td>
+                                            <td colspan='5'>{{details.per_dieum_amt}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Regular Work Hours :</strong></td>
+                                            <td>{{details.reg_hr}}</td>
+                                            <td><strong style="font-weight: 600;">OT Work Hours :</strong></td>
+                                            <td>{{details.ot_hr}}</td>
+                                            <td><strong style="font-weight: 600;">Holiday Work Hours :</strong></td>
+                                            <td>{{details.holiday_hr}}</td>
+                                        </tr>
+
+                                         <tr>
+                                            <td><strong style="font-weight: 600;">OT Work Hours :</strong></td>
+                                            <td>{{details.ot_hr}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Holiday Work Hours :</strong></td>
+                                            <td>{{details.holiday_hr}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Total Work Hours :</strong></td>
+                                            <td colspan='5'>{{details.total_wk_hr}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Bonus ($) :</strong></td>
+                                            <td colspan='5'>{{details.bonus_amount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Taxable Income :</strong></td>
+                                            <td>{{details.taxable_amt}}</td>
+                                            <td><strong style="font-weight: 600;">Non-Taxable Income :</strong></td>
+                                            <td>{{details.nontaxable_amt}}</td>
+                                        </tr>
+                                         <tr>
+                                            <td><strong style="font-weight: 600;">Non-Taxable Income :</strong></td>
+                                            <td>{{details.nontaxable_amt}}</td>
+                                        </tr> 
+                                        <tr>
+                                            <td><strong style="font-weight: 600;">Gross Income :</strong></td>
+                                            <td colspan='5'>{{details.gross_amt}}</td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+
+                            </div> -->
+                            <div class="modal-footer">
+                                <button type="button" class="site-button" data-dismiss="modal">Close</button>
+                                <button type="button" class="site-button" (click)="downloadPayslip()">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal End -->
+
+                 <!-- PDF Div -->
+
+                 <div class="modal-content" id="assignFormFDiv" *ngIf="showDivPdf && details"  style="font-size: 30px;padding:25px;"> 
+                    <div class="modal-header"
+                        style="background-color: transparent;display: flex;width: 100%; margin-top: 30px;margin-left: 30px;margin-bottom: 20px;">
+    
+                        <div style="width: 25%;margin-top: 0px;">
+                            <img style="height: 150px;width: 370px;" src="../assets/images/logo.png">
+                        </div>
+                        <div style="width: 75%;text-align: left;color: black;">
+                            <h3 style="font-size: 50px;">Vish Consulting Services Inc.</h3>
+                            <p style="font-size: 30px;line-height: 25px; margin-top: 20px;">9655
+                                Granite Ridge Dr, STE
+                                200, San Diego,
+                                CA 92123</p>
+                            <p style="font-size: 30px;line-height: 25px;">E: info@vishusa.com P:
+                                +1
+                                (916) 800-3762</p>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+    
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 3px;">{{details.job_no}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Applicant Name
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 3px;">{{details.user_first_name}}
+                                        {{details.user_middle_name}}
+                                        {{details.user_last_name}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Job
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 3px;">{{details.job_title}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Assignment Status
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix " style="margin-top: 3px;"
+                                        *ngIf="details.assignment_status==='not_started'">Not
+                                        Started</span>
+                                    <span class="clearfix " style="margin-top: 3px;"
+                                        *ngIf="details.assignment_status==='working'">Working</span>
+                                    <span class="clearfix " style="margin-top: 3px;"
+                                        *ngIf="details.assignment_status==='closed'">Closed</span>
+                                </div>
+    
+                            </div>
+    
+    
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 3px;">{{details.client_name}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Application No.
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 3px;">{{details.application_no}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Hiring Date
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 3px;">{{details.hiring_date|date:'MM/dd/yyyy'}}</span>
+                                </div>
+    
+                            </div>
+    
+                            <div class="divider"></div>
+    
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Proposed start date
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 3px;">{{details.proposed_start_date|date:'MM/dd/yyyy'}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Regular Pay Rate ($/Hr)
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 3px;">$
+                                        {{details.onb_regular_pay_rate}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Allowed Per Diem/Week
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 3px;">
+                                        {{details.per_dieum_wk}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Confirmed (Hours/Week)
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 3px;">
+                                        {{details.total_shift_hr}}</span>
+                                </div>
+                                
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Contract Duration (Week)
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 3px;">
+                                        {{details.contract_duration_wk}}</span>
+                                </div>
+                                
+                                
+    
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Pay Package/Miscellaneous
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 3px;">
+                                        {{details.pay_package_remarks}}</span>
+                                </div>
+                            </div>
+    
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Proposed end date
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 3px;">{{details.proposed_end_date|date:'MM/dd/yyyy'}}</span>
+                                </div>
+                                
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Holiday Pay Rate ($/Hr)
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 3px;">$
+                                        {{details.onb_holiday_pay_rate}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">OT Starts After (Hours)
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 3px;">
+                                        {{details.ot_starts_after_wk}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Shift Details
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 3px;">
+                                        {{details.shift_details}}</span>
+                                </div>
+                                
+                                
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">RTO
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 3px;">
+                                        {{details.rto}}</span>
+                                </div>
+                                
+    
+                            </div>
+    
+                            <div style="display: flex;width: 100%;" *ngIf="standard_doc.length!==0">
+                                <div class="divider2"></div>
+                                <div style="width: 32%;margin-top: 4px;text-align: center;">
+                                    <h5 class="font-weight-700 text-uppercase" style="font-size: 30px;">
+                                        Standard Documents</h5>
+                                </div>
+                                <div class="divider2"></div>
+                            </div>
+    
+                            <ul style="width: 100%;
+                            margin-top: 2%;
+                            margin-left: 2%;
+                            list-style: none;">
+                                <li class="innerLi" *ngFor="let a of standard_doc">
+                                    <table style="margin:2px;">
+                                        <colgroup>
+                                            <col span="1" style="width: 15%;">
+                                            <col span="1" style="width: 10%;">
+                                            <col span="1" style="width: 25%;">
+                                            <col span="1" style="width: 20%;">
+                                        </colgroup>
+                                        <tbody>
+                                    <tr><td ><strong >{{a.rec_doc_name}} :</strong></td>
+                                    <td><span style="color: Green;margin-left: 15px;">Available</span></td>
+                                    <td><span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span></td>
+                                    <td><span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span></td></tr>
+                                </tbody>    
+                                </table>
+                                    <!-- <hr> -->
+                                </li>
+                            </ul>
+    
+                            <div style="display: flex;width: 100%;"
+                                *ngIf="fac_specc_doc.length!==0">
+                                <div class="divider2" style="width: 25%;margin-top: 4%;">
+                                </div>
+                                <div style="width: 46%;margin-top: 22px;text-align: center;">
+                                    <h5 class="font-weight-700 text-uppercase" style="font-size: 30px;">
+                                        Facility Specific Documents</h5>
+                                </div>
+                                <div class="divider2" style="width: 25%; margin-top: 4%;">
+                                </div>
+                            </div>
+    
+                            <ul style="width: 100%;
+                            margin-top: 2%;
+                            margin-left: 2%;
+                            list-style: none;">
+                                <li class="innerLi" *ngFor="let a of fac_specc_doc">
+                                    <table style="margin:2px;">
+                                        <colgroup>
+                                            <col span="1" style="width: 15%;">
+                                            <col span="1" style="width: 10%;">
+                                            <col span="1" style="width: 25%;">
+                                            <col span="1" style="width: 20%;">
+                                        </colgroup>
+                                        <tbody>
+                                    <tr><td ><strong >{{a.rec_doc_name}} :</strong></td>
+                                    <td><span style="color: Green;margin-left: 15px;">Available</span></td>
+                                    <td><span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span></td>
+                                    <td><span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span></td></tr>
+                                </tbody>    
+                                </table>
+                                </li>
+                            </ul>
+    
+                            <div style="display: flex;width: 100%;" *ngIf="others_doc.length!==0">
+                                <div class="divider2"></div>
+                                <div style="width: 32%;margin-top: 4px;text-align: center;">
+                                    <h5 class="font-weight-700 text-uppercase" style="font-size: 30px;">
+                                        Other Documents</h5>
+                                </div>
+                                <div class="divider2"></div>
+                            </div>
+    
+                            <ul style="width: 100%;
+                            margin-top: 2%;
+                            margin-left: 2%;
+                            list-style: none;">
+                                <li class="innerLi" *ngFor="let a of others_doc">
+                                    <table style="margin:2px;">
+                                        <colgroup>
+                                            <col span="1" style="width: 15%;">
+                                            <col span="1" style="width: 10%;">
+                                            <col span="1" style="width: 25%;">
+                                            <col span="1" style="width: 20%;">
+                                        </colgroup>
+                                        <tbody>
+                                    <tr><td ><strong >{{a.rec_doc_name}} :</strong></td>
+                                    <td><span style="color: Green;margin-left: 15px;">Available</span></td>
+                                    <td><span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span></td>
+                                    <td><span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span></td></tr>
+                                </tbody>    
+                                </table>
+                                </li>
+                            </ul>
+                        </div>
+    
+                    </div>
+    
+                </div>
+
+                <!-- Assignment Modal -->
+                <div class="modal fade modal-bx-info editor" id="assignmentView" tabindex="-1" role="dialog"
+                    aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="EducationModalLongTitle">Assignment Details
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" #assignmentModalClose
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" *ngIf="details">
+                                <div class="row">
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">{{details.job_no}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Applicant Name
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">{{details.name}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Job
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">{{details.job_title}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Assignment Status
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 3px;"
+                                                *ngIf="details.assignment_status==='not_started'">Not
+                                                Started</span>
+                                            <span class="clearfix" style="margin-top: 3px;"
+                                                *ngIf="details.assignment_status==='working'">Working</span>
+                                            <span class="clearfix" style="margin-top: 3px;"
+                                                *ngIf="details.assignment_status==='closed'">Closed</span>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">{{details.client_name}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Application No.
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">{{details.application_no}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Hiring Date
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">{{details.hiring_date|date:'MM/dd/yyyy'}}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="divider"></div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Proposed start date
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">{{details.proposed_start_date|date:'MM/dd/yyyy'}}</span>
+                                        </div>
+                                       
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">OT Pay Rate ($/Hr)
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">$
+                                                {{details.onb_ot_pay_rate}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Allowed Per Diem/Week
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 3px;">
+                                                {{details.per_dieum_wk}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Contract Duration (Week)
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 3px;">
+                                                {{details.contract_duration_wk}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Shift (Hours/Week)
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 3px;">
+                                                {{details.total_shift_hr}}</span>
+                                        </div>
+
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Pay Package/Miscellaneous
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 3px;">
+                                                {{details.pay_package_remarks}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Proposed end date
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">{{details.proposed_end_date|date:'MM/dd/yyyy'}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Regular Pay Rate ($/Hr)
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">$
+                                                {{details.onb_regular_pay_rate}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Holiday Pay Rate ($/Hr)
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix"
+                                                style="margin-top: 3px;">$
+                                                {{details.onb_holiday_pay_rate}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">OT Starts After (Hours)
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 3px;">
+                                                {{details.ot_starts_after_wk}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">RTO
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 3px;">
+                                                {{details.rto}}</span>
+                                        </div>
+                                        <div class="clearfix m-b20" style="display: flex;">
+                                            <label class="m-b0">Shift Details
+                                                :&nbsp;&nbsp;</label>
+                                            <span class="clearfix" style="margin-top: 3px;">
+                                                {{details.shift_details}}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div style="display: flex;width: 100%;" *ngIf="standard_doc.length>0">
+                                        <div class="divider2"></div>
+                                        <div style="width: 32%;margin-top: 4px;text-align: center;">
+                                            <h5 class="font-weight-700 text-uppercase">
+                                                Standard Documents</h5>
+                                        </div>
+                                        <div class="divider2"></div>
+                                    </div>
+
+                                    <ul style="width: 100%;
+                                    margin-top: 2%;
+                                    margin-left: 2%;">
+                                        <li class="innerLi" *ngFor="let a of standard_doc">
+                                            <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
+                                            <a class="site-button" style="margin-top: -5px;text-decoration: none;"
+                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}"
+                                                target="_blank" rel="noopener noreferrer"
+                                                download>Download</a>
+                                                <span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span>
+                                            <span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span>
+                                            <!-- <hr> -->
+                                        </li>
+                                    </ul>
+
+                                    <div style="display: flex;width: 100%;" *ngIf="fac_specc_doc.length>0">
+                                        <div class="divider2" style="width: 25%;margin-top: 4%;">
+                                        </div>
+                                        <div
+                                            style="width: 46%;margin-top: 22px;text-align: center;">
+                                            <h5 class="font-weight-700 text-uppercase">
+                                                Facility Specific Documents</h5>
+                                        </div>
+                                        <div class="divider2" style="width: 25%; margin-top: 4%;">
+                                        </div>
+                                    </div>
+
+                                    <ul style="width: 100%;
+                                    margin-top: 2%;
+                                    margin-left: 2%;">
+                                        <li class="innerLi" *ngFor="let a of fac_specc_doc">
+                                            <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
+                                            <a class="site-button" style="margin-top: -5px;text-decoration: none;"
+                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}"
+                                                target="_blank" rel="noopener noreferrer"
+                                                download>Download</a>
+                                                <span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span>
+                                            <span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span>
+                                            <!-- <hr> -->
+                                        </li>
+                                    </ul>
+
+                                    <div style="display: flex;width: 100%;" *ngIf="others_doc.length>0">
+                                        <div class="divider2"></div>
+                                        <div style="width: 32%;margin-top: 4px;text-align: center;">
+                                            <h5 class="font-weight-700 text-uppercase">
+                                                Other Documents</h5>
+                                        </div>
+                                        <div class="divider2"></div>
+                                    </div>
+
+                                    <ul style="width: 100%;
+                                    margin-top: 2%;
+                                    margin-left: 2%;">
+                                        <li class="innerLi" *ngFor="let a of others_doc">
+                                            <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
+                                            <a class="site-button" style="margin-top: -5px;text-decoration: none;"
+                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}"
+                                                target="_blank" rel="noopener noreferrer"
+                                                download>Download</a>
+                                                <span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span>
+                                            <span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span>
+                                            <!-- <hr> -->
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="site-button" data-dismiss="modal">Close</button>
+                                <button type="button" class="site-button" (click)="downloadApplForm()">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal End -->
+
+                <!-- Div PDF  -->
+                <div class="modal-content" *ngIf="showDivPdf2 && details" id="payslipDiv" style="font-size: 30px;padding:25px;">
+                    <div class="modal-header"
+                        style="background-color: transparent;display: flex;width: 100%; margin-top: 30px;margin-left: 30px;margin-bottom: 20px;">
+    
+                        <div style="width: 25%;margin-top: 0px;">
+                            <img style="height: 150px;width: 370px;" src="../assets/images/logo.png">
+                        </div>
+                        <div style="width: 75%;text-align: left;color: black;">
+                            <h3 style="font-size: 50px;">Vish Consulting Services Inc.</h3>
+                            <p style="font-size: 30px;line-height: 25px; margin-top: 12px;">9655
+                                Granite Ridge Dr, STE
+                                200, San Diego,
+                                CA 92123</p>
+                            <p style="font-size: 30px;line-height: 25px;">E: info@vishusa.com P:
+                                +1
+                                (916) 800-3762</p>
+                        </div>
+                    </div>
+                    <div class="modal-body" *ngIf="details" >
+                        <div class="row">
+    
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 1px;">{{details.job_no}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Applicant Name
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 1px;">{{details.name}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Job
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 1px;">{{details.job_title}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Assignment Status
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;"
+                                        *ngIf="details.assignment_status==='not_started'">Not
+                                        Started</span>
+                                    <span class="clearfix" style="margin-top: 1px;"
+                                        *ngIf="details.assignment_status==='working'">Working</span>
+                                    <span class="clearfix" style="margin-top: 1px;"
+                                        *ngIf="details.assignment_status==='closed'">Closed</span>
+                                </div>
+    
+                            </div>
+    
+    
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 1px;">{{details.client_name}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Application No.
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 1px;">{{details.application_no}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Hiring Date
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix"
+                                        style="margin-top: 1px;">{{details.hiring_date|date:'MM/dd/yyyy'}}</span>
+                                </div>
+    
+                            </div>
+    
+                            <div class="divider"></div>
+    
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Regular Pay Rate
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">$
+                                        {{details.onb_regular_pay_rate}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Holiday Pay Rate
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">$
+                                        {{details.onb_holiday_pay_rate}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Regular Work Hours
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">
+                                        {{details.reg_hr}}</span>
+                                </div>
+    
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Holiday Work Hours
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">
+                                        {{details.holiday_hr}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Taxable Income
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">
+                                        $ {{details.taxable_amt}}</span>
+                                </div>
+    
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Bonus
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">
+                                        $ {{details.bonus_amount}}</span>
+                                </div>
+    
+    
+                            </div>
+    
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">OT Pay Rate
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">$
+                                        {{details.onb_ot_pay_rate}}</span>
+                                </div>
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Allowed Per Diem/Week
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">
+                                        $ {{details.per_dieum_wk}}</span>
+                                </div>
+    
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">OT Work Hours
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">
+                                        {{details.ot_hr}}</span>
+                                </div>
+    
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Total Work Hours
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">
+                                        {{details.total_wk_hr}}</span>
+                                </div>
+    
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Non-Taxable Income
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">
+                                        $ {{details.nontaxable_amt}}</span>
+                                </div>
+    
+                                <div class="clearfix m-b20" style="display: flex;">
+                                    <label class="m-b0">Gross Income
+                                        :&nbsp;&nbsp;</label>
+                                    <span class="clearfix" style="margin-top: 1px;">
+                                        $ {{details.gross_amt}}</span>
+                                </div>
+    
+    
+    
+                            </div>
+    
+                        </div>
+    
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>
