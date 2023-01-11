@@ -1,0 +1,6 @@
+ubuntu@ec2-65-0-43-109.ap-south-1.compute.amazonaws.com
+
+
+109 --  ancasa@9019
+
+ mysql -u root -p casadb_020921

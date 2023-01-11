@@ -1,0 +1,20 @@
+ubuntu@ec2-3-15-65-55.us-east-2.compute.amazonaws.com
+
+
+password --- USA*#5556
+
+
+/api/api/get/action_id/:role_id
+ '/api/api/get/data/:role_id'
+ '/api/api/check_post_role'-> check role_name on EDIT
+ '/api/api/update/userrole/:role_id'-> UPDATE role_name
+ /api/api/get_userrole/fields-ALL DATA OF ROLE
+ ASSIGN ACCESS-> '/api/api/post/insert/:role_id'
+ /api/api/update/status/userrole/:role_id' -> UPDATE STATUS
+ 
+ 
+ 
+
+  mm= "0"+strTime.split(",")[0].split("/")[0].slice(-2);
+  dd= "0"+strTime.split(",")[0].split("/")[1].slice(-2);
+  yy= strTime.split(",")[0].split("/")[3].slice(-2);

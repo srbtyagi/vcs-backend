@@ -1,0 +1,23 @@
+if (this.access_level === "Head of University") {
+      if (this.dept === 'All') {
+
+      }
+      else if (this.dept !== 'All') {
+
+      }
+    }
+    else if (this.access_level === "Head of School") {
+      if (this.dept === 'All') {
+
+      }
+      else if (this.dept !== 'All') {
+
+      }
+    }
+    else if (this.access_level === "Head of Department") {
+
+    }
+
+
+
+https://therichpost.com/angular-9-ecommerce-template-free/
