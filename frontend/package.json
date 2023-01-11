@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "node1": "export NODE_OPTIONS=--openssl-legacy-provider;",
+    "node2": "export NODE_OPTIONS=--no-experimental-fetch;",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider; ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -57,6 +59,7 @@
     "karma-jasmine-html-reporter": "^1.4.0",
     "prisma": "^4.8.1",
     "protractor": "~5.4.0",
+    "terser": "^5.16.1",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
