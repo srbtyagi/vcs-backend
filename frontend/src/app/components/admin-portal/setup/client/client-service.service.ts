@@ -16,16 +16,16 @@ export class ClientServiceService {
 
 
   getClientsDetails() {
-    return this.http.get('https://vishusa.com/vcsapi/get/all/clients', {headers: this.header})
+    return this.http.get('https://172.31.92.170/vcsapi/get/all/clients', {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
-  } 
+  }
 
 
   addClient(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/client/client_name', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/client/client_name', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -33,7 +33,7 @@ export class ClientServiceService {
   }
 
   updateClient(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/client_name', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/client_name', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -41,7 +41,7 @@ export class ClientServiceService {
   }
 
   changeStatusClient(details) {
-    return this.http.post('https://vishusa.com/vcsapi/edit/api/change_status/client', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/edit/api/change_status/client', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)

@@ -16,7 +16,7 @@ export class DropdownServiceService {
   }
 
   getApiProfession() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/profession', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/profession', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -24,7 +24,7 @@ export class DropdownServiceService {
   }
 
   getApiSpeciality() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/speciality', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/speciality', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -32,7 +32,7 @@ export class DropdownServiceService {
   }
 
   getApiJobSector() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/job_sector', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/job_sector', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -40,7 +40,7 @@ export class DropdownServiceService {
   }
 
   getApiPositionType() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/position_type', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/position_type', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -48,7 +48,7 @@ export class DropdownServiceService {
   }
 
   getApiJobType() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/job_type', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/job_type', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -56,7 +56,7 @@ export class DropdownServiceService {
   }
 
   getApiSystemName() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/system_name/all', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/system_name/all', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -65,7 +65,7 @@ export class DropdownServiceService {
 
 
   getApiDesignation() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/designation/all', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/designation/all', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -74,7 +74,7 @@ export class DropdownServiceService {
 
 
   getApiStandardDocument() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/standard_document/all', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/standard_document/all', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -85,7 +85,7 @@ export class DropdownServiceService {
   /// add api
 
   addApiProfession(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/tbl/profession', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/tbl/profession', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -93,7 +93,7 @@ export class DropdownServiceService {
   }
 
   addApiSpeciality(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/tbl/speciality', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/tbl/speciality', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -101,7 +101,7 @@ export class DropdownServiceService {
   }
 
   addApiJobSector(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/tbl/job_sector', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/tbl/job_sector', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -109,7 +109,7 @@ export class DropdownServiceService {
   }
 
   addApiPositionType(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/tbl/position_type', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/tbl/position_type', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -117,7 +117,7 @@ export class DropdownServiceService {
   }
 
   addApiJobType(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/tbl/job_type', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/tbl/job_type', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -125,7 +125,7 @@ export class DropdownServiceService {
   }
 
   addApiSystemName(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/name/tbl/system_name', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/name/tbl/system_name', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -133,7 +133,7 @@ export class DropdownServiceService {
   }
 
   addApiDocumentName(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/name/tbl/standard_document', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/name/tbl/standard_document', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -142,7 +142,7 @@ export class DropdownServiceService {
 
 
   addApiDesignationName(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/tbl/designation', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/tbl/designation', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -155,7 +155,7 @@ export class DropdownServiceService {
 
 
   editApiProfession(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/profession_name', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/profession_name', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -163,7 +163,7 @@ export class DropdownServiceService {
   }
 
   editApiSpeciality(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/speciality_name', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/speciality_name', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -171,7 +171,7 @@ export class DropdownServiceService {
   }
 
   editApiJobSector(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/job_sector_name', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/job_sector_name', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -179,7 +179,7 @@ export class DropdownServiceService {
   }
 
   editApiPositionType(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/position_type_name', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/position_type_name', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -187,7 +187,7 @@ export class DropdownServiceService {
   }
 
   editApiJobType(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/job_type_name', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/job_type_name', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -195,7 +195,7 @@ export class DropdownServiceService {
   }
 
   editApiSystemName(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/name/tbl/system_name', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/name/tbl/system_name', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -203,7 +203,7 @@ export class DropdownServiceService {
   }
 
   editApiStandardDocument(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/name/tbl/standard_document', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/name/tbl/standard_document', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -211,7 +211,7 @@ export class DropdownServiceService {
   }
 
   editApiDesignation(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/designation_name', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/designation_name', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -224,7 +224,7 @@ export class DropdownServiceService {
   /// status change
 
   statusApiProfession(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/profession_status', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/profession_status', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -232,7 +232,7 @@ export class DropdownServiceService {
   }
 
   statusApiSpeciality(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/speciality_status', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/speciality_status', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -240,7 +240,7 @@ export class DropdownServiceService {
   }
 
   statusApiJobSector(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/job_sector_status', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/job_sector_status', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -248,7 +248,7 @@ export class DropdownServiceService {
   }
 
   statusApiPositionType(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/position_type_status', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/position_type_status', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -256,7 +256,7 @@ export class DropdownServiceService {
   }
 
   statusApiJobType(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/job_type_status', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/job_type_status', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -265,7 +265,7 @@ export class DropdownServiceService {
 
 
   statusApiSystemName(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/status/tbl/system_name', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/status/tbl/system_name', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -273,7 +273,7 @@ export class DropdownServiceService {
   }
 
   statusApiStandardDocument(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/status/tbl/standard_document', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/status/tbl/standard_document', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -282,7 +282,7 @@ export class DropdownServiceService {
 
 
   statusApiDesignation(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/designation_status', details, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/designation_status', details, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -290,7 +290,7 @@ export class DropdownServiceService {
   }
 
   checkUniqueDesignation(desg) {
-    return this.http.get(`https://vishusa.com/vcsapi/checkIfExists/designation/${desg}`, { headers: this.header })
+    return this.http.get(`https://172.31.92.170/vcsapi/checkIfExists/designation/${desg}`, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)

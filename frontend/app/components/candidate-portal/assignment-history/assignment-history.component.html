@@ -48,12 +48,12 @@
                                     <div class="job-bx-title clearfix">
                                         <h5 class="font-weight-700 pull-left text-uppercase">Assignment History</h5>
                                         <!-- <div class="float-right" style="display: flex;">
-                                            
+
                                             <button type="button" class="site-button m-b30" data-toggle="modal"
                                                 data-target="#workModal">Submit Work Hour</button>
                                         </div> -->
                                     </div>
-                                    
+
 
 
                                     <div class="job-bx-title clearfix">
@@ -358,10 +358,10 @@
                                         <tr>
                                             <td><strong style="font-weight: 600;">Holiday Pay Rate :</strong></td>
                                             <td>{{details.onb_holiday_pay_rate}}</td>
-                                        </tr> 
+                                        </tr>
 
                                         <tr>
-                                            
+
                                             <td><strong style="font-weight: 600;">Per Diem :</strong></td>
                                             <td colspan='5'>{{details.per_dieum_amt}}</td>
                                         </tr>
@@ -399,7 +399,7 @@
                                          <tr>
                                             <td><strong style="font-weight: 600;">Non-Taxable Income :</strong></td>
                                             <td>{{details.nontaxable_amt}}</td>
-                                        </tr> 
+                                        </tr>
                                         <tr>
                                             <td><strong style="font-weight: 600;">Gross Income :</strong></td>
                                             <td colspan='5'>{{details.gross_amt}}</td>
@@ -422,10 +422,10 @@
 
                  <!-- PDF Div -->
 
-                 <div class="modal-content" id="assignFormFDiv" *ngIf="showDivPdf && details"  style="font-size: 30px;padding:25px;"> 
+                 <div class="modal-content" id="assignFormFDiv" *ngIf="showDivPdf && details"  style="font-size: 30px;padding:25px;">
                     <div class="modal-header"
                         style="background-color: transparent;display: flex;width: 100%; margin-top: 30px;margin-left: 30px;margin-bottom: 20px;">
-    
+
                         <div style="width: 25%;margin-top: 0px;">
                             <img style="height: 150px;width: 370px;" src="../assets/images/logo.png">
                         </div>
@@ -442,7 +442,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-    
+
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
@@ -474,10 +474,10 @@
                                     <span class="clearfix " style="margin-top: 3px;"
                                         *ngIf="details.assignment_status==='closed'">Closed</span>
                                 </div>
-    
+
                             </div>
-    
-    
+
+
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Client :&nbsp;&nbsp;</label>
@@ -496,11 +496,11 @@
                                     <span class="clearfix"
                                         style="margin-top: 3px;">{{details.hiring_date|date:'MM/dd/yyyy'}}</span>
                                 </div>
-    
+
                             </div>
-    
+
                             <div class="divider"></div>
-    
+
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Proposed start date
@@ -527,16 +527,16 @@
                                     <span class="clearfix" style="margin-top: 3px;">
                                         {{details.total_shift_hr}}</span>
                                 </div>
-                                
+
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Contract Duration (Week)
                                         :&nbsp;&nbsp;</label>
                                     <span class="clearfix" style="margin-top: 3px;">
                                         {{details.contract_duration_wk}}</span>
                                 </div>
-                                
-                                
-    
+
+
+
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Pay Package/Miscellaneous
                                         :&nbsp;&nbsp;</label>
@@ -544,7 +544,7 @@
                                         {{details.pay_package_remarks}}</span>
                                 </div>
                             </div>
-    
+
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Proposed end date
@@ -552,7 +552,7 @@
                                     <span class="clearfix"
                                         style="margin-top: 3px;">{{details.proposed_end_date|date:'MM/dd/yyyy'}}</span>
                                 </div>
-                                
+
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Holiday Pay Rate ($/Hr)
                                         :&nbsp;&nbsp;</label>
@@ -572,18 +572,18 @@
                                     <span class="clearfix" style="margin-top: 3px;">
                                         {{details.shift_details}}</span>
                                 </div>
-                                
-                                
+
+
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">RTO
                                         :&nbsp;&nbsp;</label>
                                     <span class="clearfix" style="margin-top: 3px;">
                                         {{details.rto}}</span>
                                 </div>
-                                
-    
+
+
                             </div>
-    
+
                             <div style="display: flex;width: 100%;" *ngIf="standard_doc.length!==0">
                                 <div class="divider2"></div>
                                 <div style="width: 32%;margin-top: 4px;text-align: center;">
@@ -592,7 +592,7 @@
                                 </div>
                                 <div class="divider2"></div>
                             </div>
-    
+
                             <ul style="width: 100%;
                             margin-top: 2%;
                             margin-left: 2%;
@@ -610,12 +610,12 @@
                                     <td><span style="color: Green;margin-left: 15px;">Available</span></td>
                                     <td><span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span></td>
                                     <td><span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span></td></tr>
-                                </tbody>    
+                                </tbody>
                                 </table>
                                     <!-- <hr> -->
                                 </li>
                             </ul>
-    
+
                             <div style="display: flex;width: 100%;"
                                 *ngIf="fac_specc_doc.length!==0">
                                 <div class="divider2" style="width: 25%;margin-top: 4%;">
@@ -627,7 +627,7 @@
                                 <div class="divider2" style="width: 25%; margin-top: 4%;">
                                 </div>
                             </div>
-    
+
                             <ul style="width: 100%;
                             margin-top: 2%;
                             margin-left: 2%;
@@ -645,11 +645,11 @@
                                     <td><span style="color: Green;margin-left: 15px;">Available</span></td>
                                     <td><span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span></td>
                                     <td><span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span></td></tr>
-                                </tbody>    
+                                </tbody>
                                 </table>
                                 </li>
                             </ul>
-    
+
                             <div style="display: flex;width: 100%;" *ngIf="others_doc.length!==0">
                                 <div class="divider2"></div>
                                 <div style="width: 32%;margin-top: 4px;text-align: center;">
@@ -658,7 +658,7 @@
                                 </div>
                                 <div class="divider2"></div>
                             </div>
-    
+
                             <ul style="width: 100%;
                             margin-top: 2%;
                             margin-left: 2%;
@@ -676,14 +676,14 @@
                                     <td><span style="color: Green;margin-left: 15px;">Available</span></td>
                                     <td><span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span></td>
                                     <td><span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span></td></tr>
-                                </tbody>    
+                                </tbody>
                                 </table>
                                 </li>
                             </ul>
                         </div>
-    
+
                     </div>
-    
+
                 </div>
 
                 <!-- Assignment Modal -->
@@ -765,7 +765,7 @@
                                             <span class="clearfix"
                                                 style="margin-top: 3px;">{{details.proposed_start_date|date:'MM/dd/yyyy'}}</span>
                                         </div>
-                                       
+
                                         <div class="clearfix m-b20" style="display: flex;">
                                             <label class="m-b0">OT Pay Rate ($/Hr)
                                                 :&nbsp;&nbsp;</label>
@@ -857,7 +857,7 @@
                                         <li class="innerLi" *ngFor="let a of standard_doc">
                                             <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
                                             <a class="site-button" style="margin-top: -5px;text-decoration: none;"
-                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}"
+                                                href="https://172.31.92.170/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}"
                                                 target="_blank" rel="noopener noreferrer"
                                                 download>Download</a>
                                                 <span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span>
@@ -884,7 +884,7 @@
                                         <li class="innerLi" *ngFor="let a of fac_specc_doc">
                                             <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
                                             <a class="site-button" style="margin-top: -5px;text-decoration: none;"
-                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}"
+                                                href="https://172.31.92.170/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}"
                                                 target="_blank" rel="noopener noreferrer"
                                                 download>Download</a>
                                                 <span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span>
@@ -908,7 +908,7 @@
                                         <li class="innerLi" *ngFor="let a of others_doc">
                                             <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
                                             <a class="site-button" style="margin-top: -5px;text-decoration: none;"
-                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}"
+                                                href="https://172.31.92.170/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}"
                                                 target="_blank" rel="noopener noreferrer"
                                                 download>Download</a>
                                                 <span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span>
@@ -932,7 +932,7 @@
                 <div class="modal-content" *ngIf="showDivPdf2 && details" id="payslipDiv" style="font-size: 30px;padding:25px;">
                     <div class="modal-header"
                         style="background-color: transparent;display: flex;width: 100%; margin-top: 30px;margin-left: 30px;margin-bottom: 20px;">
-    
+
                         <div style="width: 25%;margin-top: 0px;">
                             <img style="height: 150px;width: 370px;" src="../assets/images/logo.png">
                         </div>
@@ -949,7 +949,7 @@
                     </div>
                     <div class="modal-body" *ngIf="details" >
                         <div class="row">
-    
+
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
@@ -979,10 +979,10 @@
                                     <span class="clearfix" style="margin-top: 1px;"
                                         *ngIf="details.assignment_status==='closed'">Closed</span>
                                 </div>
-    
+
                             </div>
-    
-    
+
+
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Client :&nbsp;&nbsp;</label>
@@ -1001,11 +1001,11 @@
                                     <span class="clearfix"
                                         style="margin-top: 1px;">{{details.hiring_date|date:'MM/dd/yyyy'}}</span>
                                 </div>
-    
+
                             </div>
-    
+
                             <div class="divider"></div>
-    
+
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Regular Pay Rate
@@ -1025,7 +1025,7 @@
                                     <span class="clearfix" style="margin-top: 1px;">
                                         {{details.reg_hr}}</span>
                                 </div>
-    
+
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Holiday Work Hours
                                         :&nbsp;&nbsp;</label>
@@ -1038,17 +1038,17 @@
                                     <span class="clearfix" style="margin-top: 1px;">
                                         $ {{details.taxable_amt}}</span>
                                 </div>
-    
+
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Bonus
                                         :&nbsp;&nbsp;</label>
                                     <span class="clearfix" style="margin-top: 1px;">
                                         $ {{details.bonus_amount}}</span>
                                 </div>
-    
-    
+
+
                             </div>
-    
+
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">OT Pay Rate
@@ -1062,44 +1062,44 @@
                                     <span class="clearfix" style="margin-top: 1px;">
                                         $ {{details.per_dieum_wk}}</span>
                                 </div>
-    
+
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">OT Work Hours
                                         :&nbsp;&nbsp;</label>
                                     <span class="clearfix" style="margin-top: 1px;">
                                         {{details.ot_hr}}</span>
                                 </div>
-    
+
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Total Work Hours
                                         :&nbsp;&nbsp;</label>
                                     <span class="clearfix" style="margin-top: 1px;">
                                         {{details.total_wk_hr}}</span>
                                 </div>
-    
+
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Non-Taxable Income
                                         :&nbsp;&nbsp;</label>
                                     <span class="clearfix" style="margin-top: 1px;">
                                         $ {{details.nontaxable_amt}}</span>
                                 </div>
-    
+
                                 <div class="clearfix m-b20" style="display: flex;">
                                     <label class="m-b0">Gross Income
                                         :&nbsp;&nbsp;</label>
                                     <span class="clearfix" style="margin-top: 1px;">
                                         $ {{details.gross_amt}}</span>
                                 </div>
-    
-    
-    
+
+
+
                             </div>
-    
+
                         </div>
-    
+
                     </div>
                 </div>
-                
+
 
             </div>
         </div>

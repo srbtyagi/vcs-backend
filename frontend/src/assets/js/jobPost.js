@@ -4,7 +4,7 @@ const obj = {
   s3: ''
 };
 
-fetch('https://vishusa.com/vcsapi/get/api/tbl/job/search_job/with/filter', {
+fetch('https://172.31.92.170/vcsapi/get/api/tbl/job/search_job/with/filter', {
   method: 'POST',
   body: JSON.stringify(obj),
   headers: {
@@ -21,7 +21,7 @@ for (var i = 0; i < allArray.length; i++) {
     "@context": "https://schema.org",
     "@type": "JobPosting",
     "title":  details.job_title,
-     "url": "https://vishusa.com/job-details?special="+details.job_id+"",
+     "url": "https://172.31.92.170/job-details?special="+details.job_id+"",
     "description": details.job_description,
     "identifier": {
       "@type": "PropertyValue",
@@ -36,7 +36,7 @@ for (var i = 0; i < allArray.length; i++) {
     "hiringOrganization": {
       "@type": "Organization",
       "name": "Vish Consulting Services",
-      "sameAs": "https://vishusa.com"
+      "sameAs": "https://172.31.92.170"
     },
     "jobLocation": {
       "@type": "Place",

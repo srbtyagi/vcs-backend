@@ -51,7 +51,7 @@
                                                     placeholder="Search Job Application">
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fa fa-search"></i></span>
-                                                    </div> 
+                                                    </div>
                                             </div>
                                         </div> -->
                                     </div>
@@ -103,7 +103,7 @@
                                                 </td>
                                                 <td class="application text-primary" style="text-align: center;">
                                                     {{a.application_stage}}</td>
-                                                <td class="expired pending" 
+                                                <td class="expired pending"
                                                     style="text-transform: capitalize;text-align: center">
                                                     <button type="button" class="site-button" data-toggle="modal" *ngIf="(a.application_stage==='onboarding' || a.application_stage==='hired'); else fillform"
                                                         data-target="#formFill" style="text-transform: capitalize;"
@@ -111,7 +111,7 @@
                                                         <ng-template #fillform>
                                                         </ng-template>
                                                 </td>
-                                                
+
 
                                                 <td class="application ">
                                                     <span *ngIf="(a.application_stage==='onboarding'|| a.application_stage==='hired') && a.fill_up_status==='done'"
@@ -120,21 +120,21 @@
                                                 style="text-transform: capitalize;text-align: center; color:red;">{{a.fill_up_status}}</span>
                                                 <span *ngIf="a.application_stage!=='onboarding' || a.application_stage!=='hired'"></span>
                                                 </td>
-                                                
+
                                                 <td class="application "
                                                     >
                                                     <span *ngIf="a.application_stage==='onboarding' || a.application_stage==='hired'"
                                                     style="text-transform: capitalize;text-align: center">{{a.due_date}}</span>
                                                     <span *ngIf="a.application_stage!=='onboarding' || a.application_stage!=='hired'"></span>
-                                                
+
                                                 </td>
-                                                
+
                                                 <td class="application "
                                                     >
                                                     <span *ngIf="a.application_stage==='hired' && a.hiring_status==='hired'"
                                                     style="text-transform: capitalize;text-align: center">{{a.hiring_date}}</span>
                                                     <span *ngIf="a.application_stage!=='hired' "></span>
-                                                
+
                                                 </td>
 
                                                 <td class="application "
@@ -202,20 +202,20 @@
                                                                 <td><strong>Job ID :</strong></td>
                                                                 <td colspan='3'>{{details.job_no}}</td>
                                                             </tr>
-                                                           
+
                                                             <tr>
                                                                 <td><strong>Blended Pay Rate (Traveller $/Hr) :</strong></td>
                                                                 <td>$ {{details.blended_pay_rate}}</td>
                                                                 <td><strong>Regular Pay Rate (Locals $/Hr) :</strong></td>
                                                                 <td>$ {{details.regular_pay_rate}}</td>
                                                             </tr>
-            
+
                                                             <tr>
                                                                 <td><strong>Job Type :</strong></td>
                                                                 <td>{{details.job_type_name}}</td>
                                                                 <td><strong>Position Type :</strong></td>
                                                                 <td>{{details.position_type_name}}</td>
-            
+
                                                             </tr>
                                                             <tr>
                                                                 <td><strong>Duration :</strong></td>
@@ -223,12 +223,12 @@
                                                                 <td><strong>Confirmed (hour/week) :</strong></td>
                                                                 <td>{{details.confirm_hr}}</td>
                                                             </tr>
-            
+
                                                             <tr>
                                                                 <td><strong>Shift :</strong></td>
                                                                 <td>{{details.shift}}</td>
                                                             </tr>
-                                                           
+
                                                             <tr>
                                                                 <td><strong>Required Information :</strong></td>
                                                                 <td colspan='3'>{{details.req_information}}</td>
@@ -256,7 +256,7 @@
                                         <div class="modal-dialog" role="document" style="max-width: 60% !important;">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    
+
                                                     <h5 class="modal-title" *ngIf="details">{{details.application_no}}
                                                     </h5>
                                                     <button type="button" class="close" data-dismiss="modal"
@@ -274,57 +274,57 @@
                                                             <tr>
                                                                 <td><strong>Name :</strong></td>
                                                                     <td> {{details.name}} </td>
-                                                                
+
                                                                 <tr><td><strong>Email :</strong></td>
                                                                     <td style="text-transform: lowercase;">{{details.email}}</td>
-                                                                
+
                                                                 <tr><td><strong>Phone No. :</strong></td>
                                                                     <td>{{details.phone}}</td>
-                                                            
-                                                        
+
+
                                                                 <tr><td><strong>Date Of Birth :</strong></td>
                                                                     <td>{{details.dob|date:'MM/dd/yyyy'}}</td>
                                                                     </tr>
-                                                               
+
                                                                 <tr><td><strong>SSN(Last 4-Digit) :</strong></td>
                                                                     <td>{{details.ssn_4digit}}</td>
                                                                     </tr>
-                                                            
+
                                                                 <tr><td><strong>Profession :</strong></td>
                                                                     <td>{{details.profession_name}}</td>
                                                                     </tr>
-                                                            
+
                                                                 <tr><td><strong>Speciality :</strong></td>
                                                                     <td>{{details.speciality_name}}</td>
                                                                     </tr>
-                                                            
+
                                                                 <tr><td><strong>Current Location :</strong></td>
                                                                     <td>{{details.current_location}}</td>
                                                                     </tr>
-                                                            
+
                                                                 <tr><td><strong>Desired Location :</strong></td>
                                                                     <td>{{details.loc}}</td>
                                                                     </tr>
-                                                            
+
                                                                 <tr><td><strong>Employement Preferences :</strong></td>
                                                                     <td>{{details.employement_preference}}</td>
                                                                     </tr>
-                                                            
+
                                                                 <tr><td><strong>Application Status :</strong></td>
                                                                     <td>{{details.application_stage}}</td>
                                                                     </tr>
-                                                            
+
                                                                 <tr><td><strong>Recruitment Status :</strong></td>
                                                                     <td>{{details.recruit_status}}</td>
                                                                     </tr>
-                                                            
+
                                                                 <tr><td><strong>User Status :</strong></td>
                                                                     <td>{{details.user_status}}</td>
                                                                     </tr>
-                                                            
+
                                                         </tbody>
                                                     </table>
-                                                    
+
                                                     <hr>
                                                     <div class="job-bx-title clearfix">
                                                         <h5 class="font-weight-700 pull-left text-uppercase">Documents
@@ -335,7 +335,7 @@
                                                         <li class="innerLi" *ngFor="let a of docs">
                                                             <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
                                                             <a class="site-button" style="padding: 7px;
-                                            margin: 5px;    text-decoration: none;" href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                            margin: 5px;    text-decoration: none;" href="https://172.31.92.170/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
                                                                 target="_blank" rel="noopener noreferrer"
                                                                 download>Download</a>
                                                                 <span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span>
@@ -358,7 +358,7 @@
                                         <div class="modal-dialog" role="document" style="max-width: 60% !important;">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    
+
                                                     <h5 class="modal-title" *ngIf="details">On Boarding Form</h5>
                                                     <button type="button" class="close" *ngIf="closeModalUpload"
                                                         aria-label="Close" >
@@ -403,17 +403,17 @@
                                                                 <td class="table_td">{{details.onb_regular_pay_rate}}</td>
                                                                 <td class="table_td"><strong>Holiday Pay Rate ($/hr) :</strong></td>
                                                                 <td class="table_td">{{details.onb_holiday_pay_rate}}</td>
-                                                                
+
                                                                       </tr>
-                                                           
-                                                            
+
+
                                                             <tr>
                                                                 <td class="table_td"><strong>Allowed Per Diem/Week :</strong></td>
                                                                 <td  class="table_td">{{details.per_dieum_wk }}</td>
                                                                 <td class="table_td"><strong>OT Starts After (hours) :</strong></td>
                                                                 <td  class="table_td">{{details.ot_starts_after_wk }}</td>
                                                             </tr>
-                                                            
+
                                                             <tr>
                                                                 <td class="table_td"><strong>Confirmed (hours/week) :</strong></td>
                                                                 <td  class="table_td">{{details.total_shift_hr}}</td>
@@ -440,7 +440,7 @@
                                                                 <td class="table_td"><strong>Comments :</strong></td>
                                                                 <td class="table_td" colspan='3'>{{details.comments}}</td>
                                                             </tr>
-                                                            
+
 
                                                         </tbody>
                                                     </table>
@@ -463,7 +463,7 @@
                                                         <li class="innerLi" *ngFor="let a of details.standard_doc">
                                                             <strong class="innerStrng" style="margin-top: 1%;">{{a.doc_name}} </strong>
 
-                                                            
+
 
                                                             <div style="display: flex;">
                                                                 <!-- <div style="margin-top: -0.5%;margin-right: 3%;" class="form-group">
@@ -484,15 +484,15 @@
                                                                         {{a.file_name}}
                                                                     </p>
                                                                     <input type="file" class="site-button form-control "
-                                                                        id="customFile" 
+                                                                        id="customFile"
                                                                         (change)="handleFileInput($event.target.files,a)" [disabled]="!details.fill_status" [ngStyle]="{'cursor': (!details.fill_status? 'not-allowed':'pointer')}">
-                                                                    
-                                                                    
-                                                                
+
+
+
 
                                                                 </div>
-                                                                
-                                                                
+
+
                                                                 <div *ngIf="a.showProgressBar" style="margin-top: -20px;">
                                                                     <circle-progress [percent]=a.showPercentage
                                                                         [radius]="40" [outerStrokeWidth]="6"
@@ -503,13 +503,13 @@
                                                                         [titleFontSize]="10" [renderOnClick]="false">
                                                                     </circle-progress>
                                                                 </div>
-            
+
                                                                     <div class="job-time margin_preview" *ngIf="a.exist==='true'">
-                                                                        <a href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.doc_name}}" target="_blank"><span>Preview</span></a>
+                                                                        <a href="https://172.31.92.170/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.doc_name}}" target="_blank"><span>Preview</span></a>
                                                                     </div>
-                     
-                                                                    
-                                                          
+
+
+
                                                             </div>
 
                                                             <div style="margin-left: 22%; width: 55%; margin-top: 2%">
@@ -518,7 +518,7 @@
 
                                                                 <div>
                                                                     Document uploaded successfully.
-                                                                </div> 
+                                                                </div>
 
 
 
@@ -541,7 +541,7 @@
                                                                         </div>
 
                                                                     </div>
-                                                            
+
                                                             <div *ngIf="a.viewShow==='try'" class="alert alert-warning"
                                                                 style="font-size: 12px;padding: .5rem 1.25rem;">
                                                                 <div *ngIf="a.viewShow==='try'" class="">
@@ -566,7 +566,7 @@
                                                     <div *ngIf="details.facility_doc">
                                                     <ul *ngIf="details.facility_doc.length">
                                                         <div style="display: flex; margin-bottom: 3% !important;">
-                                                            
+
                                                         <div class="divider2" style="width: 25%;margin-top: 4%;">
                                                         </div>
                                                         <div
@@ -603,7 +603,7 @@
                                                                         (change)="handleFileInput($event.target.files,a)" [disabled]="!details.fill_status" [ngStyle]="{'cursor': (!details.fill_status? 'not-allowed':'pointer')}">
 
                                                                 </div>
-                                                                
+
                                                                 <div *ngIf="a.showProgressBar" style="margin-top: -20px;">
                                                                     <circle-progress [percent]=a.showPercentage
                                                                         [radius]="40" [outerStrokeWidth]="6"
@@ -614,12 +614,12 @@
                                                                         [titleFontSize]="10" [renderOnClick]="false">
                                                                     </circle-progress>
                                                                 </div>
-            
+
                                                                     <div class="job-time margin_preview" *ngIf="a.exist==='true'">
-                                                                        <a href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.doc_name}}" target="_blank"><span>Preview</span></a>
+                                                                        <a href="https://172.31.92.170/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.doc_name}}" target="_blank"><span>Preview</span></a>
                                                                     </div>
-                     
-                                                          
+
+
                                                             </div>
                                                             <div style="margin-left: 22%; width: 55%; margin-top: 2%">
                                                             <div *ngIf="a.viewShow==='true'" class="alert alert-success"
@@ -706,7 +706,7 @@
                                                                         (change)="handleFileInput($event.target.files,a)" [disabled]="!details.fill_status" [ngStyle]="{'cursor': (!details.fill_status? 'not-allowed':'pointer')}">
 
                                                                 </div>
-                                                                
+
                                                                 <div *ngIf="a.showProgressBar" style="margin-top: -20px;">
                                                                     <circle-progress [percent]=a.showPercentage
                                                                         [radius]="40" [outerStrokeWidth]="6"
@@ -717,12 +717,12 @@
                                                                         [titleFontSize]="10" [renderOnClick]="false">
                                                                     </circle-progress>
                                                                 </div>
-            
+
                                                                     <div class="job-time margin_preview" *ngIf="a.exist==='true'">
-                                                                        <a href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.doc_name}}" target="_blank"><span>Preview</span></a>
+                                                                        <a href="https://172.31.92.170/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.doc_name}}" target="_blank"><span>Preview</span></a>
                                                                     </div>
-                     
-                                                          
+
+
                                                             </div>
                                                             <div style="margin-left: 22%; width: 55%; margin-top: 2%">
                                                             <div *ngIf="a.viewShow==='true'" class="alert alert-success"
@@ -754,7 +754,7 @@
                                                                     try again.
                                                                 </div>
                                                                 </div>
-                                                            
+
                                                             <!-- <div *ngIf="a.viewShow==='expire'" class="alert alert-danger"
                                                                 style="font-size: 12px;padding: .5rem 1.25rem;">
                                                                 <div *ngIf="a.viewShow==='expire'" class="">
@@ -887,15 +887,15 @@
                                         <span class="clearfix" style="margin-top: 3px;">
                                             {{details.total_shift_hr}}</span>
                                     </div>
-                                    
+
                                     <div class="clearfix m-b20" style="display: flex;">
                                         <label class="m-b0">Contract Duration (Week)
                                             :&nbsp;&nbsp;</label>
                                         <span class="clearfix" style="margin-top: 3px;">
                                             {{details.contract_duration_wk}}</span>
                                     </div>
-                                    
-                                    
+
+
 
                                     <div class="clearfix m-b20" style="display: flex;">
                                         <label class="m-b0">Pay Package/Miscellaneous
@@ -912,7 +912,7 @@
                                         <span class="clearfix"
                                             style="margin-top: 3px;">{{details.proposed_end_date|date:'MM/dd/yyyy'}}</span>
                                     </div>
-                                    
+
                                     <div class="clearfix m-b20" style="display: flex;">
                                         <label class="m-b0">Holiday Pay Rate ($/Hr)
                                             :&nbsp;&nbsp;</label>
@@ -932,15 +932,15 @@
                                         <span class="clearfix" style="margin-top: 3px;">
                                             {{details.shift_details}}</span>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="clearfix m-b20" style="display: flex;">
                                         <label class="m-b0">RTO
                                             :&nbsp;&nbsp;</label>
                                         <span class="clearfix" style="margin-top: 3px;">
                                             {{details.rto}}</span>
                                     </div>
-                                    
+
 
                                 </div>
 
@@ -959,12 +959,12 @@
                                     <li class="innerLi" *ngFor="let a of standard_doc">
                                         <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
                                         <a class="site-button" style="margin-top: -5px;text-decoration: none;"
-                                            href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                            href="https://172.31.92.170/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
                                             target="_blank" rel="noopener noreferrer"
                                             download>Download</a>
                                             <span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span>
                                             <span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -986,12 +986,12 @@
                                     <li class="innerLi" *ngFor="let a of fac_specc_doc">
                                         <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
                                         <a class="site-button" style="margin-top: -5px;text-decoration: none;"
-                                            href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                            href="https://172.31.92.170/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
                                             target="_blank" rel="noopener noreferrer"
                                             download>Download</a>
                                             <span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span>
                                             <span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span>
-                                        
+
                                     </li>
                                 </ul>
 
@@ -1010,12 +1010,12 @@
                                     <li class="innerLi" *ngFor="let a of others_doc">
                                         <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
                                         <a class="site-button" style="margin-top: -5px;text-decoration: none;"
-                                            href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                            href="https://172.31.92.170/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
                                             target="_blank" rel="noopener noreferrer"
                                             download>Download</a>
                                             <span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span>
                                             <span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span>
-                                        
+
                                     </li>
                                 </ul>
                             </div>
@@ -1032,7 +1032,7 @@
 
             <!-- PDF Div -->
 
-            <div class="modal-content" id="assignFormFDiv" *ngIf="showDivPdf && details"> 
+            <div class="modal-content" id="assignFormFDiv" *ngIf="showDivPdf && details">
                 <div class="modal-header"
                     style="background-color: transparent;display: flex;width: 100%; margin-top: 30px;margin-left: 30px;margin-bottom: 0px;">
 
@@ -1137,15 +1137,15 @@
                                 <span class="clearfix" style="margin-top: 3px;">
                                     {{details.total_shift_hr}}</span>
                             </div>
-                            
+
                             <div class="clearfix m-b20" style="display: flex;">
                                 <label class="m-b0">Contract Duration (Week)
                                     :&nbsp;&nbsp;</label>
                                 <span class="clearfix" style="margin-top: 3px;">
                                     {{details.contract_duration_wk}}</span>
                             </div>
-                            
-                            
+
+
 
                             <div class="clearfix m-b20" style="display: flex;">
                                 <label class="m-b0">Pay Package/Miscellaneous
@@ -1162,7 +1162,7 @@
                                 <span class="clearfix"
                                     style="margin-top: 3px;">{{details.proposed_end_date|date:'MM/dd/yyyy'}}</span>
                             </div>
-                            
+
                             <div class="clearfix m-b20" style="display: flex;">
                                 <label class="m-b0">Holiday Pay Rate ($/Hr)
                                     :&nbsp;&nbsp;</label>
@@ -1182,15 +1182,15 @@
                                 <span class="clearfix" style="margin-top: 3px;">
                                     {{details.shift_details}}</span>
                             </div>
-                            
-                            
+
+
                             <div class="clearfix m-b20" style="display: flex;">
                                 <label class="m-b0">RTO
                                     :&nbsp;&nbsp;</label>
                                 <span class="clearfix" style="margin-top: 3px;">
                                     {{details.rto}}</span>
                             </div>
-                            
+
 
                         </div>
 
@@ -1220,7 +1220,7 @@
                                 <td><span style="color: Green;margin-left: 15px;">Available</span></td>
                                 <td><span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span></td>
                                 <td><span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span></td></tr>
-                            </tbody>    
+                            </tbody>
                             </table>
                                 <!-- <hr> -->
                             </li>
@@ -1255,7 +1255,7 @@
                                 <td><span style="color: Green;margin-left: 15px;">Available</span></td>
                                 <td><span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span></td>
                                 <td><span class="requiredField" style="margin-left: 5%;" *ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span></td></tr>
-                            </tbody>    
+                            </tbody>
                             </table>
                             </li>
                         </ul>
@@ -1286,7 +1286,7 @@
                                 <td><span style="color: Green;margin-left: 15px;">Available</span></td>
                                 <td><span class="uploadField" style="margin-left: 5%;"><span style="font-weight: 500;">Upload Date :</span> {{a.upload_date_time}}</span></td>
                                 <td><span class="requiredField" style="margin-left: 5%;"*ngIf="a.expiry_date"><span style="font-weight: 500;">Expiry Date :</span> {{a.expiry_date}}</span></td></tr>
-                            </tbody>    
+                            </tbody>
                             </table>
                             </li>
                         </ul>

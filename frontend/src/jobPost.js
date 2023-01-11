@@ -4,7 +4,7 @@ const obj = {
   s3: ''
 };
 
-fetch('https://vishusa.com/vcsapi/get/api/tbl/job/search_job/with/filter', {
+fetch('https://172.31.92.170/vcsapi/get/api/tbl/job/search_job/with/filter', {
   method: 'POST',
   body: JSON.stringify(obj),
   headers: {
@@ -38,7 +38,7 @@ for (var i = 0; i < allArray.length; i++) {
     "hiringOrganization": {
       "@type": "Organization",
       "name": "Vish Consulting Services",
-      "sameAs": "https://vishusa.com/"
+      "sameAs": "https://172.31.92.170/"
     },
     "jobLocation": {
       "@type": "Place",

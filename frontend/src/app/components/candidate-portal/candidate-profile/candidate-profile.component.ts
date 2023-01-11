@@ -21,7 +21,7 @@ export class CandidateProfileComponent implements OnInit {
     if (sessionStorage.getItem("user_type") === 'recruitee') {
       this.checkUserType = true;
     }
-    this.getUser(); 
+    this.getUser();
     this.checkResume();
     this.getBadge();
   }
@@ -33,7 +33,7 @@ export class CandidateProfileComponent implements OnInit {
       if (result.length) {
         this.userData = result[0];
       }
-     
+
     });
   }
 
@@ -44,7 +44,7 @@ export class CandidateProfileComponent implements OnInit {
       if (result.length) {
         this.badge=result.length;
       }
-     
+
     });
   }
 
@@ -53,7 +53,7 @@ export class CandidateProfileComponent implements OnInit {
       let result: any = res;
       if (result[0].resume_doc_path) {
         this.status = true;
-        this.url = "https://vishusa.com/vcsapi/get/resume/" + sessionStorage.getItem("user_id") + "/" + sessionStorage.getItem('user_name') + "_resume";
+        this.url = "https://172.31.92.170/vcsapi/get/resume/" + sessionStorage.getItem("user_id") + "/" + sessionStorage.getItem('user_name') + "_resume";
       }
       else {
         this.status = false;
@@ -62,7 +62,7 @@ export class CandidateProfileComponent implements OnInit {
     });
   }
 
- 
+
 
 
 }

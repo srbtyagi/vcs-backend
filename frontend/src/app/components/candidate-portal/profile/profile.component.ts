@@ -84,7 +84,7 @@ export class ProfileComponent implements OnInit {
       if (result.length) {
         this.badge=result.length;
       }
-     
+
     });
   }
 
@@ -97,7 +97,7 @@ export class ProfileComponent implements OnInit {
   register() {
 
     this.service.spinnerShow();
-    
+
 
     //console.log(this.registerForm.value)
       let data = this.registerForm.value;
@@ -127,13 +127,13 @@ export class ProfileComponent implements OnInit {
         let result: any = res;
         if (result === "success") {
 
-           
+
 
 
           this.service.spinnerHide();
           this.success("Updated successfully.");
           this.getUser();
-          
+
 
         }
         else if (result === "user exists") {
@@ -211,7 +211,7 @@ export class ProfileComponent implements OnInit {
       let result: any = res;
       if (result==="exist") {
         this.checkEmail = true;
-        
+
         // this.error3("Already registered with this email address.");
       }
       else {
@@ -227,7 +227,7 @@ export class ProfileComponent implements OnInit {
       let result: any = res;
       if (result[0].resume_doc_path) {
         this.status = true;
-        this.url = "https://vishusa.com/vcsapi/get/resume/" + sessionStorage.getItem("user_id")+"/"+sessionStorage.getItem('user_name')+"_resume";
+        this.url = "https://172.31.92.170/vcsapi/get/resume/" + sessionStorage.getItem("user_id")+"/"+sessionStorage.getItem('user_name')+"_resume";
       }
       else {
         this.status = false;
@@ -236,7 +236,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  
+
   fileUpload(files: FileList) {
 
 
@@ -278,7 +278,7 @@ export class ProfileComponent implements OnInit {
           this.viewShow = "true";
           this.viewfinalErr = false;
           this.status = true;
-          this.url = "https://vishusa.com/vcsapi/get/resume/" + sessionStorage.getItem('user_id')+"/"+sessionStorage.getItem('user_name')+"_resume";
+          this.url = "https://172.31.92.170/vcsapi/get/resume/" + sessionStorage.getItem('user_id')+"/"+sessionStorage.getItem('user_name')+"_resume";
         }
       }
       else {

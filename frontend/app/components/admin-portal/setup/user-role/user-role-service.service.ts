@@ -15,16 +15,16 @@ export class UserRoleServiceService {
 
 
   getUserRoleDetails() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/user_roles', {headers: this.header})
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/user_roles', {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
-  } 
+  }
 
 
   addUserRole(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/tbl/role/user_role', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/tbl/role/user_role', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -32,7 +32,7 @@ export class UserRoleServiceService {
   }
 
   updateUserRole(details) {
-    return this.http.post('https://vishusa.com/vcsapi/edit/api/change/role_name', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/edit/api/change/role_name', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -40,7 +40,7 @@ export class UserRoleServiceService {
   }
 
   changeStatusUserRole(details) {
-    return this.http.post('https://vishusa.com/vcsapi/edit/api/change/role_status', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/edit/api/change/role_status', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -50,7 +50,7 @@ export class UserRoleServiceService {
 
 
   moduleSubModuleShow() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/user/access', {headers: this.header})
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/user/access', {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -58,7 +58,7 @@ export class UserRoleServiceService {
   }
 
   getDefaultRoleData(details) {
-     return this.http.post('https://vishusa.com/vcsapi/get/api/module/accesses/by/role_id', details, {headers: this.header})
+     return this.http.post('https://172.31.92.170/vcsapi/get/api/module/accesses/by/role_id', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -66,7 +66,7 @@ export class UserRoleServiceService {
   }
 
   postAccessRole(details) {
-    return this.http.post('https://vishusa.com/vcsapi/api/post/insert/role_id', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/api/post/insert/role_id', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -75,7 +75,7 @@ export class UserRoleServiceService {
 
 
   duplicateRoleCheck(details) {
-    return this.http.post('https://vishusa.com/vcsapi/api/check_post_role', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/api/check_post_role', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)

@@ -15,15 +15,15 @@ export class CompanyServiceService {
 
 
   getCompanyDetails() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/company/details', {headers: this.header})
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/company/details', {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   };
- 
+
   updateCompanyDetails(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/tbl/company/details', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/tbl/company/details', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)

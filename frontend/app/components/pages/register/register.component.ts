@@ -143,7 +143,7 @@ export class RegisterComponent implements OnInit {
             else{
               this.router.navigate(["/"]);
             }
-            setTimeout(() => { 
+            setTimeout(() => {
               window.location.reload();
             }, 200);
           }
@@ -186,7 +186,7 @@ export class RegisterComponent implements OnInit {
       let result: any = res;
       if (result[0].resume_doc_path) {
         this.status = true;
-        this.url = "https://vishusa.com/vcsapi/get/resume/" + sessionStorage.getItem("user_id")+"/"+sessionStorage.getItem('user_name')+"_resume";
+        this.url = "https://172.31.92.170/vcsapi/get/resume/" + sessionStorage.getItem("user_id")+"/"+sessionStorage.getItem('user_name')+"_resume";
       }
       else {
         this.status = false;
@@ -240,7 +240,7 @@ export class RegisterComponent implements OnInit {
           // this.success("Resume Uploaded Successfully.");
           this.fileExistData = result.body.user_details.user_id;
           this.status = true;
-          this.url = "https://vishusa.com/vcsapi/get/resume/" + result.body.user_details.user_id+"/"+sessionStorage.getItem('user_name')+"_resume";
+          this.url = "https://172.31.92.170/vcsapi/get/resume/" + result.body.user_details.user_id+"/"+sessionStorage.getItem('user_name')+"_resume";
         }
       }
       else {
@@ -276,7 +276,7 @@ export class RegisterComponent implements OnInit {
       }
     }, err => {
       this.error("Something went wrong. Please Try Again.");
-    
+
     });
   }
 

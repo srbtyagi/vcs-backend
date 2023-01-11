@@ -180,7 +180,7 @@ export class RecruiteeService {
 
   token(datas) {
     //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/get_token', datas)
+    return this.http.post('https://172.31.92.170/vcsapi/get_token', datas)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -198,7 +198,7 @@ export class RecruiteeService {
 
   register(datas, d1, d2) {
     // //console.log(datas)
-    return this.http.post(`https://vishusa.com/vcsapi/api/updateOrInsert/registration/user/${d1}/${d2}`, datas)
+    return this.http.post(`https://172.31.92.170/vcsapi/api/updateOrInsert/registration/user/${d1}/${d2}`, datas)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -207,7 +207,7 @@ export class RecruiteeService {
 
   updateUserData(datas) {
     // //console.log(datas)
-    return this.http.post(`https://vishusa.com/vcsapi/update/api/rec_details/and/recudetails`, datas, { headers: this.header })
+    return this.http.post(`https://172.31.92.170/vcsapi/update/api/rec_details/and/recudetails`, datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -216,7 +216,7 @@ export class RecruiteeService {
 
   forgotPass(datas) {
     //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/api/forgot/user/password', datas)
+    return this.http.post('https://172.31.92.170/vcsapi/api/forgot/user/password', datas)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -225,7 +225,7 @@ export class RecruiteeService {
 
   uploadFile(datas, user) {
     // //console.log(datas)
-    return this.http.post(`https://vishusa.com/vcsapi/upload/resume/${user}`, datas, { reportProgress: true, observe: "events", headers: this.header })
+    return this.http.post(`https://172.31.92.170/vcsapi/upload/resume/${user}`, datas, { reportProgress: true, observe: "events", headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -234,7 +234,7 @@ export class RecruiteeService {
 
   uploadFileRegister(datas, d1, d2) {
     // //console.log(datas)
-    return this.http.post(`https://vishusa.com/vcsapi/upload/registration_api/resume/${d1}/${d2}`, datas, { reportProgress: true, observe: "events", headers: this.header })
+    return this.http.post(`https://172.31.92.170/vcsapi/upload/registration_api/resume/${d1}/${d2}`, datas, { reportProgress: true, observe: "events", headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -242,7 +242,7 @@ export class RecruiteeService {
   }
   uploadFileRegisterGuest(datas, d1, d2, d3) {
     // //console.log(datas)
-    return this.http.post(`https://vishusa.com/vcsapi/upload/registration_api/resume/guest/${d1}/${d2}/${d3}`, datas, { reportProgress: true, observe: "events", headers: this.header })
+    return this.http.post(`https://172.31.92.170/vcsapi/upload/registration_api/resume/guest/${d1}/${d2}/${d3}`, datas, { reportProgress: true, observe: "events", headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -251,7 +251,7 @@ export class RecruiteeService {
 
   check_email(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/check/email', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/check/email', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -260,7 +260,7 @@ export class RecruiteeService {
 
   check_email_register(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/check/email/register', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/check/email/register', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -269,7 +269,7 @@ export class RecruiteeService {
 
   check_email_old(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/check/email/edit', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/check/email/edit', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -278,7 +278,7 @@ export class RecruiteeService {
 
   check_old_password(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/check/api/new/password', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/check/api/new/password', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -287,7 +287,7 @@ export class RecruiteeService {
 
   check_old_passcode(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/check/api/new/passcode', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/check/api/new/passcode', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -296,14 +296,14 @@ export class RecruiteeService {
 
   change_password(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/update/api/new/password/not/autogenerated', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/new/password/not/autogenerated', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
   change_passcode(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/update/api/new/passcode/not/autogenerated', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/new/passcode/not/autogenerated', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -311,7 +311,7 @@ export class RecruiteeService {
   }
 
   getAllProfession() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/profession', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/profession', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -319,7 +319,7 @@ export class RecruiteeService {
   }
 
   getAllSpeciality() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/speciality', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/speciality', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -327,26 +327,26 @@ export class RecruiteeService {
   }
 
   getAllJob(datas) {
-    let data = this.http.post('https://vishusa.com/vcsapi/get/api/tbl/job/search_job/with/filter', datas, { headers: this.header })
+    let data = this.http.post('https://172.31.92.170/vcsapi/get/api/tbl/job/search_job/with/filter', datas, { headers: this.header })
     return data;
   }
 
   getUserById(id) {
-    return this.http.post('https://vishusa.com/vcsapi/get/api/users', id, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/get/api/users', id, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getCandidateByUserId(id) {
-    return this.http.post('https://vishusa.com/vcsapi/get/api/candidate/by/userID', id, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/get/api/candidate/by/userID', id, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getUserRecruiteeById(id) {
-    return this.http.get(`https://vishusa.com/vcsapi/get/api/allrecruiteedetails/${id}`, { headers: this.header })
+    return this.http.get(`https://172.31.92.170/vcsapi/get/api/allrecruiteedetails/${id}`, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -355,7 +355,7 @@ export class RecruiteeService {
 
   add_applicant(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/insert/api/tbl/application', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/insert/api/tbl/application', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -364,7 +364,7 @@ export class RecruiteeService {
 
   add_applicant_guest(datas, exist) {
     //console.log(datas)
-    return this.http.post(`https://vishusa.com/vcsapi/api/updateOrInsert/registration/user/application/guest/${exist}/${datas.user_id}`, datas, { headers: this.header })
+    return this.http.post(`https://172.31.92.170/vcsapi/api/updateOrInsert/registration/user/application/guest/${exist}/${datas.user_id}`, datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -373,7 +373,7 @@ export class RecruiteeService {
 
   add_applicant_guest_By_email(datas) {
     //console.log(datas)
-    return this.http.post(`https://vishusa.com/vcsapi/api/updateOrInsert/registration/user/application/guest/ByEmail`, datas, { headers: this.header })
+    return this.http.post(`https://172.31.92.170/vcsapi/api/updateOrInsert/registration/user/application/guest/ByEmail`, datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -382,7 +382,7 @@ export class RecruiteeService {
 
   check_resume(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/check/resume', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/check/resume', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -390,7 +390,7 @@ export class RecruiteeService {
 
   getApplicationById(id) {
     // //console.log(id)
-    return this.http.post('https://vishusa.com/vcsapi/get/api/application/user_id', id, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/get/api/application/user_id', id, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -398,7 +398,7 @@ export class RecruiteeService {
   }
 
   getAllDocs(datas) {
-    return this.http.get(`https://vishusa.com/vcsapi/get/uploaded/document/list/current/${datas}`, { headers: this.header })
+    return this.http.get(`https://172.31.92.170/vcsapi/get/uploaded/document/list/current/${datas}`, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -406,7 +406,7 @@ export class RecruiteeService {
   }
 
   getCurrentReqDocs(datas) {
-    return this.http.get(`https://vishusa.com/vcsapi/get/required/doc/${datas}`, { headers: this.header })
+    return this.http.get(`https://172.31.92.170/vcsapi/get/required/doc/${datas}`, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -414,7 +414,7 @@ export class RecruiteeService {
   }
 
   getAllDocuments(datas) {
-    return this.http.get(`https://vishusa.com/vcsapi/get/uploaded/document/list/${datas}`, { headers: this.header })
+    return this.http.get(`https://172.31.92.170/vcsapi/get/uploaded/document/list/${datas}`, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -423,7 +423,7 @@ export class RecruiteeService {
 
   uploadDoc(datas, user, doc_id, doc_name, expiry_date) {
     //console.log("abc", datas, user, doc_id, doc_name)
-    return this.http.post(`https://vishusa.com/vcsapi/upload/document/${doc_name}/${user}/${doc_id}/${expiry_date}`, datas, {
+    return this.http.post(`https://172.31.92.170/vcsapi/upload/document/${doc_name}/${user}/${doc_id}/${expiry_date}`, datas, {
       reportProgress: true, observe: "events",
       headers: this.header
     })
@@ -434,7 +434,7 @@ export class RecruiteeService {
   }
 
   getDocumentType() {
-    return this.http.get('https://vishusa.com/vcsapi/api/get/standard/document/data', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/api/get/standard/document/data', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -443,7 +443,7 @@ export class RecruiteeService {
 
   changeJobApplicantStatus(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/update/api/application_stage/byJobID/offer/accepted/OR/rejected', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/application_stage/byJobID/offer/accepted/OR/rejected', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -452,7 +452,7 @@ export class RecruiteeService {
 
   delete_temp_registration(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/delete/temp/registration', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/delete/temp/registration', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -461,7 +461,7 @@ export class RecruiteeService {
 
   getApplicationOnboard(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/get/application/onboarding/user', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/get/application/onboarding/user', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -470,7 +470,7 @@ export class RecruiteeService {
 
   getStandardDocDetails(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/api/get/standard/document/by/doc_id', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/api/get/standard/document/by/doc_id', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -479,7 +479,7 @@ export class RecruiteeService {
 
   getStandardDocbyIdDetails(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/get/api/standard/docby/IDs', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/get/api/standard/docby/IDs', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -488,7 +488,7 @@ export class RecruiteeService {
 
   getFacilityDocbyNameDetails(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/get/api/facility/doc/byname', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/get/api/facility/doc/byname', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -497,7 +497,7 @@ export class RecruiteeService {
 
   getOthersDocbyNameDetails(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/get/api/other/doc/byname', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/get/api/other/doc/byname', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -505,7 +505,7 @@ export class RecruiteeService {
 
   getdocBydoc_name(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/get/doc_id/other/or/facility', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/get/doc_id/other/or/facility', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -514,7 +514,7 @@ export class RecruiteeService {
 
   updateFillup(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/update/fillup/status/done', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/fillup/status/done', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -523,7 +523,7 @@ export class RecruiteeService {
 
   updateReqDocStatus(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/update/req/doc/status', datas, { headers: this.header })
+    return this.http.post('https://172.31.92.170/vcsapi/update/req/doc/status', datas, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -531,12 +531,12 @@ export class RecruiteeService {
   }
 
   geAllJobSector() {
-    let data = this.http.get('https://vishusa.com/vcsapi/get/api/tbl/job_sector', { headers: this.header })
+    let data = this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/job_sector', { headers: this.header })
     return data;
   }
 
   getClientDetails() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/assignment/and/client/data', { headers: this.header })
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/assignment/and/client/data', { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -544,14 +544,14 @@ export class RecruiteeService {
   }
 
   getYearDetails() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/tbl/account_file/year', { headers: this.header }).pipe(
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/tbl/account_file/year', { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getMonthDetails(year) {
-    return this.http.get(`https://vishusa.com/vcsapi/get/api/tbl/account_file/month/${year}`, { headers: this.header })
+    return this.http.get(`https://172.31.92.170/vcsapi/get/api/tbl/account_file/month/${year}`, { headers: this.header })
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -560,7 +560,7 @@ export class RecruiteeService {
 
   getAssignmentDetails(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/api/get/payroll/assignment', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/api/get/payroll/assignment', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -568,7 +568,7 @@ export class RecruiteeService {
 
   getAssignmentPayrollDetails(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/get/assignmentdata/assignment_history/filtered', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/get/assignmentdata/assignment_history/filtered', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -576,7 +576,7 @@ export class RecruiteeService {
 
   getJobIdDetails(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/api/get/job_no/assignment_id/and/job_id', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/api/get/job_no/assignment_id/and/job_id', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -584,7 +584,7 @@ export class RecruiteeService {
 
   getWorkDetails(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/api/get/tbl_week/week_id/not/in/tbl_rec_work_hr', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/api/get/tbl_week/week_id/not/in/tbl_rec_work_hr', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -592,7 +592,7 @@ export class RecruiteeService {
 
   insertWorkHour(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/api/insert/tbl_rec_work_hr', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/api/insert/tbl_rec_work_hr', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -600,14 +600,14 @@ export class RecruiteeService {
 
   getAssignmentDataByapplication(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/get/api/payroll_status/approved/assgnmnt_status/workingORclosed/by/applID', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/get/api/payroll_status/approved/assgnmnt_status/workingORclosed/by/applID', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   geAllJobCategory_Area() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/skill_area/byall/activecatID', { headers: this.header }).pipe(
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/skill_area/byall/activecatID', { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -615,7 +615,7 @@ export class RecruiteeService {
 
   geAllJobDomain_skillset(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/get/api/skill_domain/skillset/by/skill_area_id', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/get/api/skill_domain/skillset/by/skill_area_id', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -623,56 +623,56 @@ export class RecruiteeService {
 
   geAllSkillCategoryByuserId(datas) {
     // //console.log(datas)
-    return this.http.post('https://vishusa.com/vcsapi/skilldata/by/user_id', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/skilldata/by/user_id', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getRecruiteeStatus(datas) {
-    return this.http.post('https://vishusa.com/vcsapi/get/recruitee/status/by/user_id', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/get/recruitee/status/by/user_id', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getAlreadyAppliedStatus(datas) {
-    return this.http.post('https://vishusa.com/vcsapi/get/user/already/applied/job', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/get/user/already/applied/job', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getAlreadyAppliedStatusByEmail(datas) {
-    return this.http.post('https://vishusa.com/vcsapi/get/user/already/applied/job/ByEmail', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/get/user/already/applied/job/ByEmail', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   updatePassword(datas) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/new/password/not/autogenerated', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/new/password/not/autogenerated', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   updatePasscode(datas) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/new/passcode/not/autogenerated', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/new/passcode/not/autogenerated', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   insertCandidate(datas) {
-    return this.http.post('https://vishusa.com/vcsapi/insert/api/canditate/skillset_map/data', datas, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/insert/api/canditate/skillset_map/data', datas, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
   getJobDetailsById(id) {
-    return this.http.post('https://vishusa.com/vcsapi/get/api/tbl/job/by/id', id, { headers: this.header }).pipe(
+    return this.http.post('https://172.31.92.170/vcsapi/get/api/tbl/job/by/id', id, { headers: this.header }).pipe(
       retry(1),
       catchError(this.handleError)
     );

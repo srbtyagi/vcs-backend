@@ -16,16 +16,16 @@ export class DepartmentServiceService {
 
 
   getDepartmentDetails() {
-    return this.http.get('https://vishusa.com/vcsapi/get/api/department/byCID', {headers: this.header})
+    return this.http.get('https://172.31.92.170/vcsapi/get/api/department/byCID', {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
-  } 
+  }
 
 
   addDepartment(details) {
-    return this.http.post('https://vishusa.com/vcsapi/add/api/department', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/add/api/department', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -33,7 +33,7 @@ export class DepartmentServiceService {
   }
 
   updateDepartment(details) {
-    return this.http.post('https://vishusa.com/vcsapi/update/api/department_name', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/update/api/department_name', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -41,7 +41,7 @@ export class DepartmentServiceService {
   }
 
   changeStatusDept(details) {
-    return this.http.post('https://vishusa.com/vcsapi/edit/api/change_status/department', details, {headers: this.header})
+    return this.http.post('https://172.31.92.170/vcsapi/edit/api/change_status/department', details, {headers: this.header})
       .pipe(
         retry(1),
         catchError(this.handleError)
