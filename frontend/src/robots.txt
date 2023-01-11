@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://172.31.92.170/sitemap.xml
