@@ -7,7 +7,7 @@ CMD ["node", "app.js"]
 WORKDIR /frontend/app
 COPY ./ /frontend/app/
 RUN npm install --force
-RUN npm run build
+RUN npm run build:angular
 FROM nginx:latest
 COPY nginx.conf /nginx/nginx.conf
 COPY --from=build /frontend/app/dist/vishusaWeb /nginx/html
