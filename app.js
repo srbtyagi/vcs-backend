@@ -56,6 +56,18 @@ app.listen(8000, function () {
   console.log('connected ' + 'localhost:8000');
 });
 
+const port = 8000;
+
+const mysql = require('mysql');
+const con = mysql.createConnection({
+  host: 'em-db.cluster-cs0ol7nhc7nb.us-east-1.rds.amazonaws.com',
+  user: 'admin',
+  password: 'america2020',
+});
+
+app.get('/status', (req, res) => res.send({ status: "I'm up and running" }));
+app.listen(port, () => console.log(`Dockerized Nodejs Applications is listening on port ${port}!`));
+
 app.use(employee_api);
 app.use(recruitee_api);
 app.use(web_api);
