@@ -21,12 +21,12 @@ const mysql = require('mysql');
 // });
 
 dbConnectionInfo = {
-  host: 'https://elite-mente-db.cs0ol7nhc7nb.us-east-1.rds.amazonaws.com',
+  host: 'ls-335818fcf4696b62d113a8b2cca292736d501f19.cbsuayqxzsiq.us-east-2.rds.amazonaws.com',
   port: '3306',
-  user: 'root',
-  password: 'password',
+  user: 'dbmasteruser',
+  password: ';qW2Gayv`$fJg&_D#&iS3k|cXac%*q>3',
   connectionLimit: 10,
-  database: 'elite-mente-db',
+  database: 'elitemente-lightsail-db',
 };
 
 //create mysql connection pool
