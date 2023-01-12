@@ -1,21 +1,11 @@
-
-#Base Image node:12.18.4-alpine
-FROM node:12.18.4-alpine
-#Set working directory to /app
-WORKDIR /
-#Set PATH /app/node_modules/.bin
-ENV PATH /node_modules/.bin:$PATH
-#Copy package.json in the image
-COPY package.json ./
+FROM node:lts-alpine
+WORKDIR /app
+COPY . .
+RUN npm install
+EXPOSE 8000
+CMD ["node", "app.js"]
 
 #Install Packages
 RUN npm install express --save
 RUN npm install mysql --save
 
-#Copy the app
-COPY . ./
-#Expose application port
-EXPOSE 8000
-
-#Start the app
-CMD ["node", "app.js"]
