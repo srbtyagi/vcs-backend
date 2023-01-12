@@ -12,31 +12,49 @@ var session = require('express-session');
 const passport = require('passport');
 const stuff = require('./services/jwt.js');
 const employee_api = require('./controllers/employee_api.js');
-const web_api = require('./controllers/web_api')
+const web_api = require('./controllers/web_api');
 const recruitee_api = require('./controllers/recruitee_api.js');
 const mobile_api = require('./controllers/mobile_api.js');
 
-app.use(express.json({
-  limit: '10mb',
-  extended: true
-}));
+app.use(
+  express.json({
+    limit: '10mb',
+    extended: true,
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-}));
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 ////using cors
 app.use(cors());
+app.use(
+  cors({
+    origin: true, // "true" will copy the domain of the request back
+    // to the reply. If you need more control than this
+    // use a function.
+
+    credentials: true, // This MUST be "true" if your endpoint is
+    // authenticated via either a session cookie
+    // or Authorization header. Otherwise the
+    // browser will block the response.
+
+    methods: 'POST,GET,PUT,OPTIONS,DELETE', // Make sure you're not blocking
+    // pre-flight OPTIONS requests
+  })
+);
 ////////add api
 jwt(app);
 
 app.listen(8000, function () {
-  console.log("connected " + "localhost:8000");
+  console.log('connected ' + 'localhost:8000');
 });
-
 
 app.use(employee_api);
 app.use(recruitee_api);
