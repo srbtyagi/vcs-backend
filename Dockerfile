@@ -15,7 +15,7 @@ RUN npm install mysql --save
 #Copy the app
 COPY . ./
 #Expose application port
-EXPOSE 3000
+EXPOSE 8000
 
 #Start the app
-CMD ["node", "index.js"]
+CMD ["node", "app.js"]
