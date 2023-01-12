@@ -56,7 +56,7 @@ app.listen(8000, function () {
   console.log('connected ' + 'localhost:8000');
 });
 
-const port = 8000;
+const port = 3000;
 
 const mysql = require('mysql');
 const con = mysql.createConnection({
