@@ -1,6 +1,6 @@
-FROM node:lts-alpine
-WORKDIR /app
-COPY . .
+FROM node:alpine
+WORKDIR /usr/app
+COPY ./ /usr/app
 FROM python:3.9-slim
 RUN pip install filprofiler==2022.9.3
 RUN apt-get update && apt-get upgrade -y && \
