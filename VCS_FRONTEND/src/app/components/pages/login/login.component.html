@@ -1,0 +1,148 @@
+<body id="bg">
+    <div class="page-wraper">
+        <!-- <div id="loading-area"></div> -->
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-gray login-form-bx browse-job login-style2">
+            <div class="section-full">
+                <!-- Login Page -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-7 box-skew d-flex">
+                            <div class="login-2 p-a30 seth d-flex align-self-center m-auto wow fadeInRight"
+                                data-wow-delay="0.8s">
+                                <div class="tab-content nav">
+                                    <form id="login" class="tab-pane active col-12 p-a0 " [formGroup]="loginForm">
+                                        <p class="font-weight-600 text-center">If you have an account, please
+                                            login.</p>
+                                        <div class="form-group">
+                                            <label>E-Mail Address<span class="requiredField">*</span></label>
+                                            <div class="input-group">
+                                                <input name="dzName" required="" class="form-control"
+                                                    placeholder="Your Email Address" type="text"
+                                                    formControlName="email">
+                                            </div>
+
+
+                                            <div *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)"
+                                                class="alert alert-danger"
+                                                style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                <div *ngIf="loginForm.controls.email.errors?.required">
+                                                    Email is required.
+                                                </div>
+                                                <div *ngIf="loginForm.controls.email.invalid">
+                                                    Email is invalid.
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label>Password<span class="requiredField">*</span></label>
+                                            <div class="input-group">
+                                                <input name="dzName" required="" class="form-control "
+                                                    placeholder="Type Password" type="password"
+                                                    formControlName="password">
+                                            </div>
+
+                                            <div *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+                                                class="alert alert-danger"
+                                                style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                <div *ngIf="loginForm.controls.password.errors?.required">
+                                                    Password is required.
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="text-left">
+                                            <button class="site-button" (click)="login()" [disabled]="loginForm.invalid"
+                                                [ngStyle]="{'cursor': (!loginForm.valid? 'not-allowed':'pointer')}">Login</button>
+                                            <a data-toggle="tab" href="#forgot-password"
+                                                class="site-button-link forget-pass pull-right m-t15 text_deco"
+                                                (click)="onClickForgotPass()"><i class="fa fa-unlock-alt"></i> Forgot
+                                                Password</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a routerLink="/register" routerLinkActive="active"
+                                                [routerLinkActiveOptions]="{exact: true}"
+                                                class="site-button create_acc text_deco"
+                                                (click)="createAccountCheck()"><i class="fa fa-user"></i> Create an
+                                                Account</a>
+                                        </div>
+                                    </form>
+                                    <form id="forgot-password" class="tab-pane fade col-12 p-a0"
+                                        [formGroup]="forgotPassForm">
+                                        <p>We will send you an email to reset your password. </p>
+                                        <div class="form-group">
+                                            <label>E-Mail address<span class="requiredField">*</span></label>
+                                            <div class="input-group">
+                                                <input name="dzName" required="" class="form-control"
+                                                    placeholder="Your Email Address" type="email"
+                                                    formControlName="email">
+
+
+                                            </div>
+                                            <div *ngIf="forgotPassForm.controls.email.invalid && (forgotPassForm.controls.email.dirty || forgotPassForm.controls.email.touched)"
+                                                class="alert alert-danger"
+                                                style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                <div *ngIf="forgotPassForm.controls.email.errors?.required">
+                                                    Email is required.
+                                                </div>
+                                                <div *ngIf="forgotPassForm.controls.email.invalid">
+                                                    Email is invalid.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="text-left">
+                                            <a class="site-button  text_deco" data-toggle="tab" href="#login">Back</a>
+                                            <button class="site-button pull-right" [disabled]="forgotPassForm.invalid"
+                                                [ngStyle]="{'cursor': (!forgotPassForm.valid? 'not-allowed':'pointer')}"
+                                                (click)="forgotPass()">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-5 d-flex box-skew1">
+                            <div class="text-white max-w400 align-self-center">
+                                <div class="logo">
+                                    <a href="/"><img src="../assets/images/logo2.png" alt=""></a>
+                                </div>
+                                <h2 class="m-b10">{{title}}</h2>
+                                <!-- <p class="m-b30">{{titleDetails}}</p> -->
+
+                                <!-- <ul class="list-inline m-a0">
+                                    <li><a href="#" class="m-r10 text-white"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#" class="m-r10 text-white"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#" class="m-r10 text-white"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="#" class="m-r10 text-white"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="#" class="m-r10 text-white"><i class="fa fa-twitter"></i></a></li>
+                                </ul> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Login Page END -->
+            </div>
+            <footer class="login-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <span class="float-left text-black-light"> © Copyright by
+                                <a href="javascript:void(0);" class="text-primary">Vish Consulting Services </a></span>
+                            <span class="float-right">All rights reserved.</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- Content END -->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+</body>

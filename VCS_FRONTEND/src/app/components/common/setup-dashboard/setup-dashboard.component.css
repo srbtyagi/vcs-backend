@@ -1,0 +1,5 @@
+.job-bx {
+    box-shadow: 0 0 10px 0 rgb(0 24 128 / 10%);
+    padding: 20px 30px;
+    min-height: 100% !important;
+}

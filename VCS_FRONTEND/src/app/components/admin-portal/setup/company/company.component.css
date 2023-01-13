@@ -1,0 +1,16 @@
+.wordAlign{
+  width: 100%;display: flex;
+  flex-direction: row;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+ 
+.oldclass{
+  
+}
+
+.active {
+    background: #e1e7ff;
+    border-left-color: #4C96D7;
+}

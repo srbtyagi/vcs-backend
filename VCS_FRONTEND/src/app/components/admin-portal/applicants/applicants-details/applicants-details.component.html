@@ -1,0 +1,125 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">APPLICANTS</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+                                            <!-- <li><a href="/applicants" class="active">
+                                                    <i class="fa fa-user-o" aria-hidden="true"></i>
+                                                    <span>Applicants</span></a></li> -->
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Applicants > Applicant
+                                            details</h5>
+                                        <a (click)="back()" class="site-button right-arrow button-sm float-right"
+                                            style="color: #FFF;">Back</a>
+                                    </div>
+
+                                    <ul *ngIf="details" style="text-transform: capitalize;">
+                                        <li class="innerLi"><strong class="innerStrng">Name :</strong>
+                                            <p> {{details.user_first_name}} {{details.user_middle_name}}
+                                                {{details.user_last_name}} </p>
+                                        </li>
+                                        <li class="innerLi" style="text-transform: none;"><strong
+                                                class="innerStrng">Email :</strong>
+                                            <p>{{details.email}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">Phone :</strong>
+                                            <p>{{details.phone}}
+                                            </p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">Date of Birth :</strong>
+                                            <p>{{details.dob |date:'MM/dd/yyyy'}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">SSN(Last 4 digit) :</strong>
+                                            <p>{{details.ssn_4digit}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">Profession :</strong>
+                                            <p>{{details.profession_name}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">Speciality :</strong>
+                                            <p>{{details.speciality_name}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">Current Location :</strong>
+                                            <p>{{details.current_location}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">Desired Location :</strong>
+                                            <p>{{details.desired_location_1}}, {{details.desired_location_2}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">Employyment Preferences
+                                                :</strong>
+                                            <p>{{details.employement_preference}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">Application Status :</strong>
+                                            <p>{{details.apply_status}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">Recruitment Status :</strong>
+                                            <p>{{details.recruit_status}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">User Status :</strong>
+                                            <p>{{details.user_status}}</p>
+                                        </li>
+                                        <li class="innerLi"><strong class="innerStrng">Resume :</strong>
+                                            <a type="button" class="btn btn-secondary" style="margin-top: -5px;"
+                                                href="https://vishusa.com/vcsapi/get/resume/{{details.user_id}}/applicant_resume"
+                                                target="_blank" rel="noopener noreferrer" download>Download</a>
+                                        </li>
+                                    </ul>
+
+                                    <hr>
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Documents</h5>
+                                    </div>
+
+                                    <ul>
+                                        <li class="innerLi" *ngFor="let a of docs">
+                                            <strong class="innerStrng">{{a.rec_doc_name}} :</strong>
+                                            <a class="site-button" style="margin-top: -8px;
+                                            margin-bottom: 15px;
+                                        " href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                                target="_blank" rel="noopener noreferrer" download>Download</a>
+                                            <hr>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+</body>

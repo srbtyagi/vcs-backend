@@ -1,0 +1,146 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "vishusaWeb": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/vishusaWeb",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "src/favicon.ico",
+              "src/robots.txt",
+              "src/sitemap.xml",
+              "src/assets"
+            ],
+            "styles": [
+              "src/assets/plugins/bootstrap/css/bootstrap.min.css",
+              "src/assets/plugins/bootstrap/css/bootstrap-select.min.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/plugins/bootstrap/js/popper.min.js",
+              "src/assets/plugins/bootstrap/js/bootstrap.min.js",
+              "src/assets/plugins/bootstrap-select/bootstrap-select.min.js",
+              "src/assets/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js",
+              "src/assets/plugins/magnific-popup/magnific-popup.js",
+              "src/assets/plugins/counter/waypoints-min.js",
+              "src/assets/plugins/counter/counterup.min.js",
+              "src/assets/plugins/imagesloaded/imagesloaded.js",
+              "src/assets/plugins/masonry/masonry-3.1.4.js",
+              "src/assets/plugins/masonry/masonry.filter.js",
+              "src/assets/plugins/owl-carousel/owl.carousel.js",
+              "src/assets/js/custom.js",
+              "src/assets/js/dz.carousel.js",
+              "src/assets/js/dz.ajax.js",
+              "src/assets/plugins/wow/wow.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "20mb",
+                  "maximumError": "25mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "vishusaWeb:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "vishusaWeb:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "vishusaWeb:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "vishusaWeb:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "vishusaWeb:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "vishusaWeb"
+}

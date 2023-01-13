@@ -1,0 +1,434 @@
+<body id="bg">
+  <div class="page-wraper">
+    <ngx-spinner>
+      <p style="color: white"> Loading... </p>
+    </ngx-spinner>
+    <!-- <div id="loading-area"></div> -->
+    <!-- Content -->
+    <div class="page-content bg-white">
+      <!-- contact area -->
+      <div class="content-block">
+        <!-- Browse Jobs -->
+        <div class="section-full bg-white p-t50 p-b20">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-2 col-lg-4 m-b30">
+                <div class="sticky-top">
+                  <div class="candidate-info company-info">
+                    <div class="candidate-detail text-center">
+                      <div class="canditate-des">
+                        <a href="javascript:void(0);">
+                          <img alt="" src="../assets/images/logo/icon3.jpg">
+                        </a>
+                        <!-- <div class="upload-link" title="update" data-toggle="tooltip"
+                          data-placement="right">
+                          <input type="file" class="update-flie">
+                          <i class="fa fa-pencil"></i>
+                      </div> -->
+                      </div>
+                      <div class="candidate-title">
+                        <h4 class="m-b5"><a href="javascript:void(0);">SETUP</a></h4>
+                      </div>
+                    </div>
+                    <ul>
+                      <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)" class="oldclass"
+                          id="clsActive{{a.submodule_id}}">
+                          <i class="fa fa-cog" aria-hidden="true"></i>
+                          <span>{{a.submodule_name_lower}}</span></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-10 col-lg-8 m-b30">
+                <div class="job-bx clearfix">
+                  <div class="job-bx-title clearfix">
+                    <h5 class="font-weight-700 pull-left text-uppercase">User Role</h5>
+                    <div class="float-right" style="display: flex;">
+                      <!--<div class="form-group" style="margin-right: 10px;">-->
+                      <!--<input type="text" class="form-control" placeholder="Search Job">-->
+                      <!--</div>-->
+                      <button type="button" class="site-button m-b30" href="javascript:void(0);" data-toggle="modal"
+                        (click)="resetAddRole()" data-target="#userRoleAdd">Add User Role</button>
+                    </div>
+                  </div>
+                  <table class="table-job-bx cv-manager company-manage-job">
+                    <thead>
+                      <tr>
+                        <th class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" id="check12"
+                              class="custom-control-input selectAllCheckBox"
+                              name="example1">
+                          <label class="custom-control-label" for="check12"></label>
+                      </div> -->
+                        </th>
+                        <th>Role</th>
+                        <th style="text-align: center;">Default Access</th>
+                        <th>Status</th>
+                        <th style="text-align: center;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="allUserRole">
+
+                      <tr *ngFor="let d of allUserRole | paginate: { itemsPerPage: count, currentPage: page }">
+                        <td class="feature">
+                          <!-- <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="check1"
+                              name="example1">
+                          <label class="custom-control-label" for="check1"></label>
+                      </div> -->
+                        </td>
+                        <td class="job-name">
+                          {{d.role_name}}
+                        </td>
+                        <td class="application text-primary" style="text-align: center;">
+                          <button type="button" data-toggle="modal" data-target="#defaultView"
+                            (click)="getDedfaultData2(d)" class="site-button">View</button>
+
+                        </td>
+                        <td class="expired pending" style="color: green" *ngIf="d.role_status=='active'">Active</td>
+                        <td class="expired pending" *ngIf="d.role_status=='inactive'">Inactive</td>
+
+                        <td class="job-links">
+                          <!-- <a href="javascript:void(0);" data-toggle="modal"
+                          data-target="#exampleModalLong">
+                          <i class="fa fa-cog"></i></a> -->
+
+                          <div class="dropdown">
+                            <a href="javascript:void(0);">
+                              <i class="fa fa-cog"></i></a>
+                            <div class="dropdown-content">
+                              <a href="javascript:void(0);" data-toggle="modal" data-target="#userRoleEdit"
+                                (click)="setUSerRoleId(d)">Edit</a>
+                              <a href="javascript:void(0);" data-toggle="modal" data-target="#userRoleAssignAccess"
+                                (click)="getDedfaultData(d)">Assign Access</a>
+
+                              <a href="#" href="javascript:void(0);" data-toggle="modal"
+                                data-target="#userRoleChangeStatus" (click)="setUSerRoleId(d)"
+                                *ngIf="d.role_id!==1 && d.role_id!==5 && d.role_id!==9 && d.role_id!==10">Change
+                                Status</a>
+                              <!--<a href="javascript:void(0);" data-toggle="modal" data-target="#exampleModalLong">View</a>-->
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+
+
+                    </tbody>
+                  </table>
+                  <div class="pagination" *ngIf="allUserRole">
+                    <pagination-controls *ngIf="allUserRole.length" class="product-pagination" autoHide="false"
+                      maxSize="8" (pageChange)="onPageChanged($event)"></pagination-controls>
+                  </div>
+
+
+                  <!--model start-->
+                  <div class="modal fade modal-bx-info editor" id="userRoleAdd" tabindex="-1" role="dialog"
+                    aria-labelledby="duserRoleAddModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="userRoleAddModalLongTitle">Add User Role</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form [formGroup]="addUserRoleForm">
+                            <div class="row">
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Role</label>
+                                  <input type="text" (ngModelChange)="roleDuplicateCheck($event)" [(ngModel)]="role"
+                                    class="form-control" placeholder="Enter Role" formControlName="role">
+                                  <div *ngIf="duplicateCheck" style="color: red;font-size: 15px;margin-top: 5px">User
+                                    role already exist.</div>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Incentive %</label>
+                                  <input type="number" [(ngModel)]="incentive_perc" class="form-control"
+                                    placeholder="Enter Percentage" formControlName="incentive_perc">
+
+                                </div>
+                              </div>
+
+
+
+                            </div>
+
+
+                          </form>
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="site-button" data-dismiss="modal">Back</button>
+                          <button type="button" class="site-button" [disabled]="!addUserRoleForm.valid||duplicateCheck"
+                            (click)="insertUserRole()"
+                            [ngStyle]="{'cursor': (!addUserRoleForm.valid||duplicateCheck? 'not-allowed':'pointer')}"
+                            data-dismiss="modal">Submit</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade modal-bx-info editor" id="userRoleEdit" tabindex="-1" role="dialog"
+                    aria-labelledby="userRoleEditModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="userRoleEditModalLongTitle">Edit User Role</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form [formGroup]="editUserRoleForm">
+                            <div class="row">
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Role</label>
+                                  <input type="text" (ngModelChange)="roleDuplicateCheck($event)" [(ngModel)]="role"
+                                    class="form-control" placeholder="Enter Role" formControlName="editRole">
+                                  <div *ngIf="duplicateCheck" style="color: red;font-size: 15px;margin-top: 5px">User
+                                    role already exist.</div>
+                                </div>
+                              </div>
+
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Incentive %</label>
+                                  <input type="number" [(ngModel)]="incentive_perc" class="form-control"
+                                    placeholder="Enter Percentage" formControlName="incentive_perc">
+
+                                </div>
+                              </div>
+
+
+
+                            </div>
+
+
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="site-button" data-dismiss="modal">Back</button>
+                          <button type="button" class="site-button" [disabled]="!editUserRoleForm.valid||duplicateCheck"
+                            (click)="updateUserRole()"
+                            [ngStyle]="{'cursor': (!editUserRoleForm.valid||duplicateCheck? 'not-allowed':'pointer')}"
+                            data-dismiss="modal">Submit</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal fade modal-bx-info editor" id="userRoleChangeStatus" tabindex="-1" role="dialog"
+                    aria-labelledby="userRoleChangeStatusModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="userRoleChangeStatusModalLongTitle">Change Status</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <form>
+                            <div class="row">
+                              <div class="col-lg-12 col-md-12">
+                                <div class="form-group">
+                                  <label>Status</label>
+                                  <div class="row" style="margin-top: 10px">
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                      <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" [(ngModel)]="defaultStatus"
+                                          id="active" name="example1" value="active">
+                                        <label class="custom-control-label" for="active">Active </label>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+                                      <div class="custom-control custom-radio">
+                                        <input type="radio" class="custom-control-input" id="inactive"
+                                          [(ngModel)]="defaultStatus" name="example2" value="inactive">
+                                        <label class="custom-control-label" for="inactive">Inactive </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+
+                            </div>
+
+
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="site-button" data-dismiss="modal">Back</button>
+                          <button type="button" class="site-button" data-dismiss="modal"
+                            (click)="changeStatusUserRole()">Submit</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="modal fade modal-bx-info editor" id="userRoleAssignAccess" tabindex="-1" role="dialog"
+                    aria-labelledby="userRoleAssignAccessModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="userRoleAssignAccessModalLongTitle">Assign Access</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="height: 500px; overflow-y: scroll;">
+                          <form>
+                            <div id="desired_career_profile_bx" class="job-bx bg-white m-b30"
+                              *ngFor="let d of sortedModuleIds;let i=index;">
+                              <!--<div class="d-flex">-->
+                              <!--<h6 class="m-b30">Desired Career Profile</h6>-->
+                              <!--</div>-->
+
+
+
+                              <form>
+                                <div class="row">
+                                  <div class="col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                      <label style="font-weight: 700">{{sortedModuleName[i]}}</label>
+                                      <div class="row">
+                                        <div *ngFor="let k of accessRoleAllData">
+                                          <div *ngIf="k.module_id==d" style="width:220px">
+                                            <div class="custom-control custom-checkbox" style="margin-bottom: 20px;">
+                                              <input type="checkbox" class="custom-control-input"
+                                                (click)="getList($event,k)" id="{{k.action_id}}" [checked]="k.value">
+                                              <label class="custom-control-label"
+                                                for="{{k.action_id}}">{{k.submodule_name}}</label>
+                                            </div>
+                                          </div>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+
+                          </form>
+
+
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="site-button" data-dismiss="modal">Back</button>
+                          <button type="button" class="site-button" data-dismiss="modal"
+                            [disabled]="assignAccessCheckBoxList.length==0"
+                            [ngStyle]="{'cursor': (assignAccessCheckBoxList.length==0? 'not-allowed':'pointer')}"
+                            (click)="insertRoleData()">Submit</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="modal fade modal-bx-info editor" id="defaultView" tabindex="-1" role="dialog"
+                    aria-labelledby="defaultViewModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="defaultViewModalLongTitle">Default Access</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" style="height: 400px; overflow-y: scroll;">
+                          <div class="wordAlign" style="margin-bottom: 20px"
+                            *ngFor="let d of defaultAccessModuleIdShow;let i=index;">
+                            <div style="min-width: 120px;font-weight: 600">{{defaultAccessModuleNameShow[i]}}</div>
+                            <div style="min-width: 40px;text-align: center">:</div>
+                            <span style="display: flex;flex-direction: column;">
+                              <span *ngFor="let k of defaultAccessShow">
+                                <div *ngIf="k.module_id==d"
+                                  style="margin-bottom: 5px;font-family: 'roboto',sans-serif;">
+                                  {{k.submodule_name}}</div>
+                              </span>
+                            </span>
+                          </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <!--model end-->
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Browse Jobs END -->
+      </div>
+    </div>
+    <!-- Content END-->
+    <button class="scroltop fa fa-chevron-up"></button>
+  </div>
+
+</body>
+
+
+<!-- Modal -->
+<!--<div class="modal fade modal-bx-info" id="exampleModalLong" tabindex="-1"-->
+<!--role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<div class="logo-img">-->
+<!--<img alt="" src="../assets/images/logo/icon2.png">-->
+<!--</div>-->
+<!--<h5 class="modal-title">Company Name</h5>-->
+<!--<button type="button" class="close" data-dismiss="modal"-->
+<!--aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<ul>-->
+<!--<li><strong>Job Title :</strong>-->
+<!--<p> Web Developer – PHP, HTML, CSS </p>-->
+<!--</li>-->
+<!--<li><strong>Experience :</strong>-->
+<!--<p>5 Year 3 Months</p>-->
+<!--</li>-->
+<!--<li><strong>Deseription :</strong>-->
+<!--<p>Lorem Ipsum is simply dummy text of the printing and-->
+<!--typesetting industry has been the industry's standard-->
+<!--dummy text ever since.</p>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary"-->
+<!--data-dismiss="modal">Close</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!-- Modal End -->

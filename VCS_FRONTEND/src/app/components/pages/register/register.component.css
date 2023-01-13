@@ -1,0 +1,29 @@
+.requiredField{
+    color: red;
+}
+.ext-label{
+    color: darkslategray;
+    font-size:80%;
+}
+.checkbox-margin{
+    width: 100%;
+}
+.font-normal{
+    font-weight: normal !important;
+}
+.text_deco{
+    text-decoration: none !important;
+}
+.capitalize {
+    text-transform: capitalize;
+}
+.form-control2{
+    background-color: #fff !important;
+	border:0 !important;
+	box-shadow: 0 0 10px 0 rgba(255 0 0,0.2) !important;
+}
+
+/* .modal-backdrop.show {
+    opacity: .5;
+    display: none !important;
+} */

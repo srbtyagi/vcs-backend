@@ -1,0 +1,43 @@
+.p-a0 {
+  padding: 0 !important;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+ .canditate-des2 {
+  border: 0;
+  /* width: 70px !important; */
+  /* height: 70px !important; */
+  margin: 0 5px 0px 0;
+  background-color: unset;
+  position: relative;
+  display: inline-block;
+  outline-offset: 3px;
+  border-radius: 100% !important;
+  z-index: 99;
+}
+.text-center {
+  text-align: center!important;
+}
+
+.imageSize{
+    height: 45px;
+    /* border-radius: 50%; */
+    width: 45px;
+    border-radius: 100%;
+    background-color: cornflowerblue;
+    padding: 5px;
+}
+
+/* .fullwidth .header-nav .nav > li {
+  padding: 20px 0;
+  margin: 0px 3px;
+} */
+.text_deco{
+  text-decoration: none !important;
+}

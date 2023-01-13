@@ -1,0 +1,130 @@
+.job-links i{
+  background-color: #4C96D7;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
+  padding: 7px;
+  line-height: 16px;
+}
+
+.table-job-bx .job-links {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* .dropbtn {
+    background-color: #4C96D7;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    font-family: "Montserrat",sans-serif;
+
+  } */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #505050;
+  padding: 8px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: "Montserrat",sans-serif;
+}
+
+.dropdown-content a:hover {background-color: #ddd;color: #4C96D7;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .job-links i {background-color: #84abce;}
+
+.site-button, .site-button-secondry {
+  color: #fff;
+  padding: 6px 6px;
+  font-size: 15px;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  outline: none;
+  border-width: 0;
+  border-style: solid;
+  border-color: transparent;
+  line-height: 1.42857;
+  border-radius: 3px;
+  font-weight: 400;
+  text-align: center;
+  white-space: pre;
+  font-family: "Montserrat",sans-serif;
+}
+
+.job-bx-title {
+  border-bottom: 1px solid #e1e7ff;
+  padding: 0px 0;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+
+
+.wordAlign{
+  width: 100%;display: flex;
+  flex-direction: row;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  height: 33px;
+}
+
+.oldclass{
+  
+}
+
+.active {
+    background: #e1e7ff;
+    border-left-color: #4C96D7;
+}
+
+dp-date-picker.dp-material .dp-picker-input {
+  box-shadow: 0 !important;
+  display: block;
+  width: 100% !important;
+  padding: .375rem .75rem;
+  font-size: 1rem !important;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  height: 33px !important;
+}

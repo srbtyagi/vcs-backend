@@ -1,0 +1,425 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);">MY PROFILE</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngIf="checkUserType"><a class="oldclass" style="text-decoration: none;"
+                                                    routerLink="/candi-profile" routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Profile</span></a></li>
+                                            <li *ngIf="checkUserType"><a
+                                                    class="oldclass" 
+                                                    style="text-decoration: none;" routerLink="/my-documents"
+                                                    routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"> 
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i> 
+                                                    <span>My Documents</span>
+                                                    <span class="badge badge-danger" style="margin-left:2%;" *ngIf="badge">{{badge}}</span>
+                                                </a></li>
+                                            <li *ngIf="checkUserType"><a class="oldclass" style="text-decoration: none;"
+                                                    routerLink="/password-change" routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Change Password</span></a></li>
+                                            <li *ngIf="checkUserType"><a class="oldclass" style="text-decoration: none;"
+                                                    routerLink="/password-change" routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Change Passcode</span></a></li>
+                                            <li *ngIf="checkUserType"><a class="oldclass" style="text-decoration: none;"
+                                                    routerLink="/edit-skill-set" routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">
+                                                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                                                    <span>Skill Set</span></a></li>
+
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx submit-resume">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">Profile</h5>
+                                        <a (click)="back()" class="site-button right-arrow button-sm float-right"
+                                            style="color: #FFF;">Back</a>
+
+                                    </div>
+
+
+                                    <form class="job-alert-bx" [formGroup]="registerForm">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>First Name<span class="requiredField">*</span></label>
+                                                    <input class="form-control" formControlName="first_name"
+                                                        [ngClass]="{'form-control2': (!registerForm.valid)}"
+                                                        type="text">
+                                                    <div *ngIf="registerForm.controls.first_name.invalid && (registerForm.controls.first_name.dirty || registerForm.controls.first_name.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="registerForm.controls.first_name.errors?.required">
+                                                            First Name is required.
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.first_name.errors?.maxlength">
+                                                            First Name must be at most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Middle Name</label>
+                                                    <input class="form-control" formControlName="middle_name"
+                                                        type="text">
+                                                    <div *ngIf="registerForm.controls.middle_name.invalid && (registerForm.controls.middle_name.dirty || registerForm.controls.middle_name.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div
+                                                            *ngIf="registerForm.controls.middle_name.errors?.maxlength">
+                                                            Middle Name must be at most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Last Name<span class="requiredField">*</span></label>
+                                                    <input class="form-control" formControlName="last_name" type="text">
+                                                    <div *ngIf="registerForm.controls.last_name.invalid && (registerForm.controls.last_name.dirty || registerForm.controls.last_name.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="registerForm.controls.last_name.errors?.required">
+                                                            Last Name is required.
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.last_name.errors?.maxlength">
+                                                            Last Name must be at most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label>E-Mail Address <span class="ext-label">(will be your user
+                                                            name)</span><span class="requiredField">*</span></label>
+                                                    <input class="form-control" formControlName="email" type="email"
+                                                        (input)="checkUniqueEmail()">
+                                                    <div *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;margin-bottom: 0px;">
+                                                        <div *ngIf="registerForm.controls.email.errors?.required">
+                                                            Email is required.
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.email.invalid">
+                                                            Email is invalid.
+                                                        </div>
+                                                        <div *ngIf="registerForm.controls.email.errors?.maxlength">
+                                                            Email must be at most 60 characters
+                                                            long.
+                                                        </div>
+                                                        <!-- <div *ngIf="checkEmail">
+                                                                Already registered with this E-mail Address.
+                                                              </div> -->
+                                                    </div>
+                                                    <div *ngIf="(registerForm.controls.email.dirty || registerForm.controls.email.touched) && checkEmail"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="checkEmail">
+                                                            Email already exist.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Phone No.<span class="requiredField">*</span></label>
+                                                    <div style="display: flex;">
+                                                        <input class="form-control" style="margin-right: 0px;"
+                                                            formControlName="phone_no" type="text">
+                                                    </div>
+                                                    <div *ngIf="registerForm.controls.phone_no.invalid && (registerForm.controls.phone_no.dirty || registerForm.controls.phone_no.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="registerForm.controls.phone_no.errors?.required">
+                                                            Phone No. is required.
+                                                        </div>
+
+                                                        <div *ngIf="registerForm.controls.phone_no.invalid">
+                                                            Phone No. must be 10 digits long.
+                                                        </div>
+                                                        <!-- <div *ngIf="registerForm.controls.phone_no.errors?.maxlength">
+                                                                Phone No. must be at most 10 characters
+                                                                long.
+                                                            </div> -->
+
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Date Of Birth <span
+                                                            class="ext-label">(MM/DD/YYYY)</span></label>
+                                                    <dp-date-picker dir="ltr" theme="dp-material"
+                                                        placeholder="MM/DD/YYYY" required="true" formControlName="dob"
+                                                        [config]="datePickerConfig">
+                                                    </dp-date-picker>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label>Last 4-Digits Of SSN</label>
+                                                    <input class="form-control" formControlName="ssn" type="number"
+                                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                        maxlength="4">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group" style="display: grid;">
+                                                        <label>Profession </label>
+                                                        <select class="form-control" formControlName="profession"
+                                                            #profession>
+                                                            <option selected>-Select-</option>
+                                                            <ng-container *ngFor="let i of professionData">
+                                                                <option *ngIf="i.profession_status==='active'"
+                                                                    [value]="i.profession_id">{{i.profession_name}}
+                                                                </option>
+                                                            </ng-container>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group" style="display: grid;">
+                                                        <label>Speciality </label>
+                                                        <select class="form-control" formControlName="speciality"
+                                                            #speciality>
+                                                            <option selected>-Select-</option>
+                                                            <ng-container *ngFor="let i of specialityData">
+                                                                <option *ngIf="i.speciality_status==='active'"
+                                                                    [value]="i.speciality_id">{{i.speciality_name}}
+                                                                </option>
+                                                            </ng-container>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label>Current Location</label>
+                                                    <input class="form-control" formControlName="current_loc"
+                                                        type="text">
+                                                    <div *ngIf="registerForm.controls.current_loc.invalid && (registerForm.controls.current_loc.dirty || registerForm.controls.current_loc.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="registerForm.controls.current_loc.errors?.required">
+                                                            Current Location is required.
+                                                        </div>
+                                                        <div
+                                                            *ngIf="registerForm.controls.current_loc.errors?.maxlength">
+                                                            Current Location must be at most 200 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Desired Location-1</label>
+                                                    <input class="form-control" formControlName="desired_loc1"
+                                                        type="text">
+                                                    <div *ngIf="registerForm.controls.desired_loc1.invalid && (registerForm.controls.desired_loc1.dirty || registerForm.controls.desired_loc1.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div
+                                                            *ngIf="registerForm.controls.desired_loc1.errors?.maxlength">
+                                                            Desired Location-1 must be at most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Desired Location-2</label>
+                                                    <input class="form-control" formControlName="desired_loc2"
+                                                        type="text">
+                                                    <div *ngIf="registerForm.controls.desired_loc2.invalid && (registerForm.controls.desired_loc2.dirty || registerForm.controls.desired_loc2.touched)"
+                                                        class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div
+                                                            *ngIf="registerForm.controls.desired_loc2.errors?.maxlength">
+                                                            Desired Location-2 must be at most 100 characters
+                                                            long.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label>Employement Preference</label>
+                                                    <div style="display: flex;">
+                                                        <div class="custom-control custom-checkbox checkbox-margin"
+                                                            *ngFor="let a of emp_preference;let i = index">
+                                                            <input type="checkbox" class="custom-control-input"
+                                                                id="Type{{i}}" name="Type{{i}}" [checked]="a.value"
+                                                                (click)="checkBoxSelect(a.type)">
+                                                            <label class="custom-control-label font-normal"
+                                                                for="Type{{i}}">{{a.type}}</label>
+                                                        </div>
+                                                        <!-- <div class="custom-control custom-checkbox checkbox-margin">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                    id="travel" name="travel"
+                                                                    (click)="checkBoxSelect('Travel')">
+                                                                <label class="custom-control-label font-normal"
+                                                                    for="travel">Travel</label>
+                                                            </div>
+                                                            <div class="custom-control custom-checkbox checkbox-margin">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                    id="per_diem" name="per_diem"
+                                                                    (click)="checkBoxSelect('Per Diem')">
+                                                                <label class="custom-control-label font-normal"
+                                                                    for="per_diem">Per Diem</label>
+                                                            </div> -->
+                                                    </div>
+                                                    <div *ngIf="emp_preference.length===0" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        Employment Preference is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label>Resume<span class="requiredField">*</span></label>
+                                                    <div class="custom-file">
+                                                        <p class="m-a0" *ngIf="!file_name">
+                                                            <i class="fa fa-upload"></i>
+                                                            Upload File
+                                                        </p>
+                                                        <p class="m-a0" *ngIf="file_name">
+                                                            {{file_name}}
+                                                        </p>
+                                                        <input type="file" class="site-button form-control"
+                                                            id="customFile" (change)="fileUpload($event.target.files)"
+                                                            formControlName="resume">
+
+
+                                                    </div>
+                                                    <div *ngIf="viewShow==='true'" class="alert alert-success"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div>
+                                                            Document uploaded successfully.
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                    <div *ngIf="viewShow==='try'" class="alert alert-warning"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                        <div *ngIf="viewShow==='try'" class="">
+                                                            Uploading in process...
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div *ngIf="viewShow==='false'" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+
+                                                        <div *ngIf="viewShow==='false'" class="">
+                                                            Document can not be uploaded,please
+                                                            try again.
+                                                        </div>
+
+                                                    </div>
+                                                    <div *ngIf="viewfinalErr" class="alert alert-danger"
+                                                        style="font-size: 12px;padding: .5rem 1.25rem;">
+
+                                                        <div>
+                                                            Something went wrong,please try again.
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6" *ngIf="showProgressBar">
+                                                <circle-progress [percent]=showPercentage [radius]="40"
+                                                    [outerStrokeWidth]="6" [innerStrokeWidth]="4"
+                                                    [outerStrokeColor]="'#4C96D7'" [innerStrokeColor]="'#a6cbeb'"
+                                                    [animation]="false" [animationDuration]="10" [titleFontSize]="10"
+                                                    [renderOnClick]="false">
+                                                </circle-progress>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <br />
+                                                <br />
+                                                <div class="job-time mr-auto" *ngIf="status">
+                                                    <a [href]=url target="_blank"><span>Preview</span></a>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-lg-12 text-left" style="margin-top:3%;">
+                                                <button class="site-button" routerLink="/candi-profile"
+                                                    routerLinkActive="active"
+                                                    [routerLinkActiveOptions]="{exact: true}">Back</button>
+                                                <button class="site-button " style="margin-left: 1%;"
+                                                    [disabled]="registerForm.invalid || checkEmail"
+                                                    [ngStyle]="{'cursor': ((!registerForm.valid || checkEmail ) ? 'not-allowed':'pointer')}"
+                                                    (click)="register()">Save</button>
+
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>

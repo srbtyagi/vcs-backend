@@ -1,0 +1,155 @@
+<!-- header -->
+<header class="site-header mo-left header border-bottom fullwidth">
+    <!-- main header -->
+    <div class="sticky-header main-bar-wraper navbar-expand-lg">
+        <div class="main-bar clearfix">
+            <div class="container clearfix">
+                <!-- website logo -->
+                <div class="logo-header mostion">
+                    <a href="/"><img src="../assets/images/logo.png" class="logo" alt=""></a>
+                </div>
+                <!-- nav toggle button -->
+                <!-- nav toggle button -->
+                <button class="navbar-toggler collapsed navicon justify-content-end" type="button"
+                    data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+                    aria-expanded="false" aria-label="Toggle navigation" (click)="changeCss()" id="menuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <!-- extra nav -->
+                <div class="extra-nav" *ngIf="!user_id">
+                    <div class="extra-cell">
+                        <!-- <a href="" class="site-button" routerLink="/register" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact: true}"><i class="fa fa-user"></i> Sign Up</a> -->
+
+                        <a title="READ MORE" rel="bookmark" class="site-button" routerLink="/login"
+                            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                            class="site-button text_deco"><i class="fa fa-lock"></i> Login/Signup</a>
+                    </div>
+                </div>
+
+                <div class="extra-nav" *ngIf="user_id" style="display: flex;">
+                    <div class="canditate-des2 text-center">
+                        <a href="javascript:void(0);">
+                            <img alt="" src="../assets/images/team/pic2.png" class="imageSize">
+                        </a>
+                    </div>
+                    <div class="header-nav navbar-collapse collapse" id="navbarNavDropdown">
+                        <ul class="nav navbar-nav">
+                            <li style="padding: 0px !important;">
+                                <a>{{user_name}} <i class="fa fa-chevron-down"></i></a>
+                                <ul class="sub-menu">
+                                    <li *ngIf="checkUserType"><a (click)="navigateToProfile()" class="dez-page">My
+                                            Profile</a>
+                                    </li>
+                                    <li *ngFor="let a of moduleArray"><a (click)="navigateTo(a)"
+                                            class="dez-page">{{a.module_name_lower}}</a>
+                                    </li>
+                                    <li *ngIf="checkUserType"><a (click)="navigateToRecruitee()"
+                                            class="dez-page">Assignments</a>
+                                    </li>
+
+                                    <li><a class="dez-page" (click)="logout()" style="color: red;">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- main nav -->
+                <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                                class="text_deco" (click)="hideMenu()">Home</a>
+                        </li>
+                        <li>
+
+                            <a class="text_deco" routerLink="/about-us" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">About Us</a>
+
+                        </li>
+                        <li>
+                            <a class="text_deco" routerLink="/clients" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">Client & Partners</a>
+
+                        </li>
+                        <li>
+                            <!-- <a routerLink="/business" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}" class="text_deco">Business</a> -->
+
+                            <a class="text_deco">Healthcare Services <i class="fa fa-chevron-down"></i></a>
+                            <ul class="sub-menu">
+                                <li><a class="dez-page" routerLink="/healthcare-staffing" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">Our Healthcare
+                                        Services</a></li>
+                                <li><a class="dez-page" routerLink="/HS_case_study" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">Clinical
+                                        Studies</a></li>
+
+                                <li><a class="dez-page">Resources <i class="fa fa-angle-right"></i></a>
+                                    <ul class="sub-menu">
+                                        <li><a routerLink="/faq" routerLinkActive="active"
+                                                [routerLinkActiveOptions]="{exact: true}" class="dez-page"
+                                                (click)="hideMenu()">FAQ</a></li>
+                                        <!-- <li><a routerLink="/HS_case_study" routerLinkActive="active"
+                                                [routerLinkActiveOptions]="{exact: true}" class="dez-page">Case Study
+                                            </a></li> -->
+
+                                    </ul>
+                                </li>
+
+                                <li><a class="dez-page" routerLink="/healthcare-blogs" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">Blogs</a></li>
+                                <li><a class="dez-page" routerLink="/skill-checklist" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">Skill
+                                        Checklist</a></li>
+                            </ul>
+                        </li>
+                        <li>
+
+                            <a class="text_deco">IT Services <i class="fa fa-chevron-down"></i></a>
+                            <ul class="sub-menu">
+                                <li><a class="dez-page" routerLink="/IT_services" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">Our IT
+                                        Services</a></li>
+                                <li><a class="dez-page" routerLink="/IT_case_study" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">Case Study</a>
+                                </li>
+                                <li><a class="dez-page" routerLink="/" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">Resources</a>
+                                </li>
+                                <li><a class="dez-page" routerLink="/IT_blogs" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">Blogs</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="text_deco" routerLink="/jobs" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}" (click)="hideMenu()">Jobs</a>
+                            <!-- <ul class="sub-menu">
+                                <li><a class="dez-page" routerLink="/jobs" routerLinkActive="active"
+                                        [routerLinkActiveOptions]="{exact: true}">Nursing Jobs</a></li>
+
+                            </ul> -->
+                        </li>
+                        <!-- <li>
+                            <a class="text_deco">Our Impact <i class="fa fa-chevron-down"></i></a>
+                            <ul class="sub-menu">
+                                <li><a class="dez-page">Diversity, Equity & Inclusion</a></li>
+                                <li><a class="dez-page">Corporate Responsibility</a></li>
+                                <li><a class="dez-page">Social Responsibility</a></li>
+                            </ul>
+                        </li> -->
+                        <li>
+                            <a routerLink="/contact-us" routerLinkActive="active"
+                                [routerLinkActiveOptions]="{exact: true}" class="text_deco" (click)="hideMenu()">Contact
+                                Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- main header END -->
+</header>
+<!-- header END -->

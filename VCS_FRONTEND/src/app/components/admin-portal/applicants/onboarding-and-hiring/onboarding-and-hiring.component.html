@@ -1,0 +1,1452 @@
+<body id="bg">
+    <div class="page-wraper">
+        <ngx-spinner>
+            <p style="color: white"> Loading... </p>
+        </ngx-spinner>
+        <!-- Content -->
+        <div class="page-content bg-white">
+            <!-- contact area -->
+            <div class="content-block">
+                <!-- Browse Jobs -->
+                <div class="section-full bg-white p-t50 p-b20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-2 m-b30">
+                                <div class="sticky-top">
+                                    <div class="candidate-info company-info">
+                                        <div class="candidate-detail text-center">
+                                            <div class="canditate-des">
+                                                <a href="javascript:void(0);">
+                                                    <img alt="" src="../assets/images/logo/icon3.jpg">
+                                                </a>
+
+                                            </div>
+                                            <div class="candidate-title">
+                                                <h4 class="m-b5"><a href="javascript:void(0);"
+                                                        style="font-size: 1.2rem;">APPLICANT</a></h4>
+                                            </div>
+                                        </div>
+                                        <ul>
+
+                                            <li *ngFor="let a of moduleArray;let i=index"><a (click)="navigateTo(a)"
+                                                    class="oldclass" id="clsActive{{a.submodule_id}}">
+                                                    <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                                                    <span>{{a.submodule_name_lower}}</span></a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 m-b30">
+                                <div class="job-bx clearfix">
+                                    <div class="job-bx-title clearfix">
+                                        <h5 class="font-weight-700 pull-left text-uppercase">On Boarding</h5>
+                                        <div class="float-right" style="display: flex;">
+                                            <!-- <div class="form-group" style="margin-right: 10px;">
+                                                <input type="text" class="form-control2" placeholder="Search">
+                                            </div> -->
+                                            <a type="button" class="site-button m-b30"
+                                                href="https://vishusa.com/vcsapi/api/generate/excel/onboarding/report/{{user_id_by}}/{{excelfileName}}"
+                                                target="_blank" rel="noopener noreferrer" download>Report</a>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="job-bx-title clearfix">
+                                        <div class=" form-group" style="display: flex;">
+                                            <div>
+                                                <label style="font-size: 14px;">Client</label>
+                                                <!-- <select class="form-control" [(ngModel)]="client_id">
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of clientList" [value]="data.client_id"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.client_name}}</option>
+                                                </select> -->
+
+                                                <input type="text" class="form-control" placeholder="Enter Client Name"
+                                                    [(ngModel)]="clientName" (input)="searchClient($event)"
+                                                    (focus)="focusClientList()">
+
+                                                <div class="alert alert-success" *ngIf="clientListShow"
+                                                    style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                    <div *ngFor="let data of clientList"
+                                                        (click)="selectclientName(data)" style="margin: 5px;">
+                                                        {{data.client_name}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Country</label>
+                                                <select class="form-control" [(ngModel)]="country"
+                                                    style="height: 38px !important;">
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of countryList" [value]="data.country"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.country}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">State</label>
+                                                <!-- <select class="form-control" [(ngModel)]="state" #myState
+                                                    (change)='getCity(myState.value)'>
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of stateList" [value]="data.state"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.state}}</option>
+                                                </select> -->
+
+                                                <input type="text" class="form-control" placeholder="Enter State Name"
+                                                    [(ngModel)]="state" (input)="searchState($event)"
+                                                    (focus)="focusStateList()">
+
+                                                <div class="alert alert-success" *ngIf="stateListShow"
+                                                    style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                    <div *ngFor="let data of stateList" (click)="getCity(data.state)"
+                                                        style="margin: 5px;">
+                                                        {{data.state}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">City</label>
+                                                <!-- <select class="form-control" [(ngModel)]="city">
+                                                    <option value="ALL" selected>All</option>
+                                                    <option *ngFor="let data of cityList" [value]="data.city"
+                                                        style="text-transform: capitalize;">
+                                                        {{data.city}}</option>
+                                                </select> -->
+
+                                                <input type="text" class="form-control" placeholder="Enter City Name"
+                                                    [(ngModel)]="city" (input)="searchCity($event)"
+                                                    (focus)="focusCityList()">
+
+                                                <div class="alert alert-success" *ngIf="cityListShow"
+                                                    style="font-size: 12px;padding: .5rem 1.25rem;">
+                                                    <div *ngFor="let data of cityList" (click)="selectCity(data.city)"
+                                                        style="margin: 5px;">
+                                                        {{data.city}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="margin-left: 12px;">
+                                                <label style="font-size: 14px;">Status</label>
+                                                <select class="form-control" [(ngModel)]="status"
+                                                    style="height: 38px !important;">
+                                                    <option value="ALL" selected>All</option>
+                                                    <option value="not_started">Not Started</option>
+                                                    <option value="in_progress">In Progress</option>
+                                                    <option value="completed">Completed</option>
+                                                </select>
+                                            </div>
+
+                                            <div>
+                                                <div style="display: inline-block;margin-bottom: .5rem;"></div>
+                                                <div type="button" class="site-button2" (click)="searchJob()">View</div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <table class="table-job-bx cv-manager company-manage-job">
+                                        <thead>
+                                            <tr>
+                                                <th class="feature">
+
+                                                </th>
+                                                <th>Client</th>
+                                                <th>Applicant Name</th>
+                                                <th>Appl Date</th>
+                                                <th>Appl No.</th>
+                                                <th>On-Boarding Status</th>
+                                                <th>Job Status</th>
+                                                <th>Form</th>
+                                                <th>Fill up</th>
+                                                <th style="text-align: center;">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr
+                                                *ngFor="let a of applicationList | paginate: { itemsPerPage: count, currentPage: page }">
+                                                <td class="feature">
+                                                </td>
+                                                <td class="application text-primary">{{a.client_name}}</td>
+                                                <td class="job-name">
+                                                    <a href="javascript:void(0);" data-toggle="modal"
+                                                        data-target="#applicanDetails"
+                                                        style="text-transform: capitalize;" class="link2"
+                                                        (click)="openFinish(a)">{{a.user_first_name}}
+                                                        {{a.user_middle_name}} {{a.user_last_name}}</a>
+                                                </td>
+                                                <td class="application text-primary">{{a.apply_date|date:'MM/dd/yyyy'}}
+                                                </td>
+                                                <td class="application text-primary">
+                                                    <a href="javascript:void(0);" data-toggle="modal"
+                                                        data-target="#applicationDetails" class="link"
+                                                        (click)="openFinish(a)">{{a.application_no}}</a>
+                                                </td>
+                                                <td class="expired pending" *ngIf="a.onboarding_status==='not_started'"
+                                                    style="text-transform: capitalize;">
+                                                    Not Started </td>
+                                                <td class="expired success" *ngIf="a.onboarding_status==='in_progress'"
+                                                    style="text-transform: capitalize;color: blue;">In Progress </td>
+                                                <td class="expired success" *ngIf="a.onboarding_status==='completed'"
+                                                    style="text-transform: capitalize;">Completed
+                                                </td>
+                                                <td class="expired success" *ngIf="a.onboarding_status==='cancelled'"
+                                                    style="text-transform: capitalize;color: red;">Cancelled
+                                                </td>
+                                                <td class="expired success" *ngIf="a.hiring_status==='hired'"
+                                                    style="text-transform: capitalize;">Hired
+                                                </td>
+                                                <td class="expired pending" *ngIf="a.hiring_status==='not_hired'"
+                                                    style="text-transform: capitalize;">Not-Hired
+                                                </td>
+
+                                                <td class="application text-primary">
+                                                    <div class="appCount" style="background-color: #563A10;"
+                                                        (click)="onBoard(a)" data-toggle="modal"
+                                                        data-target="#ViewonBoardFormModal"><i class="fa fa-pencil"></i>
+                                                    </div>
+                                                </td>
+                                                <td class="expired success" *ngIf="a.fill_up_status==='done'">
+                                                    Done
+                                                </td>
+                                                <td class="application text-primary" style="color: red !important;"
+                                                    *ngIf="a.fill_up_status==='not_done'">Not done
+                                                </td>
+                                                <td class="job-links">
+
+                                                    <div class="dropdown" *ngIf="a.onboarding_status!=='completed' || a.onboarding_status==='in_progress' || a.hiring_status!=='hired'
+                                                         || a.onboarding_status!=='cancelled'">
+                                                        <a href="javascript:void(0);">
+                                                            <i class="fa fa-cog"></i></a>
+                                                        <div class="dropdown-content">
+                                                            <a href="avascript:void(0);" (click)="onBoard(a)"
+                                                                data-toggle="modal" data-target="#onBoardModal"
+                                                                *ngIf="a.onboarding_status!=='completed'">On
+                                                                Boarding
+                                                            </a>
+                                                            <a href="avascript:void(0);" data-toggle="modal"
+                                                                data-target="#finishUnboarding" (click)="openFinish(a)"
+                                                                *ngIf="a.onboarding_status==='in_progress' && a.onboarding_status!=='cancelled'">Finish
+                                                                Onbrd
+
+
+                                                            </a>
+                                                            <a href="javascript:void(0);" data-toggle="modal"
+                                                                (click)="openFinish(a)" data-target="#hiring"
+                                                                *ngIf="(a.onboarding_status==='in_progress' || a.onboarding_status==='completed') && a.hiring_status!=='hired' && a.onboarding_status!=='cancelled'">Hire</a>
+
+                                                            <a href="avascript:void(0);" data-toggle="modal"
+                                                                data-target="#cancelUnboarding"
+                                                                (click)="openFinish(a)">Cancel Onbrd
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination">
+                                        <pagination-controls *ngIf="applicationList.length" class="product-pagination"
+                                            autoHide="false" maxSize="8" (pageChange)="onPageChanged($event)">
+                                        </pagination-controls>
+                                    </div>
+                                    <!-- <div class="pagination-bx m-t30 float-right">
+                                        <ul class="pagination">
+                                            <li class="previous"><a href="javascript:void(0);"><i
+                                                        class="ti-arrow-left"></i> Prev</a></li>
+                                            <li class="active"><a href="javascript:void(0);">1</a></li>
+                                            <li><a href="javascript:void(0);">2</a></li>
+                                            <li><a href="javascript:void(0);">3</a></li>
+                                            <li class="next"><a href="javascript:void(0);">Next <i
+                                                        class="ti-arrow-right"></i></a></li>
+                                        </ul>
+                                    </div> -->
+
+                                    <!-- On Boarding Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="onBoardModal" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">On Boarding
+                                                        Process
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #onBoardModalClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <form [formGroup]="onBoardForm">
+                                                        <div class="row">
+
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.job_no}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Applicant Name
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.user_first_name}}
+                                                                        {{details.user_middle_name}}
+                                                                        {{details.user_last_name}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.client_name}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Application No.
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.application_no}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="divider"></div>
+
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Proposed Start Date
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{pstart_date|date:'MM/dd/yyyy'}}</span>
+                                                                </div>
+
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Regular Bill Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{Rbill_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">OT Bill Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{OTbill_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Holiday Bill Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{Hbill_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Regular Pay Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{Rpay_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">OT Pay Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{OTpay_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Holiday Pay Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{Hpay_rate}}</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Proposed End Date
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{pend_date|date:'MM/dd/yyyy'}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Allowed Per Diem/Week
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{per_diem}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">OT Starts After (Hours)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{after_hour}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Contract Duration(Week)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{contract_duration}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Shift (Hours/Week)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{shift_hour}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Shift Details
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{shift_details}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">RTO
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{rto}}</span>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Pay Package/Miscellaneous
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{pay_package}}</span>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                            <div style="display: flex;width: 100%;">
+                                                                <div class="divider2"></div>
+                                                                <div
+                                                                    style="width: 32%;margin-top: 4px;text-align: center;">
+                                                                    <h5 class="font-weight-700 text-uppercase">
+                                                                        Document Required</h5>
+                                                                </div>
+                                                                <div class="divider2"></div>
+                                                            </div>
+
+                                                            <table class="table-job-bx cv-manager company-manage-job">
+
+                                                                <tbody>
+                                                                    <tr *ngFor="let a of docType;let i=index">
+                                                                        <td class="feature"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec'">
+                                                                            <div class="custom-control custom-checkbox">
+                                                                                <input type="checkbox"
+                                                                                    class="custom-control-input"
+                                                                                    id="check{{i}}" [checked]="a.value"
+                                                                                    (click)="entryValue(a)">
+
+                                                                                <label class="custom-control-label"
+                                                                                    for="check{{i}}"></label>
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <td class="application text-primary"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec'">
+                                                                            {{a.doc_name}}
+                                                                        </td>
+                                                                        <td class="expired pending"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec' && a.availability==='Unavailable'">
+                                                                            {{a.availability}}
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec' && a.availability==='Available'">
+                                                                            {{a.availability}}
+                                                                        </td>
+                                                                        <td class="application text-primary"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec'">
+                                                                            {{a.expiry_date|date:'MM/dd/yyyy'}}
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec' && a.rec_doc_status==='current' && a.availability==='Available'">
+                                                                            Current
+                                                                        </td>
+                                                                        <td class="expired pending"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec' && a.rec_doc_status!=='current' && a.availability==='Available'">
+                                                                            Previous
+                                                                        </td>
+                                                                        <td class="application text-light"
+                                                                            *ngIf="(a.availability==='Available') && (a.doc_name!=='other' || a.doc_name!=='facility_spec')">
+                                                                            <a type="button" class="btn btn-secondary"
+                                                                                style="margin-top: -5px;"
+                                                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.doc_name}}"
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer" download>
+                                                                                Download</a>
+                                                                        </td>
+
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+
+                                                            <div style="display: flex;width: 100%;">
+                                                                <div class="divider2"
+                                                                    style="width: 25%;margin-top: 4%;"></div>
+                                                                <div
+                                                                    style="width: 46%;margin-top: 22px;text-align: center;">
+                                                                    <h5 class="font-weight-700 text-uppercase">
+                                                                        Facility Specific Document Required</h5>
+                                                                </div>
+                                                                <div class="divider2"
+                                                                    style="width: 25%; margin-top: 4%;"></div>
+                                                            </div>
+
+                                                            <table class="table-job-bx cv-manager company-manage-job">
+
+                                                                <tbody>
+                                                                    <tr *ngFor="let a of fac_specc_doc;let i=index">
+                                                                        <td class="feature">
+                                                                            <div class="custom-control custom-checkbox">
+                                                                                <input type="checkbox"
+                                                                                    class="custom-control-input"
+                                                                                    id="check11{{i}}"
+                                                                                    [checked]="a.value"
+                                                                                    (click)="entryValue22(a)">
+
+                                                                                <label class="custom-control-label"
+                                                                                    for="check11{{i}}"></label>
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <td class="application text-primary">
+                                                                            {{a.rec_doc_name}}
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.availability==='Available'">
+                                                                            Available
+                                                                        </td>
+                                                                        <td class="expired pending"
+                                                                            *ngIf="a.availability==='Unavailable'">
+                                                                            Unavailable
+                                                                        </td>
+                                                                        <td class="application text-primary">
+                                                                            {{a.expiry_date|date:'MM/dd/yyyy'}}
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.rec_doc_status==='current'">
+                                                                            Current
+                                                                        </td>
+
+                                                                        <td class="application text-light"
+                                                                            *ngIf="a.availability==='Available'">
+                                                                            <a type="button" class="btn btn-secondary"
+                                                                                style="margin-top: -5px;"
+                                                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer" download>
+                                                                                Download</a>
+                                                                        </td>
+
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+
+                                                            <div style="margin-top: 15px;
+                                                            margin-left: 2%; ">
+                                                                <button type="button" class="site-button"
+                                                                    (click)="addNewSpecDoc()">Add New Document</button>
+                                                            </div>
+
+                                                            <div class="col-lg-6 col-md-6" *ngIf="showSecInput"
+                                                                style="margin-top: 15px;">
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Enter document name"
+                                                                        [(ngModel)]="doc_name_spec"
+                                                                        [ngModelOptions]="{standalone: true}"
+                                                                        onkeypress="return /[0-9a-zA-Z]/i.test(event.key)">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3 col-md-3" *ngIf="showSecInput"
+                                                                style="margin-top: 15px;">
+                                                                <button type="button" class="site-button"
+                                                                    (click)="entryValueSpec()">Add</button>
+                                                            </div>
+
+
+
+                                                            <div style="display: flex;width: 100%;">
+                                                                <div class="divider2"
+                                                                    style="width: 25%;margin-top: 4%;"></div>
+                                                                <div
+                                                                    style="width: 46%;margin-top: 22px;text-align: center;">
+                                                                    <h5 class="font-weight-700 text-uppercase">
+                                                                        Other Document Required</h5>
+                                                                </div>
+                                                                <div class="divider2"
+                                                                    style="width: 25%; margin-top: 4%;"></div>
+                                                            </div>
+
+                                                            <table class="table-job-bx cv-manager company-manage-job">
+
+                                                                <tbody>
+                                                                    <tr *ngFor="let a of others_doc;let i=index">
+                                                                        <td class="feature">
+                                                                            <div class="custom-control custom-checkbox">
+                                                                                <input type="checkbox"
+                                                                                    class="custom-control-input"
+                                                                                    id="check3{{i}}" [checked]="a.value"
+                                                                                    (click)="entryValue3(a)">
+
+                                                                                <label class="custom-control-label"
+                                                                                    for="check3{{i}}"></label>
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <td class="application text-primary">
+                                                                            {{a.rec_doc_name}}
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.availability==='Available'">
+                                                                            Available
+                                                                        </td>
+                                                                        <td class="expired pending"
+                                                                            *ngIf="a.availability==='Unavailable'">
+                                                                            Unavailable
+                                                                        </td>
+                                                                        <td class="application text-primary">
+                                                                            {{a.expiry_date|date:'MM/dd/yyyy'}}
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.rec_doc_status==='current'">
+                                                                            Current
+                                                                        </td>
+
+
+                                                                        <td class="application text-light"
+                                                                            *ngIf="a.availability==='Available'">
+                                                                            <a type="button" class="btn btn-secondary"
+                                                                                style="margin-top: -5px;"
+                                                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer" download>
+                                                                                Download</a>
+                                                                        </td>
+
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+
+                                                            <div style="margin-top: 15px;
+                                                            margin-left: 2%; ">
+                                                                <button type="button" class="site-button"
+                                                                    (click)="addNewOtherDoc()">Add New Document</button>
+                                                            </div>
+
+                                                            <div class="col-lg-6 col-md-6" *ngIf="showtrdInput"
+                                                                style="margin-top: 15px;">
+                                                                <div class="form-group">
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Enter document name"
+                                                                        [(ngModel)]="doc_name_Other"
+                                                                        [ngModelOptions]="{standalone: true}"
+                                                                        onkeypress="return /[0-9a-zA-Z]/i.test(event.key)">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-3 col-md-3" *ngIf="showtrdInput"
+                                                                style="margin-top: 15px;">
+                                                                <button type="button" class="site-button"
+                                                                    (click)="entryValueOther()">Add</button>
+                                                            </div>
+
+
+
+                                                            <div class="col-lg-12 col-md-12" style="margin-top: 10px;">
+                                                                <div class="form-group">
+                                                                    <label>Comments</label>
+                                                                    <textarea type="text" class="form-control" rows="4"
+                                                                        cols="50" placeholder="Enter Comment"
+                                                                        formControlName="comment"
+                                                                        [(ngModel)]="comment"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>Due Date<span
+                                                                            style="color: red;">*</span></label>
+
+
+                                                                    <dp-date-picker dir="ltr" theme="dp-material"
+                                                                        placeholder="MM/DD/YYYY" required="true"
+                                                                        [(ngModel)]="due_date"
+                                                                        formControlName="due_date"
+                                                                        [config]="datePickerConfig">
+                                                                    </dp-date-picker>
+
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Back</button>
+                                                    <button type="button" class="site-button" (click)="updateDetails()"
+                                                        [disabled]="!onBoardForm.valid"
+                                                        [ngStyle]="{'cursor': (!onBoardForm.valid? 'not-allowed':'pointer')}">Send
+                                                        to Applicant</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- View On Boarding Form Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="ViewonBoardFormModal" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">On Boarding
+                                                        Form
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close" #ViewonBoardFormModalClose>
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <form [formGroup]="onBoardForm">
+                                                        <div class="row">
+
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Job ID :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.job_no}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Applicant Name
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.user_first_name}}
+                                                                        {{details.user_middle_name}}
+                                                                        {{details.user_last_name}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Client :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.client_name}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Application No.
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{details.application_no}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="divider"></div>
+
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Proposed Start Date
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{pstart_date|date:'MM/dd/yyyy'}}</span>
+                                                                </div>
+
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Regular Bill Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{Rbill_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">OT Bill Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{OTbill_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Holiday Bill Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{Hbill_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Regular Pay Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{Rpay_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">OT Pay Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{OTpay_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Holiday Pay Rate ($/Hr)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{Hpay_rate}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Comment
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{comment}}</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Proposed End Date
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{pend_date|date:'MM/dd/yyyy'}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Allowed Per Diem/Week
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{per_diem}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">OT Starts After (Hours)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{after_hour}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Contract Duration(Week)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{contract_duration}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Shift (Hours/Week)
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{shift_hour}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Shift Details
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{shift_details}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">RTO
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{rto}}</span>
+                                                                </div>
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Due Date
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{due_date|date:'MM/dd/yyyy'}}</span>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                <div class="clearfix m-b20" style="display: flex;">
+                                                                    <label class="m-b0">Pay Package/Miscellaneous
+                                                                        :&nbsp;&nbsp;</label>
+                                                                    <span class="clearfix font-13"
+                                                                        style="margin-top: 3px;">{{pay_package}}</span>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                            <div style="display: flex;width: 100%;">
+                                                                <div class="divider2"></div>
+                                                                <div
+                                                                    style="width: 32%;margin-top: 4px;text-align: center;">
+                                                                    <h5 class="font-weight-700 text-uppercase">
+                                                                        Document Required</h5>
+                                                                </div>
+                                                                <div class="divider2"></div>
+                                                            </div>
+
+                                                            <table class="table-job-bx cv-manager company-manage-job">
+
+                                                                <tbody>
+                                                                    <tr *ngFor="let a of docType;let i=index">
+                                                                        <td class="feature"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec'">
+
+                                                                        </td>
+
+                                                                        <td class="application text-primary"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec'">
+                                                                            {{a.doc_name}}
+                                                                        </td>
+                                                                        <td class="expired pending"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec' && a.availability==='Unavailable'">
+                                                                            {{a.availability}}
+                                                                        </td>
+
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec' && a.availability==='Available'">
+                                                                            {{a.availability}}
+                                                                        </td>
+                                                                        <td class="application text-primary"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec' && a.availability==='Available'">
+
+                                                                            <dp-date-picker dir="ltr"
+                                                                                theme="dp-material"
+                                                                                placeholder="Enter Expiry Date"
+                                                                                required="true"
+                                                                                (onSelect)="selectExpiryDate(a,$event)"
+                                                                                [config]="datePickerConfig"
+                                                                                style="width: 200px;margin-top: 10px;">
+                                                                            </dp-date-picker>
+
+                                                                            &nbsp;<span *ngIf="a.expiry_date"
+                                                                                style="color: red;">({{a.expiry_date|date:'MM/dd/yyyy'}})</span>
+
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec' && a.rec_doc_status==='current' && a.availability==='Available'">
+                                                                            Current
+                                                                        </td>
+                                                                        <td class="expired pending"
+                                                                            *ngIf="a.doc_name!=='other' && a.doc_name!=='facility_spec' && a.rec_doc_status!=='current' && a.availability==='Available'">
+                                                                            Previous
+                                                                        </td>
+                                                                        <td class="application text-light"
+                                                                            *ngIf="(a.availability==='Available') && (a.doc_name!=='other' || a.doc_name!=='facility_spec')">
+                                                                            <a type="button" class="btn btn-secondary"
+                                                                                style="margin-top: -5px;"
+                                                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.doc_name}}"
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer" download>
+                                                                                Download</a>
+                                                                        </td>
+
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+
+                                                            <div style="display: flex;width: 100%;">
+                                                                <div class="divider2"
+                                                                    style="width: 25%;margin-top: 4%;"></div>
+                                                                <div
+                                                                    style="width: 46%;margin-top: 22px;text-align: center;">
+                                                                    <h5 class="font-weight-700 text-uppercase">
+                                                                        Facility Specific Document Required</h5>
+                                                                </div>
+                                                                <div class="divider2"
+                                                                    style="width: 25%; margin-top: 4%;"></div>
+                                                            </div>
+
+                                                            <table class="table-job-bx cv-manager company-manage-job">
+
+                                                                <tbody>
+                                                                    <tr *ngFor="let a of fac_specc_doc;let i=index">
+                                                                        <td class="feature">
+
+                                                                        </td>
+
+                                                                        <td class="application text-primary">
+                                                                            {{a.rec_doc_name}}
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.availability==='Available'">
+                                                                            Available
+                                                                        </td>
+                                                                        <td class="expired pending"
+                                                                            *ngIf="a.availability==='Unavailable'">
+                                                                            Unavailable
+                                                                        </td>
+
+
+                                                                        <td class="application text-primary"
+                                                                            *ngIf="a.availability==='Available'">
+
+                                                                            <dp-date-picker dir="ltr"
+                                                                                theme="dp-material"
+                                                                                placeholder="Enter Expiry Date"
+                                                                                required="true"
+                                                                                (onSelect)="selectExpiryDate(a,$event)"
+                                                                                [config]="datePickerConfig"
+                                                                                style="width: 200px;margin-top: 10px;">
+                                                                            </dp-date-picker>
+
+                                                                            &nbsp;<span *ngIf="a.expiry_date"
+                                                                                style="color: red;">({{a.expiry_date|date:'MM/dd/yyyy'}})</span>
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.rec_doc_status==='current'">
+                                                                            Current
+                                                                        </td>
+                                                                        <td class="application text-light"
+                                                                            *ngIf="a.availability==='Available'">
+                                                                            <a type="button" class="btn btn-secondary"
+                                                                                style="margin-top: -5px;"
+                                                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer" download>
+                                                                                Download</a>
+                                                                        </td>
+
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+
+
+                                                            <div style="display: flex;width: 100%;">
+                                                                <div class="divider2"
+                                                                    style="width: 25%;margin-top: 4%;"></div>
+                                                                <div
+                                                                    style="width: 46%;margin-top: 22px;text-align: center;">
+                                                                    <h5 class="font-weight-700 text-uppercase">
+                                                                        Other Document Required</h5>
+                                                                </div>
+                                                                <div class="divider2"
+                                                                    style="width: 25%; margin-top: 4%;"></div>
+                                                            </div>
+
+                                                            <table class="table-job-bx cv-manager company-manage-job">
+
+                                                                <tbody>
+                                                                    <tr *ngFor="let a of others_doc;let i=index">
+                                                                        <td class="feature">
+
+                                                                        </td>
+
+                                                                        <td class="application text-primary">
+                                                                            {{a.rec_doc_name}}
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.availability==='Available'">
+                                                                            Available
+                                                                        </td>
+                                                                        <td class="expired pending"
+                                                                            *ngIf="a.availability==='Unavailable'">
+                                                                            Unavailable
+                                                                        </td>
+                                                                        <td class="application text-primary"
+                                                                            *ngIf="a.availability==='Available'">
+                                                                            <dp-date-picker dir="ltr"
+                                                                                theme="dp-material"
+                                                                                placeholder="Enter Expiry Date"
+                                                                                required="true"
+                                                                                (onSelect)="selectExpiryDate(a,$event)"
+                                                                                [config]="datePickerConfig"
+                                                                                style="width: 200px;margin-top: 10px;">
+                                                                            </dp-date-picker>
+
+                                                                            &nbsp;<span *ngIf="a.expiry_date"
+                                                                                style="color: red;">({{a.expiry_date|date:'MM/dd/yyyy'}})</span>
+                                                                        </td>
+                                                                        <td class="expired success"
+                                                                            *ngIf="a.rec_doc_status==='current'">
+                                                                            Current
+                                                                        </td>
+                                                                        <td class="application text-light"
+                                                                            *ngIf="a.availability==='Available'">
+                                                                            <a type="button" class="btn btn-secondary"
+                                                                                style="margin-top: -5px;"
+                                                                                href="https://vishusa.com/vcsapi/download/{{a.rec_doc_id}}/{{user_id}}/{{a.rec_doc_name}}"
+                                                                                target="_blank"
+                                                                                rel="noopener noreferrer" download>
+                                                                                Download</a>
+                                                                        </td>
+
+
+                                                                    </tr>
+
+                                                                </tbody>
+                                                            </table>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="updateExpityDate()">Update Expiry
+                                                        Date</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Finish Unboarding Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="finishUnboarding" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Finish
+                                                        Unboarding
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #closeFinish aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="clearfix m-b20" style="display: flex;">
+                                                            <label class="m-b0">Name :&nbsp;&nbsp;</label>
+                                                            <span class="clearfix font-13"
+                                                                style="margin-top: 3px;">{{details.user_first_name}}
+                                                                {{details.user_middle_name}}
+                                                                {{details.user_last_name}}</span>
+                                                        </div>
+                                                        <div class="clearfix m-b20" style="display: flex;">
+                                                            <label class="m-b0">Client
+                                                                :&nbsp;&nbsp;</label>
+                                                            <span class="clearfix font-13"
+                                                                style="margin-top: 3px;">{{details.client_name}}</span>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">BacK</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="finishOnboarding()">Finish On Boarding</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- Hiring Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="hiring" tabindex="-1" role="dialog"
+                                        aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Hire
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal" #hireClose
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="clearfix m-b20" style="display: flex;">
+                                                            <label class="m-b0">Name :&nbsp;&nbsp;</label>
+                                                            <span class="clearfix font-13"
+                                                                style="margin-top: 3px;">{{details.user_first_name}}
+                                                                {{details.user_middle_name}}
+                                                                {{details.user_last_name}}</span>
+                                                        </div>
+                                                        <div class="clearfix m-b20" style="display: flex;">
+                                                            <label class="m-b0">Client
+                                                                :&nbsp;&nbsp;</label>
+                                                            <span class="clearfix font-13"
+                                                                style="margin-top: 3px;">{{details.client_name}}</span>
+                                                        </div>
+                                                        <div class="clearfix m-b20" style="display: flex;">
+                                                            <label class="m-b0">On Boarding Status
+                                                                :&nbsp;&nbsp;</label>
+                                                            <span class="clearfix font-13"
+                                                                style="margin-top: 3px;">{{details.onboarding_status}}</span>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Assignment Start Date<span
+                                                                    style="color: red;">*</span></label>
+
+
+                                                            <dp-date-picker dir="ltr" theme="dp-material"
+                                                                placeholder="MM/DD/YYYY" required="true"
+                                                                [(ngModel)]="assign_start_date"
+                                                                [config]="datePickerConfig">
+                                                            </dp-date-picker>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Assignment End Date<span
+                                                                    style="color: red;">*</span></label>
+
+
+                                                            <dp-date-picker dir="ltr" theme="dp-material"
+                                                                placeholder="MM/DD/YYYY" required="true"
+                                                                [(ngModel)]="assign_end_date"
+                                                                [config]="datePickerConfig">
+                                                            </dp-date-picker>
+
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">BacK</button>
+                                                    <button type="button" class="site-button" (click)="hiring()"
+                                                        [disabled]="!assign_start_date"
+                                                        [ngStyle]="{'cursor': (!assign_start_date? 'not-allowed':'pointer')}">Hire</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!-- cancel Onboard Modal -->
+                                    <div class="modal fade modal-bx-info editor" id="cancelUnboarding" tabindex="-1"
+                                        role="dialog" aria-labelledby="EducationModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="EducationModalLongTitle">Cancel
+                                                        Onboarding
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        #cancelOnboardClose aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+
+                                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                                        <div class="clearfix m-b20" style="display: flex;">
+                                                            <label class="m-b0">Name :&nbsp;&nbsp;</label>
+                                                            <span class="clearfix font-13"
+                                                                style="margin-top: 3px;">{{details.user_first_name}}
+                                                                {{details.user_middle_name}}
+                                                                {{details.user_last_name}}</span>
+                                                        </div>
+                                                        <div class="clearfix m-b20" style="display: flex;">
+                                                            <label class="m-b0">Client
+                                                                :&nbsp;&nbsp;</label>
+                                                            <span class="clearfix font-13"
+                                                                style="margin-top: 3px;">{{details.client_name}}</span>
+                                                        </div>
+                                                        <div class="clearfix m-b20" style="display: flex;">
+                                                            <label class="m-b0">On Boarding Status
+                                                                :&nbsp;&nbsp;</label>
+                                                            <span class="clearfix font-13"
+                                                                style="margin-top: 3px;">{{details.onboarding_status}}</span>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-lg-6 col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Onboarding Cancel Date<span
+                                                                    style="color: red;">*</span></label>
+
+
+                                                            <dp-date-picker dir="ltr" theme="dp-material"
+                                                                placeholder="MM/DD/YYYY" required="true"
+                                                                [(ngModel)]="onboard_cancel_date"
+                                                                [config]="datePickerConfig">
+                                                            </dp-date-picker>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="site-button"
+                                                        data-dismiss="modal">BacK</button>
+                                                    <button type="button" class="site-button"
+                                                        (click)="cancelOnboarding()" [disabled]="!onboard_cancel_date"
+                                                        [ngStyle]="{'cursor': (!onboard_cancel_date? 'not-allowed':'pointer')}">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--View Applicant details Modal -->
+                                    <div class="modal fade modal-bx-info" id="applicanDetails" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <h5 class="modal-title" *ngIf="details">Applicant Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <ul>
+                                                        <li><strong>Applicant Name :</strong>
+                                                            <p> {{details.user_first_name}} {{details.user_middle_name}}
+                                                                {{details.user_last_name}}</p>
+                                                        </li>
+                                                        <li style="text-transform: none;"><strong>Email :</strong>
+                                                            <p>{{details.email}}</p>
+                                                        </li>
+                                                        <li><strong>Phone :</strong>
+                                                            <p>{{details.phone}}
+                                                            </p>
+                                                        </li>
+                                                        <li><strong>Date of Birth :</strong>
+                                                            <p>{{details.dob|date:'MM/dd/yyyy'}}</p>
+                                                        </li>
+                                                        <li><strong>SSN (Last 4 Digits) :</strong>
+                                                            <p>{{details.ssn_4digit}}</p>
+                                                        </li>
+                                                        <li><strong>Profession :</strong>
+                                                            <p>{{details.profession_name}}</p>
+                                                        </li>
+                                                        <li><strong>Speciality :</strong>
+                                                            <p>{{details.speciality_name}}</p>
+                                                        </li>
+                                                        <li><strong>Apply status :</strong>
+                                                            <p>{{details.apply_status}}</p>
+                                                        </li>
+                                                        <li><strong>Current Location :</strong>
+                                                            <p>{{details.current_location}}</p>
+                                                        </li>
+                                                        <li><strong>Desired Location 1:</strong>
+                                                            <p>{{details.desired_location_1}}</p>
+                                                        </li>
+                                                        <li><strong>Desired Location 2:</strong>
+                                                            <p>{{details.desired_location_2}}</p>
+                                                        </li>
+                                                        <li><strong>Employment Preferences:</strong>
+                                                            <p>{{details.employement_preference}}</p>
+                                                        </li>
+
+                                                        <li><strong>Applicant Availability :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.applicant_availability}}</p>
+                                                        </li>
+                                                        <li><strong>Applicant Message :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.applicant_message}}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                    <!--View Application details Modal -->
+                                    <div class="modal fade modal-bx-info" id="applicationDetails" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document" style="max-width: 60% !important;">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+
+                                                    <h5 class="modal-title" *ngIf="details">Application Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" *ngIf="details">
+                                                    <ul>
+                                                        <li><strong>Applicant No. :</strong>
+                                                            <p> {{details.user_first_name}}</p>
+                                                        </li>
+                                                        <li style="text-transform: none;"><strong>Application Stage
+                                                                :</strong>
+                                                            <p>{{details.application_stage}}</p>
+                                                        </li>
+                                                        <li><strong>Application Status :</strong>
+                                                            <p>{{details.application_status}}
+                                                            </p>
+                                                        </li>
+                                                        <li><strong>Date of Application :</strong>
+                                                            <p>{{details.apply_date|date:'MM/dd/yyyy'}}</p>
+                                                        </li>
+                                                        <li><strong>Applied By :</strong>
+                                                            <p>{{details.applied_by}}</p>
+                                                        </li>
+                                                        <li><strong>Apply status :</strong>
+                                                            <p>{{details.apply_status}}</p>
+                                                        </li>
+                                                        <li><strong>Client :</strong>
+                                                            <p>{{details.client_name}}</p>
+                                                        </li>
+                                                        <li><strong>Country :</strong>
+                                                            <p>{{details.country}}</p>
+                                                        </li>
+                                                        <li><strong>State :</strong>
+                                                            <p>{{details.state}}</p>
+                                                        </li>
+                                                        <li><strong>City :</strong>
+                                                            <p>{{details.city}}</p>
+                                                        </li>
+
+
+                                                        <li><strong>Job Description :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.job_description}}</p>
+                                                        </li>
+                                                        <li><strong>Required Information :</strong>
+                                                            <p style="word-break: break-all;">
+                                                                {{details.req_information}}</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal End -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Browse Jobs END -->
+            </div>
+        </div>
+        <!-- Content END-->
+        <button class="scroltop fa fa-chevron-up"></button>
+    </div>
+
+
+</body>
