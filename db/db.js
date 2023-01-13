@@ -1,38 +1,17 @@
 const mysql = require('mysql');
+const dotenv = require('dotenv');
 
-/////For mysql single connection
+dotenv.config();
 
-// const db=mysql.createConnection({
+const db = mysql.createPool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  connectionLimit: process.env.DB_CONNECTION_LIMIT,
+  database: process.env.DB_NAME,
+});
 
-//      host:'localhost',
-//      user:'root',
-//      password:'password',
-// 	database:'vcsDB'
-
-// });
-
-// db.connect((err)=>{
-//     if(err){
-//         //console.log(err);
-//     }
-//     else{
-//         //console.log('DB connect');
-//     }
-// });
-
-dbConnectionInfo = {
-  host: 'localhost',
-  port: '3306',
-  user: 'root',
-  password: 'password',
-  connectionLimit: 10, //mysql connection pool length
-  database: 'elitemente-db',
-};
-
-//create mysql connection pool
-const db = mysql.createPool(dbConnectionInfo);
-
-// Attempt to catch disconnects
 db.on('connection', function (connection) {
   console.log('DB Connection established');
 

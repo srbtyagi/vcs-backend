@@ -1,0 +1,278 @@
+===Database vcsdb
+
+== Table structure for table tbl_action
+
+|------
+|Column|Type|Null|Default
+|------
+|//**action_id**//|int(11)|No|
+|action_name|varchar(100)|No|
+|submodule_id|int(11)|No|
+== Table structure for table tbl_application
+
+|------
+|Column|Type|Null|Default
+|------
+|//**application_id**//|int(11)|No|
+|recruitee_id|int(11)|No|
+|application_stage|varchar(80)|No|applied
+|application_status|varchar(40)|No|under_review
+|applicant_message|varchar(500)|Yes|NULL
+|applicant_availability|varchar(100)|Yes|NULL
+|applicant_reply|varchar(500)|Yes|NULL
+|job_id|int(11)|No|
+|application_no|varchar(50)|No|
+|applied_by|varchar(20)|No|
+|apply_date|varchar(50)|No|
+|sort_listing_date|varchar(50)|Yes|NULL
+|offering_date|varchar(50)|Yes|NULL
+|applicant_reply_date|varchar(50)|Yes|NULL
+|onboarding_date|varchar(50)|Yes|NULL
+|hiring_date|varchar(50)|Yes|NULL
+|remarks|varchar(1000)|Yes|NULL
+|review_status|varchar(10)|No|no
+|remarks_date|varchar(1000)|Yes|NULL
+== Table structure for table tbl_app_action
+
+|------
+|Column|Type|Null|Default
+|------
+|//**app_action_id**//|int(11)|No|
+|app_action_name|varchar(100)|No|
+== Table structure for table tbl_app_user_access
+
+|------
+|Column|Type|Null|Default
+|------
+|user_id|int(11)|No|
+|app_action_id|int(11)|No|
+== Table structure for table tbl_client
+
+|------
+|Column|Type|Null|Default
+|------
+|//**client_id**//|int(11)|No|
+|user_id|int(11)|No|
+|client_name|varchar(100)|No|
+|client_status|varchar(10)|No|active
+== Table structure for table tbl_company
+
+|------
+|Column|Type|Null|Default
+|------
+|//**company_id**//|int(11)|No|
+|company_name|varchar(100)|No|
+|company_addr|varchar(400)|No|
+|company_phone|varchar(80)|No|
+|company_email|varchar(80)|No|
+|company_status|varchar(10)|No|
+|company_logo_image_id|int(11)|Yes|NULL
+== Table structure for table tbl_department
+
+|------
+|Column|Type|Null|Default
+|------
+|//**dept_id**//|int(11)|No|
+|company_id|int(11)|No|
+|dept_name|varchar(100)|No|
+|dept_status|varchar(10)|No|
+== Table structure for table tbl_employee
+
+|------
+|Column|Type|Null|Default
+|------
+|//**user_id**//|int(11)|No|
+|employee_code|varchar(30)|Yes|NULL
+|role_id|int(11)|No|
+|signatory_flag|varchar(10)|No|
+|dept_id|int(11)|No|
+|designation|varchar(100)|Yes|NULL
+|date_of_joining|varchar(30)|Yes|NULL
+|supervisor_code|varchar(10)|Yes|NULL
+|image_id|int(11)|Yes|NULL
+== Table structure for table tbl_image
+
+|------
+|Column|Type|Null|Default
+|------
+|//**image_id**//|int(11)|No|
+|image_name|varchar(100)|No|
+|image_url|varchar(500)|No|
+== Table structure for table tbl_job
+
+|------
+|Column|Type|Null|Default
+|------
+|//**job_id**//|int(11)|No|
+|job_status|varchar(30)|No|
+|position_type|varchar(30)|No|
+|client_id|int(11)|No|
+|job_no|varchar(20)|No|
+|job_title|varchar(100)|No|
+|job_type|varchar(20)|No|
+|country|varchar(20)|No|
+|state|varchar(20)|No|
+|city|varchar(20)|No|
+|bill_rate|varchar(30)|No|
+|blended_pay_rate|varchar(30)|No|
+|at_holiday_rate|varchar(30)|No|
+|regular_pay_rate|varchar(30)|No|
+|job_description|varchar(900)|Yes|NULL
+|job_post_date|varchar(100)|No|
+|req_information|varchar(500)|Yes|NULL
+|job_post_by|varchar(30)|No|
+|system_name|varchar(200)|No|
+|job_sector|int(11)|No|
+== Table structure for table tbl_job_sector
+
+|------
+|Column|Type|Null|Default
+|------
+|//**job_sector_id**//|int(11)|No|
+|job_sector_name|varchar(50)|No|
+|job_sector_status|varchar(20)|No|active
+== Table structure for table tbl_job_type
+
+|------
+|Column|Type|Null|Default
+|------
+|//**job_type_id**//|int(11)|No|
+|job_type_name|varchar(50)|No|
+|job_type_status|varchar(20)|No|active
+== Table structure for table tbl_module
+
+|------
+|Column|Type|Null|Default
+|------
+|//**module_id**//|int(11)|No|
+|module_name|varchar(100)|No|
+== Table structure for table tbl_position_type
+
+|------
+|Column|Type|Null|Default
+|------
+|//**position_type_id**//|int(11)|No|
+|position_type_name|varchar(50)|No|
+|position_type_status|varchar(20)|No|active
+== Table structure for table tbl_preference
+
+|------
+|Column|Type|Null|Default
+|------
+|//**preference_id**//|int(11)|No|
+|preference_name|varchar(50)|No|
+== Table structure for table tbl_profession
+
+|------
+|Column|Type|Null|Default
+|------
+|//**profession_id**//|int(11)|No|
+|profession_name|varchar(50)|No|
+|profession_status|varchar(20)|No|active
+== Table structure for table tbl_recruitee
+
+|------
+|Column|Type|Null|Default
+|------
+|//**recruitee_id**//|int(11)|No|
+|user_id|int(11)|No|
+|**recruitee_code**|varchar(20)|No|
+|apply_status|varchar(50)|No|
+|recruit_status|varchar(50)|No|
+== Table structure for table tbl_recruitee_details
+
+|------
+|Column|Type|Null|Default
+|------
+|//**recruitee_id**//|int(11)|No|
+|dob|varchar(50)|Yes|NULL
+|profession|int(11)|Yes|NULL
+|speciality|int(11)|Yes|NULL
+|current_location|varchar(500)|No|
+|desired_location_1|varchar(100)|Yes|NULL
+|desired_location_2|varchar(100)|Yes|NULL
+|employement_preference|varchar(100)|No|
+|ssn_4digit|varchar(20)|Yes|NULL
+== Table structure for table tbl_recruitee_document
+
+|------
+|Column|Type|Null|Default
+|------
+|//**rec_doc_id**//|int(11)|No|
+|rec_doc_type|varchar(20)|No|
+|doc_id|int(11)|Yes|NULL
+|rec_doc_name|varchar(100)|Yes|NULL
+|rec_doc_path|varchar(300)|No|
+|recruitee_id|int(11)|No|
+== Table structure for table tbl_recruitee_resume
+
+|------
+|Column|Type|Null|Default
+|------
+|//**recruitee_id**//|int(11)|No|
+|resume_doc_path|varchar(500)|No|
+== Table structure for table tbl_role
+
+|------
+|Column|Type|Null|Default
+|------
+|//**role_id**//|int(11)|No|
+|role_name|varchar(100)|No|
+|role_status|varchar(200)|No|
+== Table structure for table tbl_role_access
+
+|------
+|Column|Type|Null|Default
+|------
+|role_id|int(11)|No|
+|action_id|int(11)|No|
+== Table structure for table tbl_speciality
+
+|------
+|Column|Type|Null|Default
+|------
+|//**speciality_id**//|int(11)|No|
+|speciality_name|varchar(50)|No|
+|speciality_status|varchar(20)|No|active
+== Table structure for table tbl_standard_document
+
+|------
+|Column|Type|Null|Default
+|------
+|//**doc_id**//|int(11)|No|
+|doc_name|varchar(100)|No|
+|doc_status|varchar(300)|No|
+== Table structure for table tbl_submodule
+
+|------
+|Column|Type|Null|Default
+|------
+|//**submodule_id**//|int(11)|No|
+|module_id|int(11)|No|
+|submodule_name|varchar(100)|No|
+== Table structure for table tbl_user
+
+|------
+|Column|Type|Null|Default
+|------
+|//**user_id**//|int(11)|No|
+|user_first_name|varchar(100)|No|
+|user_middle_name|varchar(100)|Yes|NULL
+|user_last_name|varchar(100)|No|
+|email|varchar(60)|No|
+|password|varchar(200)|No|
+|passcode|int(11)|No|
+|user_status|varchar(10)|No|
+|phone|varchar(20)|Yes|NULL
+|user_type|varchar(20)|No|
+|changed_by|varchar(5)|Yes|NULL
+|changed_date|varchar(50)|Yes|NULL
+|login_block_status|varchar(10)|No|
+|password_change_date|varchar(50)|Yes|NULL
+== Table structure for table tbl_user_access
+
+|------
+|Column|Type|Null|Default
+|------
+|user_id|int(11)|No|
+|action_id|int(11)|No|

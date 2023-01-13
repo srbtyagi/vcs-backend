@@ -1,0 +1,160 @@
+create table tbl_user (
+	user_id int not null primary key auto_increment,
+	user_first_name varchar(100) not null,
+	user_middle_name  varchar(100) not null,
+	user_last_name  varchar(100) not null,
+	email  varchar(60) not null, 
+	password  varchar(200) not null,
+	passcode int,
+	user_status  varchar(10) not null,
+	phone  varchar(20),
+	user_type  varchar(20),
+	changed_by varchar(5), 
+	changed_date  varchar(50), 
+	login_block_status  varchar(10) not null,
+	password_change_date datetime not null  DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+create table tbl_client (
+	client_id int not null primary key auto_increment,
+	user_id int not null,
+	client_name varchar(100) not null,
+	client_status varchar(10) not null
+);
+
+create table tbl_role (
+	role_id int not null primary key auto_increment,
+	role_name varchar(100) not null,
+	role_status varchar(200) not null
+);
+
+create table tbl_role_access (
+	role_id int not null ,
+	action_id int not null 
+
+);
+
+create table tbl_employee (
+
+	user_id int not null primary key,
+	employee_code int not null unique,
+	role_id int not null,
+	signatory_flag varchar(10) not null,
+	dept_id int not null, 
+	designation  varchar(100),
+	date_of_joining  varchar(30),
+	supervisor_code varchar(10) ,
+	image_id int
+
+);
+
+create table tbl_department (
+
+	dept_id int not null primary key auto_increment,
+	company_id int not null,
+	dept_name varchar(100) not null,
+	dept_status  varchar(10) not null
+);
+
+////
+create table tbl_company (
+
+
+	company_id int not null primary key auto_increment,
+	company_name varchar(100) not null,
+	company_addr varchar(80) not null,
+	company_phone varchar(80) not null,
+	company_email varchar(80) not null,
+	company_status  varchar(10) not null,
+	company_logo_image_id int 
+);
+
+create table tbl_image (
+
+	image_id int not null primary key auto_increment,
+	image_name varchar(100) not null,
+	image_url varchar(500) not null
+	
+);
+
+create table tbl_module (
+
+	module_id int not null primary key auto_increment,
+	module_name varchar(100) not null
+	
+	
+);
+
+create table tbl_submodule (
+
+	submodule_id int not null primary key auto_increment,
+	module_id int not null,
+	submodule_name varchar(100) not null
+	
+	
+);
+create table tbl_action (
+
+	action_id int not null primary key auto_increment,
+	action_name varchar(100) not null,
+	submodule_id int not null
+	
+);
+
+create table tbl_user_access (
+
+	user_id int not null primary key ,
+	action_id int not null
+	
+);
+
+create table tbl_job (
+
+	job_id int not null primary key auto_increment,
+	job_status varchar(30) not null,
+	position_type varchar(30) not null,
+	client_id int not null,
+	job_no int not null unique,
+	job_title varchar(100) not null,
+	job_type varchar(20) not null,
+	country varchar(20) not null,
+	state varchar(20) not null,
+	city varchar(20) not null ,
+	bill_rate  varchar(20) not null,
+	blended_pay_rate varchar(20) not null,
+	at_holiday_rate varchar(20) not null,
+	regular_pay_rate varchar(20) not null,
+	job_description varchar(900),
+	job_post_date datetime not null,
+	req_information varchar(500)
+	
+);
+
+create table tbl_recruitee(
+
+	recruitee_id int not null primary key auto_increment,
+	user_id int not null,
+	recruitee_code  varchar(20) unique not null,
+	apply_status varchar(50) not null,
+	recruit_status varchar(50) not null
+	
+);
+create table tbl_recruitee_details(
+
+	recruitee_id int not null primary key ,
+	dob datetime not null,
+	profession varchar(50) not null,
+	speciality varchar(50) not null,
+	current_location varchar(500) not null ,
+	desired_location_1 varchar(500) not null,
+	desired_location_2 varchar(500) not null,
+	employement_preference varchar(100) not null
+	
+);
+
+create table tbl_recruitee_resume (
+
+	recruitee_id int not null primary key ,
+	resume_doc_path varchar(500) not null
+	
+);

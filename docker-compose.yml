@@ -1,29 +1,51 @@
 version: '3.8'
 services:
-  backend:
-    depends_on:
-      - db
-    build: .
-    env_file: ./.env
+  mysqldb:
+    container_name: em-mysql-container
+    image: mysql:8.0
+    restart: unless-stopped
+    volumes:
+      - ./vcsdb.sql:/docker-entrypoint-initdb.d/0_init.sql
+      - $HOME/database:/var/lib/mysql
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
     environment:
-      DB_HOST: '${DB_HOST}'
-      DB_PORT: '${DB_PORT}'
-      DB_USER: '${DB_USER}'
-      DB_PASSWORD: '${DB_PASS}'
-      DB_NAME: '${DB_NAME}'
+      MYSQL_DATABASE: elitemente-db
+      MYSQL_ROOT_PASSWORD: america2020
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysqldb
+    networks:
+      - internalnet
+
+  backend:
+    build: .
+    container_name: em-backend-container
+    image: nodeapp:v1
+    volumes:
+      - $HOME/nodeapp:/code
     ports:
       - '8000:8000'
-    stdin_open: true
-    tty: true
-  db:
-    image: mysql:8.0.30
-    env_file: ./.env
+    expose:
+      - 8000
     environment:
-      MYSQL_ROOT_PASSWORD: '${DB_ROOT_PASS}'
-      MYSQL_DATABASE: '${DB_NAME}'
-      MYSQL_USER: '${DB_USER}'
-      MYSQL_PASSWORD: '${DB_PASS}'
-    volumes:
-      - db:/var/lib/mysql
-volumes:
-  db:
+      SERVICE_TAGS: prod
+      SERVICE_NAME: nodeappservice
+      SERVER_PORT: 8000
+      DB_HOST: mysqldb
+      DB_PORT: 3306
+      DB_USER: 'admin'
+      DB_PASSWORD: 'password'
+      DB_NAME: elitemente-db
+      DB_CONNECTION_LIMIT: 10
+    depends_on:
+      - mysqldb
+    networks:
+      - internalnet
+
+networks:
+  internalnet:
+    driver: bridge
