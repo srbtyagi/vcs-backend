@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:12
 WORKDIR /app
 COPY . .
 RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
