@@ -1,4 +1,0 @@
-   
-   host  ---   ubuntu@ec2-3-13-102-165.us-east-2.compute.amazonaws.com
-
- password --- Uat*9875
