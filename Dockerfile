@@ -4,7 +4,6 @@ COPY . .
 RUN apt-get update
 RUN apt-get install -y python3-pip
 RUN apt-get install python3 g++ make
-RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
 RUN npm install
 EXPOSE 8000
