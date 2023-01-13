@@ -1,7 +1,7 @@
 FROM node:lts-alpine
 WORKDIR /app
 COPY . .
-RUN apt-get update || : && apt-get install python -y
+RUN apk add --update python
 RUN npm install
 EXPOSE 8000
 CMD ["node", "app.js"]
