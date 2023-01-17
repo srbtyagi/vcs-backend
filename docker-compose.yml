@@ -5,7 +5,6 @@ services:
     image: mysql:8.0
     restart: unless-stopped
     volumes:
-      - ./vcsdb.sql:/docker-entrypoint-initdb.d/0_init.sql
       - $HOME/database:/var/lib/mysql
     ports:
       - 3306:3306
