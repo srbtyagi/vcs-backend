@@ -1,23 +1,23 @@
 version: '3.8'
 services:
-  mysqldb:
-    container_name: em-mysql-container
-    image: mysql:8.0
-    restart: unless-stopped
-    volumes:
-      - $HOME/database:/var/lib/mysql
-    ports:
-      - 3306:3306
-    expose:
-      - 3306
-    environment:
-      MYSQL_DATABASE: elitemente-db
-      MYSQL_ROOT_PASSWORD: america2020
-      MYSQL_PASSWORD: password
-      SERVICE_TAGS: dev
-      SERVICE_NAME: mysqldb
-    networks:
-      - internalnet
+  # mysqldb:
+  #   container_name: em-mysql-container
+  #   image: mysql:8.0
+  #   restart: unless-stopped
+  #   volumes:
+  #     - $HOME/database:/var/lib/mysql
+  #   ports:
+  #     - 3306:3306
+  #   expose:
+  #     - 3306
+  #   environment:
+  #     MYSQL_DATABASE: elitemente-db
+  #     MYSQL_ROOT_PASSWORD: america2020
+  #     MYSQL_PASSWORD: password
+  #     SERVICE_TAGS: dev
+  #     SERVICE_NAME: mysqldb
+  #   networks:
+  #     - internalnet
 
   backend:
     build: .
@@ -33,14 +33,14 @@ services:
       SERVICE_TAGS: prod
       SERVICE_NAME: nodeappservice
       SERVER_PORT: 8000
-      DB_HOST: mysqldb
+      DB_HOST: ls-c5011edab612b6e778a28ecdf75f1ebf0b3ba63f.cbsuayqxzsiq.us-east-2.rds.amazonaws.com
       DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: america2020
-      DB_NAME: elitemente-db
+      DB_USER: dbmasteruser
+      DB_PASSWORD: Evn_*s>FmIl7k>mU7Ea9!_,Lt>v=Ao?S
+      DB_NAME: Database-1
       DB_CONNECTION_LIMIT: 10
-    depends_on:
-      - mysqldb
+    #depends_on:
+      #- mysqldb
     networks:
       - internalnet
 
