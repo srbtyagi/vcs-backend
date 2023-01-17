@@ -37,7 +37,7 @@ services:
       DB_PORT: 3306
       DB_USER: dbmasteruser
       DB_PASSWORD: Evn_*s>FmIl7k>mU7Ea9!_,Lt>v=Ao?S
-      DB_NAME: Database-1
+      DB_NAME: elitementedb
       DB_CONNECTION_LIMIT: 10
     #depends_on:
       #- mysqldb
