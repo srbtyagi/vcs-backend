@@ -14,7 +14,6 @@ services:
     environment:
       MYSQL_DATABASE: elitemente-db
       MYSQL_ROOT_PASSWORD: america2020
-      MYSQL_USER: root
       MYSQL_PASSWORD: password
       SERVICE_TAGS: dev
       SERVICE_NAME: mysqldb
