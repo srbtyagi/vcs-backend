@@ -35,8 +35,8 @@ services:
       SERVER_PORT: 8000
       DB_HOST: mysqldb
       DB_PORT: 3306
-      DB_USER: 'root'
-      DB_PASSWORD: 'password'
+      DB_USER: root
+      DB_PASSWORD: america2020
       DB_NAME: elitemente-db
       DB_CONNECTION_LIMIT: 10
     depends_on:
