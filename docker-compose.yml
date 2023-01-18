@@ -33,11 +33,11 @@ services:
       SERVICE_TAGS: prod
       SERVICE_NAME: nodeappservice
       SERVER_PORT: 8000
-      DB_HOST: ls-c5011edab612b6e778a28ecdf75f1ebf0b3ba63f.cbsuayqxzsiq.us-east-2.rds.amazonaws.com
+      DB_HOST: ls-dfcf8968f679b0a019e4891533d6384a3a6a39ef.cbsuayqxzsiq.us-east-2.rds.amazonaws.com
       DB_PORT: 3306
       DB_USER: dbmasteruser
-      DB_PASSWORD: Evn_*s>FmIl7k>mU7Ea9!_,Lt>v=Ao?S
-      DB_NAME: elitementedb
+      DB_PASSWORD: HG4OIvvin(gomB>B7%4AZIeBTml`HlXM
+      DB_NAME: emdb
       DB_CONNECTION_LIMIT: 10
     #depends_on:
       #- mysqldb
