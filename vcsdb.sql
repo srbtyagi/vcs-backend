@@ -39,6 +39,11 @@ CREATE TABLE `tbl_account_file` (
 -- Dumping data for table `tbl_account_file`
 --
 
+LOCK TABLES `tbl_account_file` WRITE;
+/*!40000 ALTER TABLE `tbl_account_file` DISABLE KEYS */;
+INSERT INTO `tbl_account_file` VALUES (1,4,7,'nov',2021,'not_processed','submitted','FL112021001'),(6,4,8,'nov',2021,'not_processed','inprocess','FL112421001'),(11,4,9,'nov',2021,'not_processed','inprocess','FL113021001'),(14,3,9,'nov',2021,'not_processed','inprocess','FL120121001'),(15,3,15,'jan',2022,'not_processed','submitted','FL122921001'),(16,3,16,'jan',2022,'not_processed','inprocess','FL020122001'),(17,3,17,'jan',2022,'not_processed','inprocess','FL020122002'),(18,3,20,'jan',2022,'approved','submitted','FL021022001'),(19,3,21,'feb',2022,'not_processed','submitted','FL071322001');
+/*!40000 ALTER TABLE `tbl_account_file` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_action`
@@ -59,6 +64,11 @@ CREATE TABLE `tbl_action` (
 -- Dumping data for table `tbl_action`
 --
 
+LOCK TABLES `tbl_action` WRITE;
+/*!40000 ALTER TABLE `tbl_action` DISABLE KEYS */;
+INSERT INTO `tbl_action` VALUES (10101,'MANAGE JOB',101),(10201,'POST JOB',102),(20101,'APPLICANT',201),(20201,'JOB APPLICATION',202),(20301,'ONBOARDING & HIRING',203),(20401,'HIRED',204),(20501,'ASSIGN MANAGERS',205),(20601,'SKILLSET',206),(30101,'PAYROLL PROCESSING',301),(30201,'PAYROLL APPROVAL',302),(30301,'PAYROLL & INVOICE',303),(30401,'INVOICE RECON',304),(30601,'INCENTIVES',306),(40101,'COMPANY',401),(40201,'DEPARTMENT',402),(40301,'USER ROLE',403),(40401,'EMPLOYEE',404),(40501,'CLIENT',405),(40601,'DROPDOWN LIST',406),(50201,'APPLICATION',502),(50301,'ONBOARDING & HIRING',503);
+/*!40000 ALTER TABLE `tbl_action` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_app_action`
@@ -78,6 +88,10 @@ CREATE TABLE `tbl_app_action` (
 -- Dumping data for table `tbl_app_action`
 --
 
+LOCK TABLES `tbl_app_action` WRITE;
+/*!40000 ALTER TABLE `tbl_app_action` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_app_action` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_app_user_access`
@@ -96,6 +110,10 @@ CREATE TABLE `tbl_app_user_access` (
 -- Dumping data for table `tbl_app_user_access`
 --
 
+LOCK TABLES `tbl_app_user_access` WRITE;
+/*!40000 ALTER TABLE `tbl_app_user_access` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_app_user_access` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_application`
@@ -132,9 +150,6 @@ CREATE TABLE `tbl_application` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1419 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `tbl_application`
---
 
 --
 -- Table structure for table `tbl_assign_manager`
@@ -152,11 +167,6 @@ CREATE TABLE `tbl_assign_manager` (
   `manager_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbl_assign_manager`
---
-
 
 --
 -- Table structure for table `tbl_assignment`
@@ -184,6 +194,12 @@ CREATE TABLE `tbl_assignment` (
 -- Dumping data for table `tbl_assignment`
 --
 
+LOCK TABLES `tbl_assignment` WRITE;
+/*!40000 ALTER TABLE `tbl_assignment` DISABLE KEYS */;
+INSERT INTO `tbl_assignment` VALUES (1,4,2,1,1,'',12,'closed','11/13/2021',NULL),(2,4,10,2,2,'',12,'closed','11/21/2021',NULL),(3,3,11,3,3,'',13,'closed','12/31/2021',NULL),(4,3,5,4,4,'',14,'closed','12/31/2021',NULL),(5,3,32,5,25,'01/12/2022',54,'working','03/12/2022','37.12'),(6,3,60,8,39,'01/31/2022',84,'working','04/30/2022','40'),(7,3,71,6,53,'02/02/2022',85,'working','05/07/2022','35'),(8,4,148,10,118,'02/08/2022',138,'working','04/02/2022',NULL),(9,3,140,9,110,'02/14/2022',79,'working','04/23/2022',NULL);
+/*!40000 ALTER TABLE `tbl_assignment` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `tbl_candidate`
 --
@@ -205,10 +221,6 @@ CREATE TABLE `tbl_candidate` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_candidate`
---
-
---
 -- Table structure for table `tbl_client`
 --
 
@@ -223,11 +235,6 @@ CREATE TABLE `tbl_client` (
   PRIMARY KEY (`client_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbl_client`
---
-
 
 --
 -- Table structure for table `tbl_company`
@@ -275,16 +282,6 @@ CREATE TABLE `tbl_conf_document` (
   PRIMARY KEY (`conf_doc_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbl_conf_document`
---
-
-LOCK TABLES `tbl_conf_document` WRITE;
-/*!40000 ALTER TABLE `tbl_conf_document` DISABLE KEYS */;
-INSERT INTO `tbl_conf_document` VALUES (1,277,'confidential','/home/ubuntu/vcs/Uploads/ConfDocument/USA_STATES.txt',2,'07/04/2022 1:44:04 AM'),(2,380,'conf','/home/ubuntu/vcs/Uploads/ConfDocument/USA_STATES.txt',2,'07/04/2022 5:34:24 AM');
-/*!40000 ALTER TABLE `tbl_conf_document` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_department`
@@ -387,6 +384,11 @@ CREATE TABLE `tbl_image` (
 -- Dumping data for table `tbl_image`
 --
 
+LOCK TABLES `tbl_image` WRITE;
+/*!40000 ALTER TABLE `tbl_image` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_image` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `tbl_incentive`
 --
@@ -418,6 +420,10 @@ CREATE TABLE `tbl_incentive` (
 -- Dumping data for table `tbl_incentive`
 --
 
+LOCK TABLES `tbl_incentive` WRITE;
+/*!40000 ALTER TABLE `tbl_incentive` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_incentive` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_incentive_file`
@@ -444,6 +450,10 @@ CREATE TABLE `tbl_incentive_file` (
 -- Dumping data for table `tbl_incentive_file`
 --
 
+LOCK TABLES `tbl_incentive_file` WRITE;
+/*!40000 ALTER TABLE `tbl_incentive_file` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_incentive_file` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_invoice_recon`
@@ -474,6 +484,10 @@ CREATE TABLE `tbl_invoice_recon` (
 -- Dumping data for table `tbl_invoice_recon`
 --
 
+LOCK TABLES `tbl_invoice_recon` WRITE;
+/*!40000 ALTER TABLE `tbl_invoice_recon` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_invoice_recon` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_job`
@@ -515,9 +529,6 @@ CREATE TABLE `tbl_job` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_job`
---
---
 -- Table structure for table `tbl_job_sector`
 --
 
@@ -536,6 +547,11 @@ CREATE TABLE `tbl_job_sector` (
 -- Dumping data for table `tbl_job_sector`
 --
 
+LOCK TABLES `tbl_job_sector` WRITE;
+/*!40000 ALTER TABLE `tbl_job_sector` DISABLE KEYS */;
+INSERT INTO `tbl_job_sector` VALUES (1,'Nursing ','inactive'),(2,'Allied Health ','inactive'),(3,'Pharmacist ','inactive'),(6,'Healthcare-Clinical','active'),(7,'Healthcare- Non Clinical','active'),(8,'Information Technology','active');
+/*!40000 ALTER TABLE `tbl_job_sector` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_job_type`
@@ -556,6 +572,11 @@ CREATE TABLE `tbl_job_type` (
 -- Dumping data for table `tbl_job_type`
 --
 
+LOCK TABLES `tbl_job_type` WRITE;
+/*!40000 ALTER TABLE `tbl_job_type` DISABLE KEYS */;
+INSERT INTO `tbl_job_type` VALUES (1,'OT Nurse','inactive'),(2,'Nurse','inactive'),(3,'Pharmacist','inactive'),(4,'Full Time','active'),(5,'Contract ','active'),(6,'Per Diem','active');
+/*!40000 ALTER TABLE `tbl_job_type` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_manager_incentive`
@@ -577,6 +598,11 @@ CREATE TABLE `tbl_manager_incentive` (
 -- Dumping data for table `tbl_manager_incentive`
 --
 
+LOCK TABLES `tbl_manager_incentive` WRITE;
+/*!40000 ALTER TABLE `tbl_manager_incentive` DISABLE KEYS */;
+INSERT INTO `tbl_manager_incentive` VALUES (1401,12,154,5,NULL),(1401,12,127,7,NULL),(1401,12,143,1,NULL),(1401,12,143,1,NULL),(1,2,144,1,'10'),(20,27,152,8,NULL),(20,27,133,7,NULL),(20,27,168,4,NULL),(1409,1340,165,5,NULL),(1409,1340,145,7,NULL),(1409,1340,133,7,NULL),(1409,1340,143,1,'10'),(1410,1340,157,5,NULL),(1410,1340,127,7,NULL),(1410,1340,143,1,'10'),(1410,1340,143,1,'10'),(1416,1340,158,5,NULL),(1416,1340,152,8,NULL),(1416,1340,127,7,NULL),(1416,1340,143,1,'10'),(1,2,150,5,'7'),(6,12,144,1,'10'),(6,12,168,4,NULL),(6,12,151,5,'7'),(1,2,168,4,NULL),(1,2,123,9,'3'),(2,10,149,5,'7'),(2,10,144,1,'10'),(2,10,123,9,'3'),(1417,1349,165,5,'7'),(1417,1349,145,7,'2'),(1417,1349,133,7,'2'),(1417,1349,143,1,'10'),(1418,1349,127,7,'2'),(1418,1349,143,1,'10'),(1418,1349,2,1,'10'),(1418,1349,143,1,'10');
+/*!40000 ALTER TABLE `tbl_manager_incentive` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_module`
@@ -646,6 +672,11 @@ CREATE TABLE `tbl_onboarding` (
 -- Dumping data for table `tbl_onboarding`
 --
 
+LOCK TABLES `tbl_onboarding` WRITE;
+/*!40000 ALTER TABLE `tbl_onboarding` DISABLE KEYS */;
+INSERT INTO `tbl_onboarding` VALUES (1,1,2,'11/13/2021','11/13/2021','166','250','250','129.69','195.31','195.31','1100','40','abcd','36','Night Shift','None','13 Weeks','3,4,5,6,7','','','','completed','11/20/2021','not_done',NULL,'hired',NULL),(2,2,10,'11/21/2021','11/21/2021','166','250','250','129.69','195.31','195.31','1000','40','Testig 2 package details','36 hours','Night Shift','None','13 week','3,4,5,6,7','facilityDoc1','Randomdoc1','1','completed','11/28/2021','done',NULL,'hired',NULL),(3,3,11,'11/29/2021','12/31/2021','150','225','225','117.19','175.78','175.78','1100','40','50$ need pay for BLS renewal ','36','Day','Dec 25','13 Weeks','3,8,9,10,11,12,13,14,5,6','SelSCR','DeclinationFlu','3','completed','12/04/2021','not_done',NULL,'hired',NULL),(4,4,5,'12/01/2021','12/31/2021','150','225','225','117.19','175.78','175.78','1500','40','Ting tong','36','Day','Dec 29','13 week','3,4,5','doc2','and2','3','completed','12/11/2021','done',NULL,'hired',NULL),(5,25,32,'01/12/2022','03/12/2022','200','300','300','142','214.28','214.28','0','40','Taxable Amount/Week: $ 4598.64/Week based on 36 confirmed hours\nNon-Taxable Amount/Week: NA\nMiscellaneous: NA','36','Day','None','13 Weeks','','','','','completed','01/10/2022','not_done',NULL,'hired',NULL),(6,53,71,'02/02/2022','05/07/2022','175','262.5','262.5','125','187.5','187.5','0','40','Facility Name & Location:Coney Island Hospital, 2601 Ocean Parkway, Brooklyn, NY - 11235 \nStart Date: 01/31/2022\nEnd Date: 05/07/2022\nOffered Schedule: Night (7:00 PM - 7:30 AM)\nConfirmed Hours/Week: 36 Hours/Week\nRegular Pay Rate: $ 125.00/Hour\nOvertime Pay Rate: $ 187.50/Hour\nHoliday Pay Rate: $ 187.50/Hour\nApproved Time Off: NA\nTaxable Amount/Week: $ 4500/Week\nNon-Taxable Amount/Week: Nil\nMiscellaneous: Nil','36','Night','none','14 week','5','','','5','cancelled','02/05/2022','not_done',NULL,'hired','07/04/2022'),(7,59,77,'01/30/2022','01/30/2022','225','337.5','337.5','171.75','257.62','257.62','2555','40','N/A','60 hr/week','Day','Mar 1 – Mar 4, 2022','8 week','6','','','','completed','01/31/2022','not_done',NULL,'not_hired',NULL),(8,39,60,'01/31/2022','04/30/2022','150','225','225','107.14','160.71','160.71','0','40','Woodhull Medical Center, 760 Broadway, Brooklyn, NY - 11206','36','Night','N/A','13 Weeks','6','','','','cancelled','02/05/2022','not_done',NULL,'hired','07/05/2022'),(9,110,140,'02/14/2022','04/23/2022','200','250','250','142.85','214.28','214.28','0','40','As Mentioned above','40','Day','None','13 weeks','3','','','','cancelled','02/16/2022','not_done',NULL,'hired','07/05/2022'),(10,118,148,'02/08/2022','04/02/2022','190','237.5','237.5','135.71','169.64','169.64','0','40','As mentioned above','36 hours/week','Night','03/16/2022, 03/20/2022.','13 Weeks','3','','','','completed','02/09/2022','not_done',NULL,'hired',NULL),(11,157,186,'02/28/2022','05/28/2022','150','225','225','107.14','160.71','160.71','0','40',' 04/21/2022  to 04/29/2022 as RTO','40','Day',' 04/21/2022  to 04/29/2022','13 Weeks','3','','','','in_progress','06/27/2022','not_done',NULL,'not_hired',NULL),(12,174,203,'02/28/2022','05/28/2022','175','262.5','262.5','125','187.5','187.5','0','40','Nil','36','Day,Night','NA','13 Weeks',NULL,NULL,NULL,NULL,'not_started',NULL,'not_done',NULL,'not_hired',NULL),(13,126,156,'02/15/2022','05/14/2022','73.19','98.91','98.91','53.42','80.13','80.13','0','40','$1,923.12','36 ','7am to 7pm','N/A','13 weeks',NULL,NULL,NULL,NULL,'not_started',NULL,'not_done',NULL,'not_hired',NULL);
+/*!40000 ALTER TABLE `tbl_onboarding` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_pay_rate`
@@ -684,6 +715,11 @@ CREATE TABLE `tbl_pay_rate` (
 -- Dumping data for table `tbl_pay_rate`
 --
 
+LOCK TABLES `tbl_pay_rate` WRITE;
+/*!40000 ALTER TABLE `tbl_pay_rate` DISABLE KEYS */;
+INSERT INTO `tbl_pay_rate` VALUES (1,1,2,'11/13/2021','11/13/2021','166','250','250','129.69','195.31','195.31','1100','40','abcd','36','Night Shift','None','13 Weeks','inactive',NULL,NULL),(2,2,10,'11/21/2021','11/21/2021','166','250','250','129.69','195.31','195.31','1000','40','Testig 2 package details','36 hours','Night Shift','None','13 week','inactive',NULL,NULL),(3,3,11,'11/29/2021','12/31/2021','150','225','225','117.19','175.78','175.78','1100','40','50$ need pay for BLS renewal ','36','Day','Dec 25','13 Weeks','inactive',NULL,NULL),(4,4,5,'12/01/2021','12/31/2021','150','225','225','117.19','175.78','175.78','1500','40','Ting tong','36','Day','Dec 29','13 week','inactive',NULL,NULL),(5,25,32,'01/12/2022','03/12/2022','200','300','300','142','214.28','214.28','0','40','Taxable Amount/Week: $ 4598.64/Week based on 36 confirmed hours\nNon-Taxable Amount/Week: NA\nMiscellaneous: NA','36','Day','None','13 Weeks','inactive',NULL,NULL),(6,53,71,'02/02/2022','05/07/2022','175','262.5','262.5','125','187.5','187.5','0','40','Facility Name & Location:Coney Island Hospital, 2601 Ocean Parkway, Brooklyn, NY - 11235 \nStart Date: 01/31/2022\nEnd Date: 05/07/2022\nOffered Schedule: Night (7:00 PM - 7:30 AM)\nConfirmed Hours/Week: 36 Hours/Week\nRegular Pay Rate: $ 125.00/Hour\nOvertime Pay Rate: $ 187.50/Hour\nHoliday Pay Rate: $ 187.50/Hour\nApproved Time Off: NA\nTaxable Amount/Week: $ 4500/Week\nNon-Taxable Amount/Week: Nil\nMiscellaneous: Nil','36','Night','none','14 week','inactive',NULL,NULL),(7,59,77,'01/30/2022','01/30/2022','225','337.5','337.5','171.75','257.62','257.62','2555','40','N/A','60 hr/week','Day','Mar 1 – Mar 4, 2022','8 week','inactive',NULL,NULL),(8,39,60,'01/31/2022','04/30/2022','150','225','225','107.14','160.71','160.71','0','40','Woodhull Medical Center, 760 Broadway, Brooklyn, NY - 11206','36','Night','N/A','13 Weeks','inactive',NULL,NULL),(9,110,140,'02/14/2022','04/23/2022','200','250','250','142.85','214.28','214.28','0','40','As Mentioned above','40','Day','None','13 weeks','inactive',NULL,NULL),(10,118,148,'02/08/2022','04/02/2022','190','237.5','237.5','135.71','169.64','169.64','0','40','As mentioned above','36 hours/week','Night','03/16/2022, 03/20/2022.','13 Weeks','inactive',NULL,NULL),(11,126,156,'02/15/2022','05/14/2022','73.19','98.91','98.91','53.42','80.13','80.13','0','40','$1,923.12','36 ','7am to 7pm','N/A','13 weeks','inactive',NULL,NULL),(12,157,186,'02/28/2022','05/28/2022','150','225','225','107.14','160.71','160.71','0','40',' 04/21/2022  to 04/29/2022 as RTO','40','Day',' 04/21/2022  to 04/29/2022','13 Weeks','inactive',NULL,NULL),(13,174,203,'02/28/2022','05/28/2022','175','262.5','262.5','125','187.5','187.5','0','40','Nil','36','Day,Night','NA','13 Weeks','inactive',NULL,NULL),(14,1042,1011,'06/06/2022','09/10/2022','131.21','196.81','196.81','102.51','153.76','153.76','','40','Pay Package:$93.72/hr (for Local Candidates)\nPackage for Travelers: (Based on 36 hours per week)\nTotal Gross Income: $3,605/week','36','Night','None','14','active',NULL,NULL);
+/*!40000 ALTER TABLE `tbl_pay_rate` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_pay_rate_change_log`
@@ -725,6 +761,11 @@ CREATE TABLE `tbl_pay_rate_change_log` (
 -- Dumping data for table `tbl_pay_rate_change_log`
 --
 
+LOCK TABLES `tbl_pay_rate_change_log` WRITE;
+/*!40000 ALTER TABLE `tbl_pay_rate_change_log` DISABLE KEYS */;
+INSERT INTO `tbl_pay_rate_change_log` VALUES (1,4,4,5,'12/01/2021','12/31/2021','150','225','225','117.19','175.78','175.78','1500','40','Ting tong','36','Day','Dec 29','13 week','active',NULL,NULL,2,'11/30/2021'),(2,5,25,32,'01/12/2022','03/12/2022','175','262.5','262.5','127.74','191.61','191.61','0','40','Taxable Amount/Week: $ 4598.64/Week based on 36 confirmed hours\nNon-Taxable Amount/Week: NA\nMiscellaneous: NA','36','Day','None','13 Weeks','active',NULL,NULL,143,'12/31/2021'),(3,5,25,32,'01/12/2022','03/12/2022','175','262.5','262.5','127.74','191.61','191.61','0','40','Taxable Amount/Week: $ 4598.64/Week based on 36 confirmed hours\nNon-Taxable Amount/Week: NA\nMiscellaneous: NA','36','Day','None','13 Weeks','active',NULL,NULL,143,'01/20/2022'),(4,7,59,77,'01/30/2022','01/30/2022','225','337.5','337.5','171.75','257.62','257.62','2555','40','N/A','60 hr/week','Day','Mar 1 – Mar 4, 2022','8 week','active',NULL,NULL,143,'01/31/2022'),(5,1,1,2,'11/13/2021','11/13/2021','166','250','250','129.69','195.31','195.31','1100','40','abcd','36','Night Shift','None','13 Weeks','active',NULL,NULL,143,'02/09/2022'),(6,2,2,10,'11/21/2021','11/21/2021','166','250','250','129.69','195.31','195.31','1000','40','Testig 2 package details','36 hours','Night Shift','None','13 week','active',NULL,NULL,143,'02/09/2022'),(7,5,25,32,'01/12/2022','03/12/2022','200','300','300','142','214.28','214.28','0','40','Taxable Amount/Week: $ 4598.64/Week based on 36 confirmed hours\nNon-Taxable Amount/Week: NA\nMiscellaneous: NA','36','Day','None','13 Weeks','active',NULL,NULL,143,'02/10/2022'),(8,11,126,156,'02/15/2022','05/14/2022','73.19','98.91','98.91','53.42','80.13','80.13','0','40','$1,923.12','36 ','7am to 7pm','N/A','13 weeks','active',NULL,NULL,143,'03/09/2022'),(9,13,174,203,'02/28/2022','05/28/2022','175','262.5','262.5','125','187.5','187.5','0','40','Nil','36','Day,Night','NA','13 Weeks','active',NULL,NULL,143,'03/14/2022');
+/*!40000 ALTER TABLE `tbl_pay_rate_change_log` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_payroll_invoice`
@@ -765,6 +806,11 @@ CREATE TABLE `tbl_payroll_invoice` (
 -- Dumping data for table `tbl_payroll_invoice`
 --
 
+LOCK TABLES `tbl_payroll_invoice` WRITE;
+/*!40000 ALTER TABLE `tbl_payroll_invoice` DISABLE KEYS */;
+INSERT INTO `tbl_payroll_invoice` VALUES (1,1,2,7,'nov','2021',1,'36','0','0','1','1','4668.84','1','4669.84','5976.00','5647.32','417.22','5.5',NULL,'submitted','0','unpaid'),(2,1,2,8,'nov','2021',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(3,2,10,8,'nov','2021',6,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(4,3,11,9,'nov','2021',7,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(5,3,11,9,'nov','2021',10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(6,4,5,9,'nov','2021',10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(7,1,2,9,'nov','2021',11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(8,2,10,9,'nov','2021',11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(9,3,11,9,'nov','2021',12,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(10,4,5,9,'nov','2021',12,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(11,3,11,9,'nov','2021',13,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(12,4,5,9,'nov','2021',13,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(13,3,11,9,'nov','2021',14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(14,4,5,9,'nov','2021',14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(15,3,11,15,'jan','2022',15,'36','0','0','2500','100','1818.84','2500','4318.84','5400.00','5157.00','619.90','4.5',NULL,'submitted','0','unpaid'),(16,4,5,15,'jan','2022',15,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(17,3,11,16,'jan','2022',16,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(18,3,11,17,'jan','2022',17,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(19,5,32,17,'jan','2022',17,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(20,5,32,20,'jan','2022',18,'37.12','0','0','0','0','5271.04','0','5271.04','7424.00','7089.92','1186.36','4.5',NULL,'approved','0','unpaid'),(21,6,60,20,'jan','2022',18,'40','0','0','0','0','4285.60','0','4285.60','6000.00','5730.00','930.13','4.5',NULL,'approved','0','unpaid'),(22,7,71,20,'jan','2022',18,'35','0','0','1000','0','3375.00','1000','4375.00','6125.00','5849.38','1069.38','4.5',NULL,'approved','0','unpaid'),(23,5,32,21,'feb','2022',19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(24,6,60,21,'feb','2022',19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid'),(25,7,71,21,'feb','2022',19,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'inprocess',NULL,'unpaid');
+/*!40000 ALTER TABLE `tbl_payroll_invoice` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_position_type`
@@ -785,6 +831,11 @@ CREATE TABLE `tbl_position_type` (
 -- Dumping data for table `tbl_position_type`
 --
 
+LOCK TABLES `tbl_position_type` WRITE;
+/*!40000 ALTER TABLE `tbl_position_type` DISABLE KEYS */;
+INSERT INTO `tbl_position_type` VALUES (1,'Allied Health ','active'),(2,'Nursing','active'),(3,'Other-Non Clinical','active'),(4,'Healthcare client','inactive'),(5,'Physicians ','inactive'),(6,'LPN/LVN','inactive'),(7,'Clinical Lab Technician','inactive'),(8,'Pharmacist','active'),(9,'Patient Care Associate ','inactive'),(10,'Certified Nursing Assistant ','inactive'),(11,'Medical Assistant ','inactive'),(12,'Technician','inactive');
+/*!40000 ALTER TABLE `tbl_position_type` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_profession`
@@ -860,10 +911,6 @@ CREATE TABLE `tbl_recruitee` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_recruitee`
---
-
---
 -- Table structure for table `tbl_recruitee_details`
 --
 
@@ -883,58 +930,6 @@ CREATE TABLE `tbl_recruitee_details` (
   PRIMARY KEY (`recruitee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbl_recruitee_details`
---
-
-
---
--- Table structure for table `tbl_recruitee_document`
---
-
-DROP TABLE IF EXISTS `tbl_recruitee_document`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbl_recruitee_document` (
-  `rec_doc_id` int NOT NULL AUTO_INCREMENT,
-  `rec_doc_type` varchar(20) NOT NULL,
-  `doc_id` int DEFAULT NULL,
-  `rec_doc_name` varchar(100) DEFAULT NULL,
-  `rec_doc_path` varchar(300) NOT NULL,
-  `recruitee_id` int NOT NULL,
-  `rec_doc_status` varchar(20) DEFAULT NULL,
-  `upload_date_time` varchar(50) DEFAULT NULL,
-  `expiry_date` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`rec_doc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbl_recruitee_document`
---
-
-
---
--- Table structure for table `tbl_recruitee_resume`
---
-
-DROP TABLE IF EXISTS `tbl_recruitee_resume`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbl_recruitee_resume` (
-  `recruitee_id` int NOT NULL,
-  `resume_doc_path` varchar(500) NOT NULL,
-  `rec_doc_status` varchar(20) DEFAULT NULL,
-  `upload_date_time` varchar(50) DEFAULT NULL,
-  `expiry_date` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbl_recruitee_resume`
---
-
 
 --
 -- Table structure for table `tbl_requested_document`
@@ -959,6 +954,10 @@ CREATE TABLE `tbl_requested_document` (
 -- Dumping data for table `tbl_requested_document`
 --
 
+LOCK TABLES `tbl_requested_document` WRITE;
+/*!40000 ALTER TABLE `tbl_requested_document` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_requested_document` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_role`
@@ -1029,6 +1028,11 @@ CREATE TABLE `tbl_skill_area` (
 -- Dumping data for table `tbl_skill_area`
 --
 
+LOCK TABLES `tbl_skill_area` WRITE;
+/*!40000 ALTER TABLE `tbl_skill_area` DISABLE KEYS */;
+INSERT INTO `tbl_skill_area` VALUES (1,1,'Administrative Registered Nurse','active'),(2,1,'Ambulatory','active'),(3,1,'Cardiac Echocardiography','active'),(4,1,'Cath Lab Interventional Radiology','active'),(5,1,'CVOR','active'),(6,1,'Dialysis Clinical','active'),(7,1,'Endoscopy','active'),(8,1,'Home Health','active'),(9,1,'ICU','active'),(10,1,'Intermediate Care','active'),(11,1,'Labor and Delivery','active'),(12,1,'Med-Surg','active'),(13,1,'Nurse Practitioner','active'),(14,1,'Oncology','active'),(15,1,'OR Surgical','active'),(16,1,'PCT','active'),(17,1,'Pediatric Emergency Department','active'),(18,1,'Post Partum','active'),(19,1,'Psychiatry','active'),(20,1,'Registered Nurse Appeal writer','active'),(21,1,'RN- Occupational and employee health','active'),(22,1,'Skilled Nursing','active'),(23,1,'Telemetry/Stepdown','active'),(24,1,'Urgent Care','active'),(25,1,'ADON/DON','active'),(26,1,'Cardiac Echo','active'),(27,1,'Case Management Utilization','active'),(28,1,'Critical Care','active'),(29,1,'Dialysis Nursing','active'),(30,1,'Emergency Department (ER)','active'),(31,1,'Healthcare Leadership Competencies','active'),(32,1,'Hospice','active'),(33,1,'Infection Control','active'),(34,1,'Interventional Radiology','active'),(35,1,'Long Term Care','active'),(36,1,'Neonatal ICU','active'),(37,1,'OB/Labor and Delivery','active'),(38,1,'Operating Room','active'),(39,1,'PACU','active'),(40,1,'Patient Care Technician','active'),(41,1,'Pediatrics','active'),(42,1,'PICU','active'),(43,1,'Psychiatric Tech','active'),(44,1,'Registered Nurse Checklist','active'),(45,1,'Registered Nurse Endoscopy','active'),(46,1,'Registered Nurse Supervisor','active'),(47,1,'Telemetry','active'),(48,1,'Travel Nursing','active'),(49,1,'Wound Care','active'),(50,2,'Acute Rehab','active'),(51,2,'Physical Therapist Self Assessment','active'),(52,2,'Respiratory Therapist','active'),(53,2,'Occupational Therapy Skills Checklist','active'),(54,2,'PT/PTA Skills Checklist','active'),(55,2,'Speech Language Pathologist','active'),(56,3,'Medical Assistant','active'),(57,3,'CNA','active'),(58,3,'Phelebotomy','active'),(59,3,'Social Worker','active'),(60,3,'Pharmacist','active'),(61,3,'CT Technologist','active'),(62,3,'Emergency Medical Technician (EMT)','active'),(63,3,'Medical Laboratory','active'),(64,3,'LPN','active'),(65,3,'Sterile Processing Technologist','active'),(66,3,'Surgical Technologist','active'),(67,3,'Pharmacy Technician','active'),(68,3,'Radiology Technologist','active');
+/*!40000 ALTER TABLE `tbl_skill_area` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_skill_category`
@@ -1049,6 +1053,12 @@ CREATE TABLE `tbl_skill_category` (
 -- Dumping data for table `tbl_skill_category`
 --
 
+LOCK TABLES `tbl_skill_category` WRITE;
+/*!40000 ALTER TABLE `tbl_skill_category` DISABLE KEYS */;
+INSERT INTO `tbl_skill_category` VALUES (1,'Nurse Skill','active'),(2,'Therapist skill','active'),(3,'Other Skills','active');
+/*!40000 ALTER TABLE `tbl_skill_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `tbl_skill_domain`
 --
@@ -1064,10 +1074,6 @@ CREATE TABLE `tbl_skill_domain` (
   PRIMARY KEY (`skill_domain_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=743 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbl_skill_domain`
---
 
 --
 -- Table structure for table `tbl_skillset`
@@ -1086,9 +1092,6 @@ CREATE TABLE `tbl_skillset` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7479 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `tbl_skillset`
---
 
 --
 -- Table structure for table `tbl_skillset_map`
@@ -1106,10 +1109,6 @@ CREATE TABLE `tbl_skillset_map` (
   PRIMARY KEY (`skillset_map_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=82206 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbl_skillset_map`
---
 
 
 --
@@ -1131,6 +1130,12 @@ CREATE TABLE `tbl_speciality` (
 -- Dumping data for table `tbl_speciality`
 --
 
+LOCK TABLES `tbl_speciality` WRITE;
+/*!40000 ALTER TABLE `tbl_speciality` DISABLE KEYS */;
+INSERT INTO `tbl_speciality` VALUES (1,'Corrections','active'),(2,'Mother and Baby','active'),(3,'Pediatric ','active'),(4,'Neonatal','active'),(5,'Intensive Care Unit(ICU)','active'),(6,'Emergency Room','active'),(7,'Behavioral/Psych','active'),(8,'Critical Care Unit','active'),(9,'Med/Surg','active'),(10,'Telemetry ','active'),(11,'Labour and Delivery ','active'),(12,'Operation Room','active'),(13,'Skilled Nursing Facility','active'),(14,'Long Term Care','active'),(15,'Medsurg/Tele','active'),(16,'Progressive care unit','active'),(17,'Ambulatory','active'),(18,'Cancer Center- Infusion','active');
+/*!40000 ALTER TABLE `tbl_speciality` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `tbl_standard_document`
 --
@@ -1150,6 +1155,11 @@ CREATE TABLE `tbl_standard_document` (
 -- Dumping data for table `tbl_standard_document`
 --
 
+LOCK TABLES `tbl_standard_document` WRITE;
+/*!40000 ALTER TABLE `tbl_standard_document` DISABLE KEYS */;
+INSERT INTO `tbl_standard_document` VALUES (1,'other','active'),(2,'facility_spec','active'),(3,'MaskFit','active'),(4,'Respiratory Medical Clearance ','active'),(5,'BLS-AHA','active'),(6,'Photo ID','active'),(7,'License/Cert Copy','active'),(8,'MMR','active'),(9,'Varicella','active'),(10,'Hep B','active'),(11,'Tdap','active'),(12,'Tuberculosis(TB) ','active'),(13,'Physical/Good Health Statement','active'),(14,'Vision Acuity','active'),(15,'Flu Shot','active'),(16,'Covid Vaccine Proof','active'),(17,'Fingerprinting ','active'),(18,'ACLS-AHA','active'),(19,'PALS-AHA','active'),(20,'Malpractice Insurance Proof','active'),(21,'Education Certificate','active'),(22,'TNCC','active'),(23,'Badge ID Photo','active');
+/*!40000 ALTER TABLE `tbl_standard_document` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbl_submodule`
