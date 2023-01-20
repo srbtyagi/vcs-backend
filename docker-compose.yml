@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services:
   # mysqldb:
   #   container_name: em-mysql-container
@@ -26,7 +26,7 @@ services:
     volumes:
       - $HOME/nodeapp:/code
     ports:
-      - '8000:8000'
+      - "8000:8000"
     expose:
       - 8000
     environment:
@@ -40,7 +40,7 @@ services:
       DB_NAME: emdb
       DB_CONNECTION_LIMIT: 10
     #depends_on:
-      #- mysqldb
+    #- mysqldb
     networks:
       - internalnet
 
