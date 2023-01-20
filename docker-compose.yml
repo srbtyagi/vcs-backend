@@ -33,10 +33,10 @@ services:
       SERVICE_TAGS: prod
       SERVICE_NAME: nodeappservice
       SERVER_PORT: 8000
-      DB_HOST: ls-dfcf8968f679b0a019e4891533d6384a3a6a39ef.cbsuayqxzsiq.us-east-2.rds.amazonaws.com
+      DB_HOST: ls-a4428aea5b811b0991bf35626d9b071396fe3913.cbsuayqxzsiq.us-east-2.rds.amazonaws.com
       DB_PORT: 3306
       DB_USER: dbmasteruser
-      DB_PASSWORD: HG4OIvvin(gomB>B7%4AZIeBTml`HlXM
+      DB_PASSWORD: `DC(#!!l?hv5IhFxU86)O|05Q~-yk!;o
       DB_NAME: emdb
       DB_CONNECTION_LIMIT: 10
     #depends_on:
