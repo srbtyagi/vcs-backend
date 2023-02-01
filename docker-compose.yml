@@ -33,11 +33,11 @@ services:
       SERVICE_TAGS: prod
       SERVICE_NAME: nodeappservice
       SERVER_PORT: 8000
-      DB_HOST: ls-a4428aea5b811b0991bf35626d9b071396fe3913.cbsuayqxzsiq.us-east-2.rds.amazonaws.com
+      DB_HOST: em-db-aurora-instance-1.cs0ol7nhc7nb.us-east-1.rds.amazonaws.com
       DB_PORT: 3306
-      DB_USER: dbmasteruser
-      DB_PASSWORD: '`DC(#!!l?hv5IhFxU86)O|05Q~-yk!;o'
-      DB_NAME: emdb
+      DB_USER: admin
+      DB_PASSWORD: 'america2020'
+      DB_NAME: emdbaurora
       DB_CONNECTION_LIMIT: 10
     #depends_on:
     #- mysqldb
