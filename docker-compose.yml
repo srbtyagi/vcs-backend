@@ -21,7 +21,7 @@ services:
 
   backend:
     build: .
-    container_name: em-backend-container
+    container_name: vcs-backend-container
     image: nodeapp:v1
     volumes:
       - $HOME/nodeapp:/code
@@ -33,11 +33,11 @@ services:
       SERVICE_TAGS: prod
       SERVICE_NAME: nodeappservice
       SERVER_PORT: 8000
-      DB_HOST: em-db-aurora-instance-1.cs0ol7nhc7nb.us-east-1.rds.amazonaws.com
+      DB_HOST: vish-db-instance-1.cs0ol7nhc7nb.us-east-1.rds.amazonaws.com
       DB_PORT: 3306
       DB_USER: admin
       DB_PASSWORD: 'america2020'
-      DB_NAME: emdbaurora
+      DB_NAME: vishdb
       DB_CONNECTION_LIMIT: 10
     #depends_on:
     #- mysqldb
