@@ -33,7 +33,7 @@ services:
       SERVICE_TAGS: prod
       SERVICE_NAME: nodeappservice
       SERVER_PORT: 8000
-      DB_HOST: vish-db-instance-1.cs0ol7nhc7nb.us-east-1.rds.amazonaws.com
+      DB_HOST: vdb-instance-1.cs0ol7nhc7nb.us-east-1.rds.amazonaws.com
       DB_PORT: 3306
       DB_USER: admin
       DB_PASSWORD: 'america2020'
