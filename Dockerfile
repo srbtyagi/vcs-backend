@@ -1,8 +1,8 @@
-FROM node
+FROM node:alpine
 WORKDIR /app
 COPY . .
 RUN apt-add-repository universe
-RUN apt-get update
+RUN apt update
 RUN apt install python3-pip
 RUN apt-get install python3 g++ make
 RUN pip3 install --no-cache --upgrade pip setuptools
