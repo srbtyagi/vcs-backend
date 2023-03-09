@@ -21,7 +21,7 @@ services:
 
   backend:
     build: .
-    container_name: vcs-backend-container
+    container_name: vcs-backend-docker
     image: nodeapp:v1
     volumes:
       - $HOME/nodeapp:/code
