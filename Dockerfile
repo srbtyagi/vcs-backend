@@ -1,8 +1,8 @@
-FROM node:alpine
+FROM node
 WORKDIR /app
 COPY . .
-RUN apt update
-RUN apt install python3-pip
+RUN apt-get update
+RUN apt-get install -y python3-pip
 RUN apt-get install python3 g++ make
 RUN pip3 install --no-cache --upgrade pip setuptools
 RUN npm i --force
