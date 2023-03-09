@@ -1,4 +1,5 @@
 FROM node
+FROM python
 WORKDIR /app
 COPY . .
 RUN apt-get update
