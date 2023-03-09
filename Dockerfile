@@ -1,7 +1,6 @@
 FROM node:alpine
 WORKDIR /app
 COPY . .
-RUN apt-add-repository universe
 RUN apt update
 RUN apt install python3-pip
 RUN apt-get install python3 g++ make
