@@ -15,17 +15,17 @@ const dotenv = require("dotenv");
 const https = require("https");
 const fs = require("fs");
 
-const https_options = {
-  ca: fs.readFileSync("./cert/bundle.crt"),
-  key: fs.readFileSync("./cert/priv.pem"),
-  cert: fs.readFileSync("./cert/sign.crt"),
-};
-https
-  .createServer(https_options, function (req, res) {
-    res.writeHead(200);
-    res.end("Welcome");
-  })
-  .listen(8443);
+// const https_options = {
+//   ca: fs.readFileSync("./cert/bundle.crt"),
+//   key: fs.readFileSync("./cert/priv.pem"),
+//   cert: fs.readFileSync("./cert/sign.crt"),
+// };
+// https
+//   .createServer(https_options, function (req, res) {
+//     res.writeHead(200);
+//     res.end("Welcome");
+//   })
+//   .listen(8443);
 
 dotenv.config();
 const PORT = process.env.SERVER_PORT || 8000;
