@@ -1,5 +1,4 @@
-FROM ubuntu
-FROM node
+FROM node:14
 WORKDIR /app
 COPY . .
 RUN apt-get update
